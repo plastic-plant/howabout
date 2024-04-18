@@ -25,8 +25,8 @@ namespace Howabout.Services
 				.WithOpenAITextEmbeddingGeneration(_options.Embeddings)
 				.WithCustomTextPartitioningOptions(new()
 				{
-					MaxTokensPerParagraph = _options.Embeddings.TextModelMaxTokenTotal, // Can do 8K, but 512 is LM Studio limit embeddings for vram for now
-					MaxTokensPerLine = _options.Embeddings.TextModelMaxTokenTotal,
+					MaxTokensPerParagraph = _options.Embeddings.EmbeddingModelMaxTokenTotal, // Can do 8K, but 512 is LM Studio limit embeddings for vram for now
+					MaxTokensPerLine = _options.Embeddings.EmbeddingModelMaxTokenTotal,
 					OverlappingTokens = _options.Partitioning.OverlappingTokens,
 				})
 				.Build();

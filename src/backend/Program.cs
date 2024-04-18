@@ -35,11 +35,24 @@ namespace Howabout
 					app.UseSwaggerUI();
 					app.MapControllers();
 					app.MapFallbackToFile("/index.html");
+					app.UseKernelMemoryService();
 					await app.RunAsync();
 					break;
 
 				case CommandLineStartupArguments.CommandArg.Stop:
 					Console.WriteLine("Stop command.");
+					using (var client = new HttpClient())
+					{
+						var response = await client.GetAsync("http://localhost:5153/configuration/stop");
+						if (response.IsSuccessStatusCode)
+						{
+							Console.WriteLine("Stopped.");
+						}
+						else
+						{
+							Console.WriteLine("Failed to stop.");
+						}
+					};
 					break;
 
 				case CommandLineStartupArguments.CommandArg.Add:

@@ -1,0 +1,13 @@
+@Howabout_HostAddress = http://localhost:5153
+
+###
+GET {{Howabout_HostAddress}}/configuration/reload
+Accept: application/json
+
+###
+GET {{Howabout_HostAddress}}/configuration/stop
+Accept: application/json
+
+###
+GET {{Howabout_HostAddress}}/configuration/bebop
+Accept: text/plain
