@@ -22,6 +22,7 @@ namespace Howabout
 
 				case CommandLineStartupArguments.CommandArg.Start:
 					var builder = WebApplication.CreateBuilder(args);
+					builder.Services.Configure<ModelProviderOptions>(builder.Configuration.GetSection(ModelProviderOptions.Section));
 					builder.Services.AddSingleton<IKernelMemoryService, KernelMemoryService>();
 					builder.Services.AddControllers();
 					builder.Services.AddEndpointsApiExplorer();

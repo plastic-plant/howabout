@@ -14,7 +14,7 @@
 
 		void ParseStartupArguments()
 		{
-			var command = _startupArguments.Length > 0 ? _startupArguments[0].ToLowerInvariant() : "";
+			var command = _startupArguments.Length > 0 ? _startupArguments[0]?.ToLowerInvariant() ?? "" : "";
 			Command = command switch
 			{
 				"/?" => CommandArg.Help,

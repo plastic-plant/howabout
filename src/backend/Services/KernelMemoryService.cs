@@ -1,45 +1,35 @@
-﻿using Howabout.Interfaces;
+﻿using Howabout.Configuration;
+using Howabout.Interfaces;
+using Microsoft.Extensions.Options;
 using Microsoft.KernelMemory;
-using Microsoft.KernelMemory.Configuration;
 
 namespace Howabout.Services
 {
 	public class KernelMemoryService : IKernelMemoryService
 	{
+		private readonly ModelProviderOptions _options;
 		private volatile IKernelMemory? _kernelMemory;
+
+        public KernelMemoryService(IOptions<ModelProviderOptions> options)
+        {
+			_options = options?.Value ?? throw new ArgumentNullException(nameof(options));
+            
+        }
 
 		public IKernelMemory? Get() => _kernelMemory;
 
 		public void Configure()
 		{
-			var embeddingConfig = new OpenAIConfig
-			{
-				Endpoint = "http://localhost:1234/v1/",
-				EmbeddingModel = "nomic-embed-text-v1.5.Q4_0.gguf",
-				EmbeddingModelMaxTokenTotal = 512, // offload to vram
-				APIKey = "lm-studio"
-			};
-
-			var generationConfig = new OpenAIConfig
-			{
-				Endpoint = "http://localhost:1234/v1/",
-				TextModel = "gemma-2b-it",
-				TextModelMaxTokenTotal = 8192,
-				APIKey = "lm-studio"
-			};
-
-			var memory = new KernelMemoryBuilder()
-			.WithOpenAITextEmbeddingGeneration(embeddingConfig)
-			.WithOpenAITextGeneration(generationConfig)
-			.WithCustomTextPartitioningOptions(new TextPartitioningOptions
-			{
-				MaxTokensPerParagraph = 512,
-				MaxTokensPerLine = 512,
-				OverlappingTokens = 50
-			})
-			.Build();
-
-			_kernelMemory = memory;
+			_kernelMemory = new KernelMemoryBuilder()
+				.WithOpenAITextGeneration(_options.Completions)
+				.WithOpenAITextEmbeddingGeneration(_options.Embeddings)
+				.WithCustomTextPartitioningOptions(new()
+				{
+					MaxTokensPerParagraph = _options.Embeddings.TextModelMaxTokenTotal, // Can do 8K, but 512 is LM Studio limit embeddings for vram for now
+					MaxTokensPerLine = _options.Embeddings.TextModelMaxTokenTotal,
+					OverlappingTokens = _options.Partitioning.OverlappingTokens,
+				})
+				.Build();
 		}
 	}
 }
