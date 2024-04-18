@@ -2,8 +2,6 @@
 using Howabout.Configuration;
 using Howabout.Interfaces;
 using Howabout.Services;
-using Microsoft.KernelMemory;
-using Microsoft.KernelMemory.Configuration;
 
 namespace Howabout
 {
@@ -11,20 +9,47 @@ namespace Howabout
 	{
 		public static async Task Main(string[] args)
 		{
-			var builder = WebApplication.CreateBuilder(args);
-			builder.Services.AddSingleton<IKernelMemoryService, KernelMemoryService>();
-			builder.Services.AddControllers();
-			builder.Services.AddEndpointsApiExplorer();
-			builder.Services.AddSwaggerGen();
+			var cli = new CommandLineStartupArguments(args);
+			switch (cli.Command)
+			{
+				case CommandLineStartupArguments.CommandArg.Help:
+					Console.WriteLine("Help information.");
+					break;
 
-			var app = builder.Build();
-			app.UseDefaultFiles();
-			app.UseStaticFiles();
-			app.UseSwagger();
-			app.UseSwaggerUI();
-			app.MapControllers();
-			app.MapFallbackToFile("/index.html");
-			await app.RunAsync();
+				case CommandLineStartupArguments.CommandArg.Version:
+					Console.WriteLine("Version information.");
+					break;
+
+				case CommandLineStartupArguments.CommandArg.Start:
+					var builder = WebApplication.CreateBuilder(args);
+					builder.Services.AddSingleton<IKernelMemoryService, KernelMemoryService>();
+					builder.Services.AddControllers();
+					builder.Services.AddEndpointsApiExplorer();
+					builder.Services.AddSwaggerGen();
+
+					var app = builder.Build();
+					app.UseDefaultFiles();
+					app.UseStaticFiles();
+					app.UseSwagger();
+					app.UseSwaggerUI();
+					app.MapControllers();
+					app.MapFallbackToFile("/index.html");
+					await app.RunAsync();
+					break;
+
+				case CommandLineStartupArguments.CommandArg.Stop:
+					Console.WriteLine("Stop command.");
+					break;
+
+				case CommandLineStartupArguments.CommandArg.Add:
+					Console.WriteLine("Add command.");
+					break;
+
+				case CommandLineStartupArguments.CommandArg.None:
+				default:
+					Console.WriteLine("No command specified. Use 'help' for more information.");
+					break;
+			}
 		}
 	}
 }
