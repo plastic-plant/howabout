@@ -1,10 +1,36 @@
-//import { Dropdown } from 'flowbite'
 import './App.css';
 
+interface SystemMetrics {
+    percentage: number;
+}
 function App() {
+
+    const stopServer = async () => {
+        const response = await fetch('http://localhost:5153/configuration/stop');
+        if (response.ok) {
+            window.alert('Couldn\'t stop the server.');
+        } else {
+            window.alert('Stopped. Bye.');
+        }
+    };
+
+    const progressBarValues: SystemMetrics = {
+        percentage: 45
+    };
+
     const howabout = <span className="howabout">How<i>about</i></span>;
+    const progress = (title: string, progressBarValues: SystemMetrics) =>
+        <div className="my-6">
+            <div className="flex justify-between mb-1">
+                <span className="text-base font-medium text-blue-700 dark:text-white">{ title }</span>
+                <span className="text-sm font-medium text-blue-700 dark:text-white">{ progressBarValues.percentage }%</span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: progressBarValues.percentage+'%' }}></div>
+            </div>
+        </div>;
     const chat =
-        <div className="flex items-start gap-2.5">
+        <div className="flex items-start gap-2.5 my-6">
             <img className="w-8 h-8 rounded-full" src="/assistant.jpg" alt="Assistant profile picture" />
             <div className="flex flex-col gap-1 w-full max-w-[320px]">
                 <div className="flex items-center space-x-2 rtl:space-x-reverse">
@@ -30,21 +56,20 @@ function App() {
                         <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Not right now</a>
                     </li>
                     <li>
-                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Stop server</a>
+                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" onClick={stopServer}>Stop server</a>
                     </li>
                 </ul>
             </div>
         </div>;
 
-    //const $dropdownElement: HTMLElement = document.querySelector('#dropdownDots') as HTMLElement;
-    //const dropdown = new Dropdown($dropdownElement);
-    //dropdown.init();
-    //dropdown.toggle();
-
     return (
         <div>
            <header className="sticky top-0 z-50"></header>
             <main className="relative">
+                <h1>{howabout}?</h1>
+                {progress("cpu", progressBarValues)}
+                {progress("memory", progressBarValues)}
+                {progress("etc", progressBarValues)}
                 {chat}
             </main>
            <footer></footer>
