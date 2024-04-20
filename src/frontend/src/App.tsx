@@ -1,56 +1,55 @@
-import { useEffect, useState } from 'react';
+//import { Dropdown } from 'flowbite'
 import './App.css';
 
-interface Forecast {
-    date: string;
-    temperatureC: number;
-    temperatureF: number;
-    summary: string;
-}
-
 function App() {
-    const [forecasts, setForecasts] = useState<Forecast[]>();
+    const howabout = <span className="howabout">How<i>about</i></span>;
+    const chat =
+        <div className="flex items-start gap-2.5">
+            <img className="w-8 h-8 rounded-full" src="/assistant.jpg" alt="Assistant profile picture" />
+            <div className="flex flex-col gap-1 w-full max-w-[320px]">
+                <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                    <span className="text-sm font-semibold text-gray-900 dark:text-white">Assistant</span>
+                    <span className="text-sm font-normal text-gray-500 dark:text-gray-400">18:02</span>
+                </div>
+                <div className="flex flex-col leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
+                    <p className="text-sm font-normal text-gray-900 dark:text-white">Welcome. {howabout} started succesfully. I see you haven't setup providers for embedding and conversation in my appsettings.json configuration. <b>Can I help you setup?</b></p>
+                </div>
+                <span className="text-sm font-normal text-gray-500 dark:text-gray-400">Ready</span>
+            </div>
+            <button id="dropdownMenuIconButton" data-dropdown-toggle="dropdownDots" data-dropdown-placement="bottom-start" className="inline-flex self-center items-center p-2 text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-800 dark:focus:ring-gray-600" type="button">
+                <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 4 15">
+                    <path d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
+                </svg>
+            </button>
+            <div id="dropdownDots" className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-40 dark:bg-gray-700 dark:divide-gray-600">
+                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
+                    <li>
+                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yes, show me</a>
+                    </li>
+                    <li>
+                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Not right now</a>
+                    </li>
+                    <li>
+                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Stop server</a>
+                    </li>
+                </ul>
+            </div>
+        </div>;
 
-    useEffect(() => {
-        populateWeatherData();
-    }, []);
-
-    const contents = forecasts === undefined
-        ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-        : <table className="table table-striped" aria-labelledby="tabelLabel">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Temp. (C)</th>
-                    <th>Temp. (F)</th>
-                    <th>Summary</th>
-                </tr>
-            </thead>
-            <tbody>
-                {forecasts.map(forecast =>
-                    <tr key={forecast.date}>
-                        <td>{forecast.date}</td>
-                        <td>{forecast.temperatureC}</td>
-                        <td>{forecast.temperatureF}</td>
-                        <td>{forecast.summary}</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>;
+    //const $dropdownElement: HTMLElement = document.querySelector('#dropdownDots') as HTMLElement;
+    //const dropdown = new Dropdown($dropdownElement);
+    //dropdown.init();
+    //dropdown.toggle();
 
     return (
         <div>
-            <h1 id="tabelLabel">Weather forecast</h1>
-            <p>This component demonstrates fetching data from the server.</p>
-            {contents}
+           <header className="sticky top-0 z-50"></header>
+            <main className="relative">
+                {chat}
+            </main>
+           <footer></footer>
         </div>
     );
-
-    async function populateWeatherData() {
-        const response = await fetch('weatherforecast');
-        const data = await response.json();
-        setForecasts(data);
-    }
 }
 
 export default App;
