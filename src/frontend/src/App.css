@@ -12,3 +12,11 @@
         font-style: normal;
         color: darkorange;
     }
+
+.systeminfo-paused {
+    opacity: 0.5;
+}
+
+.systeminfo-transition {
+    transition: width 2s
+}

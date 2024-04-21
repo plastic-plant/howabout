@@ -1,9 +1,9 @@
+import { useSystemInfo } from './system/SystemService';
 import './App.css';
 
-interface SystemMetrics {
-    percentage: number;
-}
 function App() {
+
+    const systemInfo = useSystemInfo();
 
     const stopServer = async () => {
         const response = await fetch('http://localhost:5153/configuration/stop');
@@ -14,19 +14,15 @@ function App() {
         }
     };
 
-    const progressBarValues: SystemMetrics = {
-        percentage: 45
-    };
-
     const howabout = <span className="howabout">How<i>about</i></span>;
-    const progress = (title: string, progressBarValues: SystemMetrics) =>
-        <div className="my-6">
+    const systemInfoBar = (title: string, percentage: number, paused: boolean) =>
+        <div className={"my-6 " + (paused ? 'systeminfo-paused' : '')}>
             <div className="flex justify-between mb-1">
-                <span className="text-base font-medium text-blue-700 dark:text-white">{ title }</span>
-                <span className="text-sm font-medium text-blue-700 dark:text-white">{ progressBarValues.percentage }%</span>
+                <span className="text-base font-medium text-blue-700 dark:text-white">{title}</span>
+                <span className="text-sm font-medium text-blue-700 dark:text-white">{paused ? 'paused' : `${percentage}%` }</span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-                <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: progressBarValues.percentage+'%' }}></div>
+                <div className="bg-blue-600 h-2.5 rounded-full systeminfo-transition" style={{ width: `${percentage}%` }}></div>
             </div>
         </div>;
     const chat =
@@ -67,9 +63,8 @@ function App() {
            <header className="sticky top-0 z-50"></header>
             <main className="relative">
                 <h1>{howabout}?</h1>
-                {progress("cpu", progressBarValues)}
-                {progress("memory", progressBarValues)}
-                {progress("etc", progressBarValues)}
+                {systemInfoBar("CPU", systemInfo?.cpuUsagePercentage ?? 0, systemInfo?.paused ?? true)}
+                {systemInfoBar("Memory", systemInfo?.memoryUsagePercentage ?? 0, systemInfo?.paused ?? true)}
                 {chat}
             </main>
            <footer></footer>

@@ -11,3 +11,7 @@ Accept: application/json
 ###
 GET {{Howabout_HostAddress}}/configuration/bebop
 Accept: text/plain
+
+###
+GET {{Howabout_HostAddress}}/system/metrics
+Accept: application/json

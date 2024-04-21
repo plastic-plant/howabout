@@ -31,6 +31,7 @@ namespace Howabout
 					var app = builder.Build();
 					app.UseDefaultFiles();
 					app.UseStaticFiles();
+					//app.UseSpaStaticFiles();
 					app.UseSwagger();
 					app.UseSwaggerUI();
 					app.MapControllers();
