@@ -41,10 +41,23 @@
       "commandName": "Project",
       "commandLineArgs": "add ./example//document2.pdf --tag Bob"
     },
+    "howabout add folder": {
+      "commandName": "Project",
+      "commandLineArgs": "add \"R:\\GitHub\\plastic-plant\\howabout\\doc\\examples\\wiki_pages\\Album1.txt\" --tag test4 --tag test5 https://www.google.com/"
+    },
+    "howabout add url": {
+      "commandName": "Project",
+      "commandLineArgs": "add https://www.netflix.com/helloworld"
+    },
+    "howabout add folder url": {
+      "commandName": "Project",
+      "commandLineArgs": "add small_snips https://www.netflix.com/helloworld"
+    },
+
     "howabout ask <question>": {
       "commandName": "Project",
       "commandLineArgs": "ask Can you give me a summary?"
-    },
+    }
   }
 }
 

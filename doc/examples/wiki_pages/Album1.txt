@@ -1,0 +1,86 @@
+{{Use American English|date=December 2022}}
+{{Use mdy dates|date=December 2022}}
+{{Infobox album
+| name       = Tests
+| type       = studio
+| artist     = [[The Microphones]]
+| cover      = TheMicrophonesTests.jpg
+| alt        =
+| released   = {{Start date|1998, 2011}}
+| recorded   = 
+| venue      =
+| studio     = The Business
+| genre      = [[Indie folk]], [[experimental rock]], [[Experimental music|experimental]]
+| length     = 61:56 <small>(CD)</small>
+| label      = Knw-Yr-Own <small>(KYO30)</small><br />[[Elsinor Records|Elsinor]] <small>(els 029)</small><br />P.W. ELVERUM & SUN, ltd.
+| producer   =
+| prev_title = Wires and Cords
+| prev_year  = 1997
+| next_title = [[Don't Wake Me Up (album)|Don't Wake Me Up]]
+| next_year  = 1999
+}}
+'''''Tests''''' is an album by [[The Microphones]]. It was first released as a [[cassette tape]] on Knw-Yr-Own in 1998. A CD release by [[Elsinor Records|Elsinor]] followed in the same year, but the track listing was a mixture of The Microphones's three previous albums: ''Microphone'', ''Wires and Cords'', and the ''Tests'' cassette. Most of the material was recorded at The Business while Elverum worked there.<ref>{{Cite web|title=Anacortes Magazine (Issue 2, August 2012)|url=https://issuu.com/anacortes-magazine/docs/anacortes-magazine-issue-2-august-2012/20|access-date=August 16, 2020|website=Issuu|date=August 15, 2012 |language=en}}</ref>
+
+''Tests'' was re-issued on cassette in an edition of 20 by P.W. ELVERUM & SUN, ltd. The re-issue was to celebrate [[Record Store Day]] 2011 and was only available at The Business in [[Anacortes, WA]].  A few additional copies were sold online via P.W. ELVERUM & SUN, ltd.
+
+== Track listing ==
+
+=== Cassette ===
+;Side A
+# "Microphone Part 2"
+# "Tests" (Phil version)
+# "Feedback Love"
+# "Bomb on Tape Deck Mt."
+# "Tape Deck Ghost"
+# "Bass Leftovers"
+# "Like A Piranha"
+# "Assault on Tape Deck Mt."
+# "Spy Cameras"
+# "Drums That No One Played / El Nino"
+# "Death on Tape Deck Mt."
+# "The Last Night of the Year"
+
+;Side B
+# "PreAmp"
+# "Rebirth on Tape Deck Mt."
+# "Eyes for Volume"
+# "Quiet Groove"
+# "OH ANNA"
+# "Summer Electricity"
+# "Little Songs"
+# "Anacortes Has a Secret Love"
+# "Night Time, Then Sleep"
+
+=== CD ===
+# "Tests" – 1:36
+# "Feedback Love" – 2:46
+# "Tape Deck Ghost" – 3:22
+# "Like a Piranha" – 4:05
+# "Soundwaves" – 3:01
+# "Drums That No One Played / El Nino" – 2:22
+# "Anacortes Has a Secret Love" – 3:11
+# "Oh Anna" – 3:20
+# "Spy Cameras" – 3:37
+# "Witch Doctor" – 2:35
+# "Monsters" – 3:49
+# "The Last Night of the Year" – 4:54
+# "PreAmp" – 2:29
+# "Quiet Groove" – 2:59
+# "Little Songs" – 4:18
+# "Microphone Pt. 1" – 2:02
+# "Microphone Pt. 2" – 2:23
+# "Eyes for Volume" – 2:43
+# "Wires and Cords" – 6:35
+
+== References ==
+{{reflist}}
+
+{{The Microphones}}
+
+{{Authority control}}
+
+[[Category:The Microphones albums]]
+[[Category:1998 albums]]
+
+
+{{1990s-indie-rock-album-stub}}

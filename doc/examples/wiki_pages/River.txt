@@ -1,0 +1,181 @@
+{{Short description|River in Hampshire, England}}
+{{EngvarB|date=October 2013}}
+{{Use dmy dates|date=October 2013}}
+{{Infobox river
+| name                = River Test
+| name_native         = 
+| name_native_lang    = 
+| name_other          = 
+| name_etymology      = 
+| image               = Romsey River Test.jpg
+| image_size          = 250px
+| image_caption       = The Test downstream of Sadler's Mill, [[Romsey]]
+| map                 = River Test map.svg
+| map_size            = 250px
+| map_caption         = River Test highlighted in red, shown in South East England
+| pushpin_map         = 
+| pushpin_map_size    = 195px
+| pushpin_map_caption = 
+| subdivision_type1   = Country
+| subdivision_name1   = England
+| subdivision_type2   = 
+| subdivision_name2   = 
+| subdivision_type3   = Counties
+| subdivision_name3   = [[Hampshire]]
+| subdivision_type4   = Districts / Boroughs
+| subdivision_name4   = 
+| subdivision_type5   = 
+| subdivision_name5   = 
+| length              = {{convert|64|km|abbr=on}}
+| width_min           = {{convert|1|m|abbr=on}}
+| width_avg           = {{convert|20|m|abbr=on}}
+| width_max           = {{convert|56|m|abbr=on}}
+| depth_min           = {{convert|0.5|m|abbr=on}}
+| depth_avg           = {{convert|2|m|abbr=on}}
+| depth_max           = {{convert|4|m|abbr=on}}
+| discharge1_location = 
+| discharge1_min      = 
+| discharge1_avg      = 
+| discharge1_max      = 
+| source1             = 
+| source1_location    = Ashe, near [[Overton, Hampshire]], United Kingdom
+| source1_coordinates = {{coord|51.2454|N|1.2392|W|display=inline}}
+| source1_elevation   = {{convert|90|m|abbr=on}}
+| mouth               = [[Southampton Water]]
+| mouth_location      = [[Southampton, Hampshire]]
+| mouth_coordinates   = {{coord|50.9251|N|1.4792|W|display=inline,title}}
+| mouth_elevation     = {{convert|0|m|abbr=on}}
+| progression         = 
+| river_system        = 
+| basin_size          = 
+| tributaries_left    = [[River Blackwater (River Test)|River Blackwater]], [[River Dun (River Test)|River Dun]], [[Wallop Brook]], [[River Anton]], [[Pilhill Brook]]
+| tributaries_right   = [[River Dever]], [[Bourne Rivulet]], [[River Swift]]
+| extra               =
+{{Infobox SSSI
+|embed         = yes
+|image         = River Test at Tufton (geograph 5890569).jpg
+|image_caption = River Test at [[Tufton, Hampshire|Tufton]]
+|name          = 
+|interest      = Biological
+|gridref       = {{gbmappingsmall|SU 384 355}}<ref name=dsv/>
+|area          = {{convert|438.0|ha|acre|abbr=off}}<ref name=dsv/>
+|notifydate    = 1996<ref name=dsv/>
+|map           = [https://magic.defra.gov.uk/MagicMap.aspx?startTopic=Designations&activelayer=sssiIndex&query=HYPERLINK%3D%272000170%27  ''Magic Map'']
+}}}}
+The '''River Test''' is a [[chalk stream]] in [[Hampshire]] in the [[south of England]]. It rises at [[Ashe, Hampshire|Ashe]] near [[Basingstoke]] and flows southwards for {{convert|40|mi}} to [[Southampton Water]]. Settlements on the Test include the towns of [[Stockbridge, Hampshire|Stockbridge]] and [[Romsey]]. The river's valley gives its name to the local government district of [[Test Valley]]. Below the village of [[Longparish]], the river is broadly followed by the [[Test Way]], a long-distance footpath.<ref>{{cite web |url= https://www.hants.gov.uk/thingstodo/countryside/walking/testway |title= The Test Way |author=<!--Not stated--> |publisher= Hampshire County Council |access-date= 7 September 2020}}</ref>
+
+Much of the Test is a {{convert|  438|ha|acre|abbr=off|adj=on}} biological [[Site of Special Scientific Interest]].<ref name=dsv>{{cite web|url =https://designatedsites.naturalengland.org.uk/SiteDetail.aspx?SiteCode=S2000170&SiteName=&countyCode=19&responsiblePerson=&SeaArea=&IFCAArea= |title=Designated Sites View: River Test | series= Sites of Special Scientific Interest|publisher=Natural England|access-date = 18 May 2020}}</ref><ref name=map>{{cite web|url= https://magic.defra.gov.uk/MagicMap.aspx?startTopic=Designations&activelayer=sssiIndex&query=HYPERLINK%3D%272000170%27|title=Map of River Test|series= Sites of Special Scientific Interest|publisher=Natural England|access-date= 18 May 2020}}</ref> It is part of the Solent and Southampton Water [[Ramsar site]]<ref>{{cite web|url =https://designatedsites.naturalengland.org.uk/SiteGeneralDetail.aspx?SiteCode=UK11063&SiteName=&countyCode=19&responsiblePerson=&unitId=&SeaArea=&IFCAArea= |title=Designated Sites View: Solent and Southampton Water | series= Ramsar Site|publisher=Natural England|access-date = 23 April 2020}}</ref> and  [[Special Protection Area]].<ref>{{cite web|url = https://designatedsites.naturalengland.org.uk/SiteGeneralDetail.aspx?SiteCode=UK9011061&SiteName=&countyCode=19&responsiblePerson=&unitId=&SeaArea=&IFCAArea= |title = Designated Sites View: Solent and Southampton Water | series = Special Protection Areas |publisher = Natural England|access-date = 23 April 2020}}</ref> The river is used for [[fly fishing]] for [[trout]] from its source to its tidal limit.<ref>Environment Agency (2006). ''[http://www.environment-agency.gov.uk/commondata/acrobat/river_test__627604pdf Fact file on the River Test]''. Retrieved 8 February 2006. {{webarchive |url=https://web.archive.org/web/20050408095342/http://www.environment-agency.gov.uk/commondata/acrobat/river_test__627604pdf |date=8 April 2005 }}</ref>
+
+==Etymology==
+Recorded forms are Terstan from 877 and 901, Tarstan stream in 1045, Terstein 1234, and Test in 1425. If [[Common Brittonic]], not [[Old English]], all related dictionaries show three suitable words beginning with Tre- and none with extremely rare Ter-. There is precedent to such metathesis: as for the [[river Tern]] in the far west, from tren 'strong'.<ref name=Breeze/> If so it most likely relates to the [[Welsh language|Welsh]] ''tres'' (tumult, commotion, contention, uproar) or ''trais'' (force, might in older Welsh).<ref name=Breeze>{{cite journal |last=Breeze |first=Andrew |date=1998 |title=The name of the River Test |url=http://www.hantsfieldclub.org.uk/publications/hampshirestudies/digital/1990s/vol53/Breeze.pdf |journal=Proceedings of the Hampshire Field Club & Archaeological Society |volume=53|pages=226–227 |access-date=27 January 2017 }}</ref> A close set of words (diversely conjugated and pronounced) in Old English is (f)irst(en), the meaning of which is as at present, first.
+
+==Course==
+[[File:Soton river test docks 01.jpg|thumb|260px|right|The Test is tidal in [[Southampton]] and is lined with quays]]
+The river rises near the village of [[Ashe, Hampshire|Ashe]], {{convert|7|mi|km|sigfig=2}} to the west of [[Basingstoke]] (at {{gbmapping|SU 532,498}}), and flows west through the villages of [[Overton, Hampshire|Overton]], [[Laverstoke]], and the town of [[Whitchurch, Hampshire|Whitchurch]], before joining with the [[Bourne Rivulet]] at [[Testbourne]] and turning in a more southerly direction. It then proceeds through the villages of [[Longparish]] and [[Middleton, Hampshire|Middleton]] to [[Wherwell]] and [[Chilbolton]], where the Rivers [[River Dever|Dever]] and [[River Anton|Anton]] join.<ref>Ordnance Survey (2004). ''OS Explorer Map 144 – Basingstoke, Alton & Whitchurch''. {{ISBN|0-319-23606-4}}.</ref>
+
+From Chilbolton the river goes through the villages of [[Leckford]], [[Longstock]], [[Stockbridge, Hampshire|Stockbridge]] and [[Houghton, Hampshire|Houghton]] to [[Mottisfont]] and [[Kimbridge]], where the [[River Dun (River Test)|River Dun]] joins the flow. From here the village of [[Timsbury, Hampshire|Timsbury]] is passed, then through the grounds of [[Roke Manor]] before reaching the town of [[Romsey]]. On the western edge of Romsey, [[Sadler's Mill]], an 18th-century [[watermill]], sits astride the River Test.<ref>Ordnance Survey (2004). ''OS Explorer Map 131 – Romsey, Andover & Test Valley''. {{ISBN|0-319-23600-5}}.</ref>
+
+South of Romsey, the river passes the [[country house]] of [[Broadlands]], and then [[Nursling]], once the site of a [[Roman Empire|Roman]] bridge. Finally the river is joined by the [[River Blackwater (River Test)|River Blackwater]] and soon becomes tidal, widening out into a considerable estuary that is lined on its northern bank by the [[container terminal]]s and [[quay]]s of the [[Port of Southampton]]. The Test estuary then meets that of the [[River Itchen, Hampshire|River Itchen]] and the two continue to the sea as [[Southampton Water]].<ref>Ordnance Survey (2004). ''OS Explorer Map OL22 – New Forest''. {{ISBN|0-319-23616-1}}.</ref>
+
+Between Chilbolton and Redbridge, the river was once paralleled by the [[Andover Canal]], which was itself converted to a railway in 1865, and then in turn abandoned. Most traces of the canal have disappeared, although the remains of a stretch can still be seen between Timsbury and Romsey.<ref>Andover Town Central (2000–2006). ''[http://www.andover.towncentral.co.uk/Andover/canal.asp The Andover Canal] {{webarchive|url=https://web.archive.org/web/20080706132758/http://www.andover.towncentral.co.uk/Andover/canal.asp |date=6 July 2008 }}''. Retrieved 9 February 2006.</ref>
+
+==Ecology==
+This chalk stream has one of the richest [[fauna]] and [[flora]] of any [[Upland and lowland#Lowland|lowland river]] in England. More than 100 species of flowering plant have been recorded along its banks and 232 invertebrate taxa in the river. It is also important for wetland birds, with breeding species including [[Common kingfisher|kingfishers]], [[grey wagtail]]s and [[little grebe]]s.<ref>{{cite web|url = https://designatedsites.naturalengland.org.uk/PDFsForWeb/Citation/2000170.pdf |title = River Test citation|series = Sites of Special Scientific Interest|publisher = Natural England|access-date = 18 May 2020}}</ref>
+
+===Water quality===
+The Environment Agency measure water quality of the river systems in England. Each is given an overall ecological status, which may be one of five levels: high, good, moderate, poor and bad. There are several components that are used to determine this, including biological status, which looks at the quantity and varieties of [[invertebrate]]s, [[angiosperm]]s and fish. Chemical status, which compares the concentrations of various chemicals against known safe concentrations, is rated good or fail.<ref>{{cite web |url=http://environment.data.gov.uk/catchment-planning/help/glossary |website=Catchment Data Explorer |title=Glossary (see Biological quality element; Chemical status; and Ecological status) |publisher=Environment Agency |date=17 February 2016}}  [[File:UKOpenGovernmentLicence.svg|30px]] Text was copied from this source, which is available under an [http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/  Open Government Licence v3.0]. © Crown copyright.</ref>
+
+Water quality of the River Test in 2019:
+{| class="wikitable"
+|-
+! Section !! Ecological<br />Status !! Chemical<br />Status !! Overall<br />Status !! Length !! Catchment !! Channel
+|-
+| {{waterqual_title |desc=Test (Upper) |asset= GB107042022710}} 
+| {{waterqual_good}} 
+| {{waterqual_fail}} 
+| {{waterqual_mod}} 
+| {{convert| 14.803 |km|mi|abbr=on}}
+| {{convert| 177.062 |km2|sqmi|abbr=on}}
+| 
+|-
+| {{waterqual_title |desc= Test - Bourne Rivulet to conf Dever |asset= GB107042022700}} 
+| {{waterqual_good}} 
+| {{waterqual_fail}} 
+| {{waterqual_mod}} 
+| {{convert| 8.286 |km|mi|abbr=on}}
+| {{convert| 32.01 |km2|sqmi|abbr=on}}
+| 
+|-
+| {{waterqual_title |desc= Test - conf Dever to conf Anton |asset= GB107042022750}} 
+| {{waterqual_good}} 
+| {{waterqual_fail}} 
+| {{waterqual_mod}} 
+| {{convert| 3.869 |km|mi|abbr=on}}
+| {{convert| 13.295 |km2|sqmi|abbr=on}}
+| 
+|-
+| {{waterqual_title |desc= Test - conf Anton to conf Dun |asset= GB107042022670}} 
+| {{waterqual_good}} 
+| {{waterqual_fail}} 
+| {{waterqual_mod}} 
+| {{convert| 28.075 |km|mi|abbr=on}}
+| {{convert| 56.88 |km2|sqmi|abbr=on}}
+| 
+|-
+| {{waterqual_title |desc= Test - conf Dun to Tadburn Lake |asset= GB107042016460}} 
+| {{waterqual_mod}} 
+| {{waterqual_fail}} 
+| {{waterqual_mod}} 
+| {{convert| 8.439 |km|mi|abbr=on}}
+| {{convert| 19.045 |km2|sqmi|abbr=on}}
+| heavily modified
+|-
+| {{waterqual_title |desc= Test (Lower) |asset= GB107042016840}} 
+| {{waterqual_good}} 
+| {{waterqual_fail}} 
+| {{waterqual_mod}} 
+| {{convert| 8.579 |km|mi|abbr=on}}
+| {{convert| 3.91 |km2|sqmi|abbr=on}}
+| 
+|}
+
+==In popular culture==
+The river features in [[Richard Adams (author)|Richard Adams']] 1972 novel ''[[Watership Down]]''.<ref name="NYT">{{cite news|title=On the Unsettling Allure of ‘Watership Down’|url=http://www.nytimes.com/2018/05/15/t-magazine/watership-down-hampshire-england.html|newspaper=[[The New York Times]]|last=Rock|first=Peter|date=May 15, 2018|access-date=April 3, 2021}}</ref> When the Watership rabbits are pursued by an enemy force, one rabbit carries out a plan which leads to their successful escape down the Test on a [[punt (boat)|punt]]. In the text, readers are told that this plan would not have been possible on most rivers, but the Test's smooth-flowing, weed-free nature makes it an exception. The punt becomes lodged on a low bridge, and the surviving rabbits are forced to swim under the bridge to the riverbank.<ref name="NYT"/>
+
+==Tributaries==
+
+The following are the named tributaries of the River Test, listed in order upstream from [[Southampton Water]].<ref>[[Ordnance Survey]] (1995). ''OS Landranger Map 185 – Winchester and Basingstoke''. {{ISBN|0-319-22185-7}}.</ref>
+* [[Tanners Brook]]
+* Wimpson stream (historically; due to the extension of the docks it now merges with Tanners Brook just before it reaches the Test)<ref name=Lawrence4>{{cite book |last=Burgess |first=Lawrence |date=1982 |title=The Streams and Watercourses Of Southampton |publisher=Friends of Old Southampton |page=4}}</ref>
+* [[River Blackwater (River Test)|River Blackwater]]
+* [[River Dun (River Test)|River Dun]]
+* [[Wallop Brook]]
+* [[River Anton]]
+** [[Pillhill Brook]]
+* [[River Dever]]
+* [[Bourne Rivulet]]
+** River Swift
+
+==See also==
+*[[Rivers of the United Kingdom]]
+
+==References==
+{{reflist}}
+
+==External links==
+*https://www.openstreetmap.org/relation/7700461
+{{Commons category}}
+
+{{SSSIs Hampshire}}
+{{Hydrology of Hampshire}}
+
+{{authority control}}
+
+[[Category:Rivers of Hampshire|Test, Hampshire]]
+[[Category:Geography of Southampton|Test]]
+[[Category:Sites of Special Scientific Interest in Hampshire]]
+[[Category:Test Valley]]
+[[Category:Test catchment| ]]
+[[Category:Ramsar sites in England]]
+[[Category:Special Protection Areas in England]]
+[[Category:Recreational fishing in England]]

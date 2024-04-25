@@ -9,6 +9,7 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="src\menu\" />
     <Folder Include="test\__ mocks __\" />
   </ItemGroup>
 </Project>

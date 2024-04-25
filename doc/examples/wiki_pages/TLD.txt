@@ -1,0 +1,35 @@
+{{Short description|Reserved domain name}}
+{{Infobox Top level domain
+|name=.test
+|image=
+|introduced=1999
+|type=[[Top-level domain#Reserved domains|Reserved top-level domain]]
+|status=Reserved to prevent conflict and confusion
+|intendeduse=In documentation or for internal testing
+|actualuse=
+|restrictions=
+|structure=Those using it for testing can use it in any desired structure
+|document={{IETF RFC|2606}}
+|}}
+'''{{Mono|.test}}''' is a reserved [[top-level domain]] intended for usage in software testing. It is guaranteed to never be registered into the Internet.<ref name="Leiba2009">{{Cite journal|last=Leiba|first=Barry|date=2009|title=The Good and the Bad of Top-Level Domains|url=https://ieeexplore.ieee.org/document/4747631|journal=IEEE Internet Computing|volume=13|issue=1|publisher=[[Institute of Electrical and Electronics Engineers|IEEE]]|page=69|doi=10.1109/MIC.2009.23|s2cid=260466 |issn=1941-0131|quote=As a way to avoid this problem, the IETF published Best Current Practice (BCP) 32 in 1999. BCP 32, also known as RFC 2606, defines four reserved TLDs — .test, .example, .invalid, and .localhost ... that are guaranteed never to be assigned so that researchers and developers can always use them for example and testing purposes without concern.}}</ref>{{Ref RFC|2606}}
+
+Along with {{mono|.test}}, there are 11 other reserved test domains: {{mono|.测试}}, {{mono|.परीक्षा}}, {{mono|.испытание}}, {{mono|.테스트}}, {{mono|.טעסט}}, {{mono|.測試}}, {{mono|.آزمایشی}}, {{mono|.பரிட்சை}}, {{mono|.δοκιμή}}, {{mono|.إختبار}}, and {{mono|.テスト}}.<ref>{{Cite web|title=IANA — Root Zone Database|url=https://www.iana.org/domains/root/db|access-date=2022-05-07|website=www.iana.org}}</ref>
+
+==Reserved DNS names==
+In June 1999, the [[Internet Engineering Task Force]] reserved the DNS labels {{mono|[[.example]]}}, {{mono|[[.invalid]]}}, {{mono|[[.localhost]]}}, and {{mono|.test}} so that they may not be installed into the [[DNS root zone|root zone]] of the Domain Name System.<ref name="Leiba2009" />
+
+These top-level domain names were reserved to reduce the likelihood of conflict and confusion.{{Ref RFC|2606}}
+This allows their usage for either documentation purposes or in local testing scenarios. "IANA.org states Domains which are described as registered to IANA or ICANN on policy grounds are not available for registration or transfer, with the exception of country-name.info domains. These domains are available for release by the ICANN Governmental Advisory Committee Secretariat."<ref>{{Cite web|url=https://www.iana.org/domains/reserved|title=IANA-managed Reserved Domains}}</ref>
+==References==
+{{reflist}}
+
+{{GTLD}}
+
+{{DEFAULTSORT:TEST}}
+[[Category:Top-level domains]]
+[[Category:Internet properties established in 1999]]
+
+
+{{compu-domain-stub}}
+
+[[sv:Toppdomän#Generiska toppdomäner]]

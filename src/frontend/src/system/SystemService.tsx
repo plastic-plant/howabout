@@ -1,21 +1,30 @@
 import { useEffect, useState } from "react";
 
-export function useSystemInfo(intervalSeconds: number = 2, shouldPauseWhenNotViewed: boolean = true) {
+export function useSystemInfo(pause: boolean = false, intervalSeconds: number = 2, shouldPauseWhenNotViewed: boolean = true): SystemInfo | undefined {
     const [systemInfo, setSystemInfo] = useState<SystemInfo>();
 
     useEffect(() => {
-        const interval = setInterval(async () => {
+
+        let interval: NodeJS.Timeout;
+
+        const updateSystemInfo = async () => {
             if (shouldPauseWhenNotViewed && document.hidden) {
                 setSystemInfo({ ...systemInfo, paused: true } as SystemInfo);
             } else {
                 setSystemInfo(await getSystemInfo());
             }
-        }, intervalSeconds * 1000);
+        };
+
+        if (!pause) {
+            interval = setInterval(updateSystemInfo, intervalSeconds * 1000);
+        }
+
+        updateSystemInfo();
 
         return () => {
             clearInterval(interval);
         };
-    }, []);
+    }, [pause]);
 
     const getSystemInfo = async (): Promise<SystemInfo> => {
         const response = await fetch('system/metrics');

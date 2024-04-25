@@ -1,0 +1,73 @@
+{{Short description|Line of work testing consumer products}}
+{{More citations needed|date=July 2021}}{{Confusing|date=July 2021}}<gallery>
+File:Consumer Reports - product testing - electric light longevity and brightness testing.tif| Testing electric light longevity and brightness testing
+File:Consumer Reports - product testing - television testing laboratory.tif| Television testing laboratory
+File:Consumer Reports - product testing - headphones in anechoic chamber.tif| Product testing headphones in an [[anechoic chamber]]
+</gallery>'''Product testing''', also called '''consumer testing''' or '''comparative testing''', is a process of measuring the properties or performance of products.
+
+The theory is that since the advent of [[mass production]], manufacturers produce [[brand]]ed products which they assert and advertise to be identical within some [[technical standard]].{{citation needed|date=July 2015}}
+
+Product testing seeks to ensure that consumers can understand what products will do for them and which products are the best value. Product testing is a strategy to increase [[consumer protection]] by checking the claims made during [[marketing strategy|marketing strategies]] such as [[advertising]], which by their nature are in the interest of the entity distributing the service and not necessarily in the interest of the consumer. The advent of product testing was the beginning of the modern [[consumer movement]].
+
+Product testing might be accomplished by a manufacturer, an independent laboratory,  a government agency, etc.  Often an existing formal [[test method]]  is used as a basis for testing.  Other times engineers develop methods of test which are suited to the specific purpose. Comparative testing subjects several replicate samples of similar products to identical test conditions.
+
+== Purposes ==
+Product testing might have a variety of purposes, such as:
+* Determine if, or verify that, the requirements of a [[specification]], [[regulation]], or [[contract]] are met{{Citation needed|date=July 2021}}
+* Decide if a [[new product development]] program is on track: Demonstrate [[proof of concept|proof of concept{{Citation needed|date=July 2021}}]]
+* Provide [[Technical standard|standard]] [[data]] for other scientific, engineering, and [[quality assurance]] functions{{Citation needed|date=July 2021}}
+* Validate suitability for end-use{{Citation needed|date=July 2021}}
+* Provide a basis for  [[technical communication]]{{Citation needed|date=July 2021}}
+* Provide a technical means of comparison of several options<ref name=":0">{{Cite web|date=25 May 2016|title=Ipsos Encyclopedia - Product Testing {{!}} Ipsos|url=https://www.ipsos.com/en/ipsos-encyclopedia-product-testing|access-date=2 July 2021|website=www.ipsos.com}}</ref>
+* Provide [[evidence]] in legal proceedings: [[product liability]], [[patents]], product claims, etc.<ref name=":0" />
+* Help solve problems with current product<ref name=":0" />
+* Help identify potential cost savings in products<ref name=":0" />
+
+Product tests can be used for:
+* Subjecting products to stresses and dynamics expected in use<ref name=":0" />
+* Reproducing the types of damage to products found from consumer usage<ref name=":0" />
+* Controlling the uniformity of production of products or components<ref name=":0" />
+==Term==
+Product testing is any process by means of which a researcher measures a product's performance, safety, quality, and compliance with established standards.{{citation needed|date=July 2015}} The primary element which constitutes an objective comparative test program is the extent to which the researchers can perform tests with independence from the manufacturers, suppliers, and marketers of the products.
+
+==History==
+As [[industrialization]] proliferated various manufacturers began exploring concepts of what is now called [[lean manufacturing]] to maximize industrial efficiency. This included a trend to produce goods with certain specifications and according to standards for production.{{sfn|Warne|1993|p=17}} Government agencies in the United States in particular started demanding that manufacturers who bid on government contracts fulfill the work according to predefined standards.{{sfn|Warne|1993|p=17}} Early thinkers, such as [[Frederick J. Schlink]], began to imagine a system for applying similar expectations for standards to consumer needs in order to allow people to make purchases according to product merit rather than rival advertising claims or marketing propaganda.{{sfn|Warne|1993|p=18}} Schlink met [[Stuart Chase]] and together they published ''[[Your Money's Worth]]'', which was a national guide to fraud and manipulation of the American marketplace due to lack of consumer representation in the regulation process.{{sfn|Warne|1993|p=19}} At the end of this book, there was a description of a theoretical "consumers' club" which would test products and serve only the interests of consumers.{{sfn|Warne|1993|p=20-21}}The success of the book led to the founding of Consumers' Research as the world's first consumer organization.[6] This began the consumer movement.
+
+==Roles==
+
+===Government role===
+The most common government role in product testing is creating laws for the creation of products with the intent of ensuring that manufacturers accurately describe the products they are selling and that products are safe for consumers to use. Lawmakers typically introduce government regulation when the industry's voluntary system will not or can not solve a serious problem.{{sfn|Brobeck|1997|p=452}} Government standards are almost always more strict than voluntary standards and almost always have the goal of reducing the hazard.{{sfn|Brobeck|1997|p=452}} Most governments put responsibility to test products on the manufacturer.{{sfn|Brobeck|1997|p=452}}
+
+===Industry role===
+The most common industry role is to provide products and services according to industry standards. In any industry, some standards will be voluntary (which means that the industry practices [[Industry self-regulation|self-regulation]]), or mandatory (which means that a government issues a [[regulation]]).{{sfn|Brobeck|1997|p=451}}
+
+Every major consumer product industry has an associated [[trade organization]] whose duties include developing voluntary standards and promoting the industry.{{sfn|Brobeck|1997|p=451}} A trade association may also facilitate compliance testing or certification that a particular manufacturer's products meet certain standards.{{sfn|Brobeck|1997|p=451}} "Voluntary" standards may seem either optional or mandatory from the perspective of a manufacturer, and in many cases when an industry adopts a standard it puts pressure on all manufacturers to comply with the standard.{{sfn|Brobeck|1997|p=452}} Industry voluntary standards are typically minimal performance criteria with no reference to quality.{{sfn|Brobeck|1997|p=451}}
+
+An example of industry regulation could be [[Underwriters Laboratories]]' founding in the United States in 1894 and its creation of standards with reference to the [[National Electrical Code]] published in 1897 are early examples of standards being made with reference to government regulation.{{sfn|Brobeck|1997|p=451}} Underwriters Laboratories publishes and enforces hundreds of safety standards but no quality standards.{{sfn|Brobeck|1997|p=451}}
+
+It is difficult or impossible to find an industry which has been able to review its members' products and supply unbiased comparative product information on them.{{sfn|Brobeck|1997|p=451}} Trade associations exist to serve the members' interests and if information which consumers want is contrary to the needs of members then the distribution of that information may harm the industry.{{sfn|Brobeck|1997|p=451}} The information which an industry provides is integral to the market but the nature of industry information is not to be balanced, objective, complete, and unbiased.{{sfn|Brobeck|1997|p=451}}
+
+===Consumer organization role===
+{{main|Consumer organization}}
+[[File: Consumer Reports - headquarters in Yonkers New York.jpg|thumb| Consumer Reports National Product Testing and Research Center in [[Yonkers, New York]]]]
+The role of the consumer organization is to represent the interest of individual consumers to industry and government. Whereas neither government nor industry regulates product and service quality, from the consumer perspective, product quality is a chief concern.{{sfn|Brobeck|1997|p=453}}
+
+The history of consumer organizations internationally is closely tied to the history of the [[consumer movement in the United States]], which set the precedent and model for product testing elsewhere.{{sfn|Brobeck|1997|p=453}} Whereas initially in the consumer movement consumer organizations only sought to have products conform to minimal safety standards, quickly consumers began to demand comparative information about similar products within a category.{{sfn|Brobeck|1997|p=454}} Comparative information seeks to say that similar products are comparable, whereas, from an industry marketing perspective, the leading manufacturers' interest is in [[product differentiation]] to claim that their brand of product is desirable for reasons unrelated to the objective value it has for consumers.{{sfn|Brobeck|1997|p=454}}
+
+Having access to comprehensive, objective product testing results is the primary tool which consumers can use to make an informed decision among product choices.{{sfn|Brobeck|1997|p=454}}
+
+==Notes==
+{{reflist}}
+
+==References==
+*{{cite book|last=Perry|first=John|title=The Story of Standards|year=1955|publisher=New York Funk & Wagnalls Company|location=United States}}
+*{{cite book|last=Mayer|first=Robert N.|title=The consumer movement : guardians of the marketplace|year=1989|publisher=Twayne Publishers|location=Boston|isbn=0805797181|edition=1. print.|url=https://archive.org/details/consumermovement0000maye}}
+*{{cite book|last=ed|first=Stephen Brobeck|title=Encyclopedia of the consumer movement|year=1997|publisher=ABC-Clio|location=Santa Barbara, Calif. [u.a.]|isbn=0874369878|url=https://archive.org/details/encyclopediaofco00brob}}
+*{{cite book|last=Warne|first=Colston E.|title=The consumer movement : lectures|year=1993|publisher=Family Economics Trust Press|location=Manhattan, Kan.|isbn=1881331016|url-access=registration|url=https://archive.org/details/consumermovement0000warn}}
+*{{cite book|last=Brobeck|first=Stephen|title=The modern consumer movement : references and resources|year=1990|publisher=G.K. Hall|location=Boston, Mass.|isbn=0816118337|edition=1. publ.|url-access=registration|url=https://archive.org/details/modernconsumermo0000brob}}
+
+{{Product testing}}
+{{Authority control}}
+
+[[Category:Product testing| ]]
+[[Category:Consumer protection]]

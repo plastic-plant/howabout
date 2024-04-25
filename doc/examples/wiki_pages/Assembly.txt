@@ -1,0 +1,36 @@
+{{Short description|X86 instruction}}
+{{More citations needed|date=March 2023}}
+{{notability |date=March 2024}}
+In the [[x86 assembly language]], the <code>'''TEST'''</code> [[instruction (computing)|instruction]] performs a [[bitwise AND]] on two [[operand]]s. The [[FLAGS register|flag]]s <code>[[Sign flag|SF]]</code>, <code>[[Zero flag|ZF]]</code>, <code>[[Parity flag|PF]]</code> are modified while the result of the [[Bitwise AND|AND]] is discarded. The <code>OF</code> and <code>CF</code> flags are set to <code>0</code>, while <code>AF</code> flag is undefined. There are 9 different [[opcode]]s for the TEST instruction depending on the type and size of the [[operand]]s. It can compare 8-bit, 16-bit, 32-bit or 64-bit values. It can also compare [[register (computing)|registers]], [[Addressing mode#Immediate/literal|immediate]] values and [[register indirect]] values.<ref>{{cite web|url=https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-vol-2b-manual.pdf|title=Intel 64 and IA-32 Architectures Software Developer's Manual Volume 2B: Instruction Set Reference, N-Z|last=|first=|date=|website=|archive-url=|archive-date=|accessdate=2019-12-21}}</ref>
+
+==TEST opcode variations==
+The TEST operation clears the flags <code>CF</code> and <code>OF</code> to zero. The <code>[[Sign flag|SF]]</code> is set to the [[Bit_numbering#Most_significant_bit|most significant bit]] of the result of the [[bitwise AND|AND]]. If the result is <code>0</code>, the <code>ZF</code> is set to <code>1</code>, otherwise set to <code>0</code>. The parity flag is set to the [[bitwise operation|bitwise]] [[Xnor|XNOR]] of the [[least significant byte]] of the result, <code>1</code> if the number of ones in that byte is even, <code>0</code> otherwise. The value of <code>AF</code> is undefined.
+
+==Examples==
+<syntaxhighlight lang="nasm">
+; Conditional Jump
+test cl,cl   ; set ZF to 1 if cl == 0
+jz 0x8004f430  ; jump if ZF == 1
+
+; Conditional Jump with NOT
+test cl, cl   ; set ZF to 1 if cl == 0
+jnz 0x8004f430  ; jump if ZF == 0
+
+; or
+test eax, eax  ; set SF to 1 if eax < 0 (negative)
+js error ; jump if SF == 1
+
+; regular application
+test al, $0F      ; set ZF if "al AND $0f = 0" (here: address-align test for 16b)
+jnz @destination  ; jump if eax IS NOT "MODULO 16=0"
+
+</syntaxhighlight>
+
+==References==
+{{reflist}}
+
+[[Category:X86 instructions]]
+
+
+{{hardware-stub}}
+{{software-stub}}

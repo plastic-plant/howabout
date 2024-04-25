@@ -1,5 +1,7 @@
 
 using Howabout.Configuration;
+using Howabout.Controllers;
+using Howabout.Extensions;
 using Howabout.Interfaces;
 using Howabout.Services;
 
@@ -31,7 +33,6 @@ namespace Howabout
 					var app = builder.Build();
 					app.UseDefaultFiles();
 					app.UseStaticFiles();
-					//app.UseSpaStaticFiles();
 					app.UseSwagger();
 					app.UseSwaggerUI();
 					app.MapControllers();
@@ -58,6 +59,57 @@ namespace Howabout
 
 				case CommandLineStartupArguments.CommandArg.Add:
 					Console.WriteLine("Add command.");
+					if (cli.Options.Count() == 0)
+					{
+						Console.WriteLine("No options specified for a path or url to add.");
+						break;
+					}
+
+					var filenames = cli.Options
+						.Except(cli.GetUrls())
+						.ToFullPaths()
+						.IncludeDirectoryFiles();
+
+					// Request processing of uploaded files.
+					foreach (var filepath in filenames)
+					{
+						using var client = new HttpClient();
+						using (var multipart = new MultipartFormDataContent())
+						{
+							multipart.Add(JsonContent.Create(new DocumentAddRequest() { Tags = cli.GetTags() }, options: ConfigExtensions.JsonOptions), "json", "request.json");
+							using (var binaryContent = new ByteArrayContent(await File.ReadAllBytesAsync(filepath)))
+							{
+								binaryContent.Headers.ContentType = new("application/octet-stream");
+								multipart.Add(binaryContent, Path.GetFileName(filepath), Path.GetFileName(filepath));
+								var response = await client.PostAsync("http://localhost:5153/api/add", multipart);
+								Console.WriteLine($"Response {filepath}:");
+								if (response.IsSuccessStatusCode)
+								{
+									Console.WriteLine($"Uploaded successfully.");
+								}
+								else
+								{
+									Console.WriteLine($"Error uploading: {response.ReasonPhrase}");
+								}
+							}
+						}
+					}
+
+					// Request processing of urls. Server retrieves the content.
+					var urls = cli.GetUrls();
+					if (urls.Count() > 0)
+					{
+						using var client2 = new HttpClient();
+						var response = await client2.PostAsJsonAsync("http://localhost:5153/api/add", new DocumentAddRequest() { Tags = cli.GetTags(), Urls = urls }, ConfigExtensions.JsonOptions);
+						if (response.IsSuccessStatusCode)
+						{
+							Console.WriteLine($"Uploaded successfully.");
+						}
+						else
+						{
+							Console.WriteLine($"Error uploading: {response.ReasonPhrase}");
+						}
+					}
 					break;
 
 				case CommandLineStartupArguments.CommandArg.None:

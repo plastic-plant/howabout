@@ -1,0 +1,49 @@
+{{Short description|Application of forces or torques to a material or structure to determine its mechanical properties}}
+{{Use dmy dates|date=October 2017}}
+
+'''Mechanical testing''' covers a wide range of tests, which can be divided broadly into two types:
+# those that aim to determine a material's [[List of materials properties#mechanical properties|mechanical properties]], independent of geometry.<ref>{{cite journal | doi=10.1152/ajpgi.00324.2018 | title=Differential biomechanical properties of mouse distal colon and rectum innervated by the splanchnic and pelvic afferents | year=2019 | last1=Siri | first1=Saeed | last2=Maier | first2=Franz | last3=Chen | first3=Longtu | last4=Santos | first4=Stephany | last5=Pierce | first5=David M. | last6=Feng | first6=Bin | journal=American Journal of Physiology. Gastrointestinal and Liver Physiology | volume=316 | issue=4 | pages=G473–G481 | pmid=30702901 | pmc=6483024 }}</ref>
+# those that determine the response of a structure to a given action, e.g. testing of composite beams, aircraft structures to destruction, etc.
+
+== Mechanical testing of materials ==
+[[File:Eprouvette plate cassee wb.JPG|thumb|Tensile test. A standard specimen is subjected to a gradually increasing load (force) until failure occurs. The resultant load-displacement behaviour is used to determine a [[stress–strain curve]], from which a number of mechanical properties can be measured.]]
+There exists a large number of tests, many of which are standardized, to determine the various mechanical properties of materials. In general, such tests set out to obtain geometry-independent properties; i.e. those intrinsic to the bulk material. In practice this is not always feasible, since even in tensile tests, certain properties can be influenced by specimen size and/or geometry. Here is a listing of some of the most common tests:<ref name="Smithells">Ed. Gale, W.F.; Totemeier, T.C. (2004), Smithells Metals Reference Book (8th Edition), Elsevier</ref>
+
+*[[Hardness Testing]]
+**[[Vickers hardness test]] (HV), which has one of the widest scales
+**[[Brinell hardness test]] (HB)
+**[[Knoop hardness test]] (HK), for measurement over small areas
+**[[Janka hardness test]], for wood
+**[[Meyer hardness test]]
+**[[Rockwell scale|Rockwell hardness test]] (HR), principally used in the USA
+**[[Shore durometer]] hardness, used for polymers
+**[[Barcol hardness test]], for composite materials
+*[[Tensile testing]], used to obtain the stress-strain curve for a material, and from there, properties such as Young modulus, yield (or proof) stress, tensile stress and % elongation to failure.
+*Impact testing
+**[[Izod test]]
+**[[Charpy test]]
+*[[Fracture toughness]] testing
+**Linear-elastic (K<sub>Ic</sub>)
+**K–R curve
+**Elastic plastic (J<sub>Ic</sub>, CTOD)
+*[[Viscoplasticity#Creep test|Creep Testing]], for the mechanical behaviour of materials at high temperatures (relative to their melting point)
+*[[Fatigue Testing]], for the behaviour of materials under cyclic loading
+**Load-controlled smooth specimen tests
+**Strain-controlled smooth specimen tests
+**Fatigue crack growth testing
+*[[Non-Destructive Testing]]
+
+== References ==
+{{Reflist}}
+
+== General references ==
+*{{Citation | last = Foster | first = P. Field | title = The Mechanical Testing of Metals and Alloys | publisher = Read Books | year = 2007 | url = https://books.google.com/books?id=NFBQuCMXzbEC | isbn = 978-1406734799 | postscript =.}}
+*{{Citation | last = American Society for Metals | title = ASM Handbook Volume 8: Mechanical Testing and Evaluation | publisher = American Society for Metals | year = 2000 | url = https://books.google.com/books?id=fdU6AQAAIAAJ | isbn = 978-0871703897 | postscript =.}}
+*{{Citation | last = Fenner | first = Arthur J. | title = Mechanical Testing of Materials (International monographs on materials science and technology) | publisher = Newnes | year = 1965 | url = https://books.google.com/books?id=HLhRAAAAMAAJ | asin = B0000CMMOM | postscript =.}}
+*{{Citation | last = Foster | first = P. Field | title = The Mechanical Testing of Metals and Alloys | publisher = Read Books | year = 2007 | url = https://books.google.com/books?id=NFBQuCMXzbEC | isbn = 978-1406734799 | postscript =.}}
+
+{{Authority control}}
+
+[[Category:Materials science]]
+[[Category:Materials testing]]
+[[Category:Tests]]

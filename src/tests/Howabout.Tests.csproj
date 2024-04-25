@@ -24,11 +24,16 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Extensions\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\backend\Howabout.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Examples\.gitkeep">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

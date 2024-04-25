@@ -1,0 +1,47 @@
+{{Short description|Testing conducted on a complete integrated software system}}
+{{see also|System integration testing}}
+{{Multiple issues|
+{{More citations needed|date=January 2013}}
+{{unbalanced|date=October 2018}}
+}}
+<!-- the emphasis of the prose in the body is on software -->
+'''System testing''' is testing conducted on a complete integrated system to evaluate the system's compliance with its specified [[requirements]].{{Citation needed|date=April 2008}}
+
+System testing takes, as its input, all of the integrated components that have passed [[integration testing]]. The purpose of integration testing is to detect any inconsistencies between the units that are integrated together (called ''assemblages''). System testing seeks to detect defects both within the "inter-assemblages" and also within the system as a whole.{{Citation needed|date=April 2008}} The actual result is the behavior produced or observed when a component or system is tested.<ref>{{Cite web |title=ISTQB Standard glossary of terms used in Software Testing |url=https://glossary.istqb.org/en/search/}}</ref>
+
+System testing is performed on the entire system in the context of either [[Functional requirements|functional requirement]] specifications (FRS) or [[Requirements analysis|system requirement]] specification (SRS), or both. System testing tests not only the design, but also the behaviour and even the believed expectations of the customer. It is also intended to test up to and beyond the bounds defined in the software or hardware requirements specification(s).{{Citation needed|date=April 2008}}
+
+==Approaches==
+* [[Destructive testing]]: tests are carried out to the specimen's failure, in order to understand a specimen's performance or material behaviour under different loads.
+* [[Nondestructive testing]]: analysis techniques to evaluate the properties of a material, component or system without causing damage.
+*[[Fault injection]]: A testing technique which stress the system in an unusual way to examine the system behavior.<ref>{{Cite journal|last1=Moradi|first1=Mehrdad|last2=Van Acker|first2=Bert|last3=Vanherpen|first3=Ken|last4=Denil|first4=Joachim|date=2019|editor-last=Chamberlain|editor-first=Roger|editor2-last=Taha|editor2-first=Walid|editor3-last=Törngren|editor3-first=Martin|title=Model-Implemented Hybrid Fault Injection for Simulink (Tool Demonstrations)|journal=Cyber Physical Systems. Model-Based Design|series=Lecture Notes in Computer Science|volume=11615|language=en|location=Cham|publisher=Springer International Publishing|pages=71–90|doi=10.1007/978-3-030-23703-5_4|isbn=978-3-030-23703-5|s2cid=195769468 |url=https://figshare.com/articles/preprint/Model-Implemented_Hybrid_Fault_Injection_for_Simulink_Tool_Demonstrations_/12479930 }}</ref><ref>{{Cite journal|title=Optimizing fault injection in FMI co-simulation through sensitivity partitioning {{!}} Proceedings of the 2019 Summer Simulation Conference|url=https://dl.acm.org/doi/abs/10.5555/3374138.3374170|access-date=2020-06-15|website=dl.acm.org|date=22 July 2019 |pages=1–12 |language=EN}}</ref><ref>Moradi, Mehrdad, Bentley James Oakes, Mustafa Saraoglu, Andrey Morozov, Klaus Janschek, and Joachim Denil. "Exploring Fault Parameter Space Using Reinforcement Learning-based Fault Injection." (2020).</ref>
+
+==Subject-specific test methods==
+===Software testing===
+[[Software testing]] is an investigation conducted to provide stakeholders with information about the quality of the [[software product]] or service under test.<ref name="Kaner 1">{{cite conference | url = http://www.kaner.com/pdfs/ETatQAI.pdf | title = Exploratory Testing | author-link = Cem Kaner | last = Kaner | first = Cem | conference = Quality Assurance Institute Worldwide Annual Software Testing Conference | location = Orlando, FL | date = November 17, 2006 | access-date = November 22, 2014 | archive-date = January 26, 2009 | archive-url = https://web.archive.org/web/20090126151156/http://kaner.com/pdfs/ETatQAI.pdf | url-status = dead }}</ref> Software testing can also provide an objective, independent view of the software to allow the business to appreciate and understand the risks of software implementation. Software testing involves the execution of a software component or system component to evaluate one or more properties of interest. In general, these properties indicate the extent to which the component or system under test meets the requirements that guided its design and development, responds correctly to all kinds of inputs, performs its functions within an acceptable time, is sufficiently usable, can be installed and run in its intended environments, and achieves the general result its stakeholders desire. As the number of possible tests for even simple software components is practically infinite, all software testing uses some strategy to select tests that are feasible for the available time and resources.
+
+===Mobile-device testing===
+[[Mobile-device testing]] assures the quality of mobile devices, like mobile phones, PDAs, etc. The testing will be conducted on both hardware and software. And from the view of different procedures, the testing comprises R&D testing, factory testing and certificate testing. Mobile-device testing involves a set of activities from monitoring and trouble shooting mobile application, content and services on real handsets. Testing includes [[verification and validation]] of hardware devices and software applications.
+
+==See also==
+*[[Automatic test equipment]]
+*[[Test case]]
+*[[Test fixture]]
+*[[Test plan]]
+*[[Automated testing]]
+*[[Quality control]]
+*[[Fault injection]]
+
+==Notes==
+{{reflist}}
+
+==References==
+* {{cite book |last=Black |first=Rex |date=2002 |title=Managing the Testing Process |edition=2nd |publisher=Wiley Publishing |isbn=0-471-22398-0 |url-access=registration |url=https://archive.org/details/managingtestingp00rexb }}
+
+{{Software testing}}
+
+[[Category:Software testing]]
+[[Category:Hardware testing]]
+[[Category:Systems engineering]]
+
+[[de:Softwaretest#Systemtest]]
