@@ -7,6 +7,7 @@ import Chat from './messages/Chat';
 import ChatEditor from './messages/ChatEditor';
 import DocumentUploadedMessage from './messages/DocumentUploadedMessage';
 import WelcomeHelpMessage from './messages/WelcomeHelpMessage';
+import DocumentsOverview from './documents/DocumentsOverview';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
             <div className="flex h-screen bg-white border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700">
                 <aside className="w-2/6 m-3">
                     <DocumentUpload />
+                    <DocumentsOverview />
                 </aside>
                 <main className="w-4/6 relative">
 

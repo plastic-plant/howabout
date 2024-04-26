@@ -3,6 +3,7 @@ using Howabout.Configuration;
 using Howabout.Controllers;
 using Howabout.Extensions;
 using Howabout.Interfaces;
+using Howabout.Repositories;
 using Howabout.Services;
 
 namespace Howabout
@@ -26,6 +27,7 @@ namespace Howabout
 					var builder = WebApplication.CreateBuilder(args);
 					builder.Services.Configure<ModelProviderOptions>(builder.Configuration.GetSection(ModelProviderOptions.Section));
 					builder.Services.AddSingleton<IKernelMemoryService, KernelMemoryService>();
+					builder.Services.AddSingleton<IDocumentCache, DocumentRepository>();
 					builder.Services.AddControllers();
 					builder.Services.AddEndpointsApiExplorer();
 					builder.Services.AddSwaggerGen();
