@@ -1,24 +1,33 @@
 
 import { useEffect, useState } from 'react';
 import EventMessageService from './EventMessageService';
-function Conversation() {
-    const { events } = EventMessageService();
-    useEffect(() => {
-        const handleDocumentAddedEvent = (message: string) => setMessages([...messages, message]);
-        const handleDocumenRemovedEvent = (message: string) => setMessages(messages.filter((value) => value !== message));
-        events(handleDocumentAddedEvent, handleDocumenRemovedEvent);
-    });
+import { getMessages } from './ConversationMessageService';
 
-    const [messages, setMessages] = useState<string[]>([]);
+function Conversation() {
+    const [messages, setMessages] = useState<ConversationMessage[]>([]);
+    const { events } = EventMessageService();
+
+    useEffect(() => {
+        const loadMessages = async () => {
+            const messages = await getMessages();
+            setMessages(messages);
+        };
+        loadMessages();
+
+        const handleMessageAddedEvent = (message: ConversationMessage) => setMessages([...messages, message]);
+        events(undefined, handleMessageAddedEvent);
+    }, []);
 
     return (
         <div>
-        <h3>Conversation</h3>
-            {messages.map((message, index) => (
-                <article key={index}>{message}</article>
-            ))}
+            {messages ? messages.map((message) => (
+                <article key={message.id}>{message.messageText}</article>
+            )) : (
+            <p>Loading...</p>
+            )}
         </div>
     );
 }
 
 export default Conversation;
+

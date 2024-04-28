@@ -1,19 +1,19 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using Howabout.Models;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Howabout.Hubs
 {
 	public class EventMessageHub: Hub<IEventMessageClient>
 	{
-		public async Task DocumentAddedEvent(string message)
-			=> await Clients.All.DocumentAddedEvent(message);
-		public async Task DocumentRemoveddEvent(string message)
-			=> await Clients.All.DocumentRemovedEvent(message);
-
+		public async Task DocumentChangedEvent()
+			=> await Clients.All.DocumentChangedEvent();
+		public async Task MessageAddedEvent(ConversationMessage message)
+			=> await Clients.All.MessageAddedEvent(message);
 	}
 
 	public interface IEventMessageClient
 	{
-		Task DocumentAddedEvent(string message);
-		Task DocumentRemovedEvent(string message);
+		Task DocumentChangedEvent();
+		Task MessageAddedEvent(ConversationMessage message);
 	}
 }

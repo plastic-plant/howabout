@@ -52,7 +52,6 @@ namespace Howabout.Controllers
 					{
 						var id = await memory.ImportDocumentAsync(stream, upload.FileName);
 						_documentCache.AddOrUpdate(new() { Id = id, Tags = request.Tags, Name = upload.Name, OriginalPath = upload.FileName });
-						await _eventMessageHub.Clients.All.DocumentAddedEvent("added");
 					}
 				}
 
@@ -62,7 +61,6 @@ namespace Howabout.Controllers
 					{
 						var id = await memory.ImportWebPageAsync(url);
 						_documentCache.AddOrUpdate(new() { Id = id, Tags = request.Tags, OriginalPath = url });
-						await _eventMessageHub.Clients.All.DocumentAddedEvent("added");
 					}
 				}
 
@@ -70,9 +68,9 @@ namespace Howabout.Controllers
 				{
 					var id = await memory.ImportDocumentAsync(path.Replace("file://", ""));
 					_documentCache.AddOrUpdate(new() { Id = id, Tags = request.Tags, Name = path, OriginalPath = path });
-					await _eventMessageHub.Clients.All.DocumentAddedEvent("added");
 				}
 
+				await _eventMessageHub.Clients.All.DocumentChangedEvent();
 				return Ok();
 			}
 			catch (AggregateException ex)

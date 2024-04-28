@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+import EventMessageService from "../messages/EventMessageService";
 
 export function useDocuments(): Record<string, IDocumentProperties[]> | undefined {
     const [documents, setDocuments] = useState<Record<string, IDocumentProperties[]>>();
+    const { events } = EventMessageService();
+
 
     useEffect(() => {
         const updateDocumentGroupedByTags = async (): Promise<Record<string, IDocumentProperties[]>> => {
@@ -10,9 +13,10 @@ export function useDocuments(): Record<string, IDocumentProperties[]> | undefine
             setDocuments(data);
             return data;
         }
+        updateDocumentGroupedByTags().catch(console.error);
 
-        updateDocumentGroupedByTags()
-            .catch(console.error);
+        const handleDocumentChangedEvent = () => updateDocumentGroupedByTags().catch(console.error);
+        events(handleDocumentChangedEvent, undefined);
     }, []);
     
 

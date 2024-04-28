@@ -29,6 +29,7 @@ namespace Howabout
 					builder.Services.Configure<ModelProviderOptions>(builder.Configuration.GetSection(ModelProviderOptions.Section));
 					builder.Services.AddSingleton<IKernelMemoryService, KernelMemoryService>();
 					builder.Services.AddSingleton<IDocumentCache, DocumentRepository>();
+					builder.Services.AddSingleton<IConversationService, ConversationService>();
 					builder.Services.AddControllers();
 					builder.Services.AddEndpointsApiExplorer();
 					builder.Services.AddSignalR();

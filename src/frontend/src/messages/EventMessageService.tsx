@@ -5,8 +5,8 @@ import { HubConnection, HubConnectionBuilder, HttpTransportType } from '@microso
 class EventMessageService {
     private connection: HubConnection;
     public events: (
-        onDocumentAddedEvent: (message: string) => void,
-        onDocumentRemovedEvent: (message: string) => void
+        onDocumentChangedEvent?: () => void,
+        onMessageAddedEvent?: (message: ConversationMessage) => void
     ) => void
     static instance: EventMessageService;
 
@@ -16,9 +16,9 @@ class EventMessageService {
             .withAutomaticReconnect()
             .build();
         this.connection.start().catch(err => document.write(err));
-        this.events = (onDocumentAddedEvent) => {
-            this.connection.on("DocumentAddedEvent", (message) => onDocumentAddedEvent(message));
-            this.connection.on("DocumentRemovedEvent", (message) => onDocumentAddedEvent(message));
+        this.events = (onDocumentChangedEvent, onMessageAddedEvent) => {
+            onDocumentChangedEvent && this.connection.on("DocumentChangedEvent", () => onDocumentChangedEvent());
+            onMessageAddedEvent && this.connection.on("MessageAddedEvent", (message) => onMessageAddedEvent(message));
         };
     }
     
