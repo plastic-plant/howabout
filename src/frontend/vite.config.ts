@@ -50,6 +50,10 @@ export default defineConfig({
             '^/api': {
                 target,
                 secure: false
+            },
+            '^/hubs': {
+                target,
+                secure: false
             }
         },
         port: 5173,

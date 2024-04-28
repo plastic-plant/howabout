@@ -1,7 +1,10 @@
-﻿using Howabout.Configuration;
+﻿using DocumentFormat.OpenXml.InkML;
+using Howabout.Configuration;
+using Howabout.Hubs;
 using Howabout.Interfaces;
 using Howabout.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using System.Text.Json;
 
 namespace Howabout.Controllers
@@ -12,13 +15,16 @@ namespace Howabout.Controllers
 		private readonly IConfiguration _configuration;
 		private readonly IKernelMemoryService _kernelMemoryService;
 		private readonly IDocumentCache _documentCache;
+		private readonly IHubContext<EventMessageHub, IEventMessageClient> _eventMessageHub;
 
-		public DocumentController(ILogger<DocumentController> logger, IConfiguration configuration, IHostApplicationLifetime lifeTime, IKernelMemoryService kernelMemoryService, IDocumentCache documentCache)
+
+		public DocumentController(ILogger<DocumentController> logger, IConfiguration configuration, IHostApplicationLifetime lifeTime, IKernelMemoryService kernelMemoryService, IDocumentCache documentCache, IHubContext<EventMessageHub, IEventMessageClient> eventMessageHub)
 		{
 			_logger = logger ?? throw new ArgumentNullException(nameof(logger));
 			_configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
 			_kernelMemoryService = kernelMemoryService ?? throw new ArgumentNullException(nameof(kernelMemoryService));
 			_documentCache = documentCache ?? throw new ArgumentNullException(nameof(documentCache));
+			_eventMessageHub = eventMessageHub ?? throw new ArgumentNullException(nameof(eventMessageHub));
 		}
 
 		[HttpPost("api/add")]
@@ -32,7 +38,7 @@ namespace Howabout.Controllers
 			var memory = _kernelMemoryService.Get();
 			if (memory == null)
 			{
-				throw new Exception("Kernel Memory noet yet started. Please verify configuration.");
+				throw new Exception("Kernel Memory not yet started. Please verify configuration.");
 			}
 
 			var request = await JsonSerializer.DeserializeAsync<DocumentAddRequest>(json.OpenReadStream(), ConfigExtensions.JsonOptions) ?? new();
@@ -46,6 +52,7 @@ namespace Howabout.Controllers
 					{
 						var id = await memory.ImportDocumentAsync(stream, upload.FileName);
 						_documentCache.AddOrUpdate(new() { Id = id, Tags = request.Tags, Name = upload.Name, OriginalPath = upload.FileName });
+						await _eventMessageHub.Clients.All.DocumentAddedEvent("added");
 					}
 				}
 
@@ -55,6 +62,7 @@ namespace Howabout.Controllers
 					{
 						var id = await memory.ImportWebPageAsync(url);
 						_documentCache.AddOrUpdate(new() { Id = id, Tags = request.Tags, OriginalPath = url });
+						await _eventMessageHub.Clients.All.DocumentAddedEvent("added");
 					}
 				}
 
@@ -62,6 +70,7 @@ namespace Howabout.Controllers
 				{
 					var id = await memory.ImportDocumentAsync(path.Replace("file://", ""));
 					_documentCache.AddOrUpdate(new() { Id = id, Tags = request.Tags, Name = path, OriginalPath = path });
+					await _eventMessageHub.Clients.All.DocumentAddedEvent("added");
 				}
 
 				return Ok();

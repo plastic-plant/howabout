@@ -12,6 +12,10 @@
   <ItemGroup>
     <Content Remove="wwwroot\.gitkeep" />
   </ItemGroup>
+    
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />  
+  </ItemGroup>  
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy">

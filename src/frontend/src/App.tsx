@@ -3,7 +3,7 @@ import './App.css';
 import DocumentUpload from './documents/DocumentUpload';
 import SystemInfoBar from './system/SystemInfoBar';
 import Logo from './menu/Logo';
-import Chat from './messages/Chat';
+import Chat from './messages/Conversation';
 import ChatEditor from './messages/ChatEditor';
 import DocumentUploadedMessage from './messages/DocumentUploadedMessage';
 import WelcomeHelpMessage from './messages/WelcomeHelpMessage';

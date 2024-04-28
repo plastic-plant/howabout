@@ -18,8 +18,8 @@ function DocumentUpload() {
     };
 
     const deleteTag = (index: number) => {
-        const newTags = tags.filter((tag, i) => i !== index);
-        setTodos(newTags);
+        const newTags = tags.filter((_, i) => i !== index);
+        setTags(newTags);
     };
 
     const documents = useDocuments();
@@ -81,7 +81,7 @@ function DocumentUpload() {
 
                         <div className="tags mx-3">
                             {tags.map((tag, index) => (
-                                <span key={index} className="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-gray-800 bg-gray-100 rounded dark:bg-gray-700 dark:text-gray-300">
+                                <span key={tag} className="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-gray-800 bg-gray-100 rounded dark:bg-gray-700 dark:text-gray-300">
                                     {tag}
                                     <button type="button" className="inline-flex items-center p-1 ms-2 text-sm text-gray-400 bg-transparent rounded-sm hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-gray-300" data-dismiss-target="#badge-dismiss-dark" aria-label="Remove">
                                         <svg className="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">

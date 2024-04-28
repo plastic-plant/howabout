@@ -2,6 +2,7 @@
 using Howabout.Configuration;
 using Howabout.Controllers;
 using Howabout.Extensions;
+using Howabout.Hubs;
 using Howabout.Interfaces;
 using Howabout.Repositories;
 using Howabout.Services;
@@ -30,6 +31,7 @@ namespace Howabout
 					builder.Services.AddSingleton<IDocumentCache, DocumentRepository>();
 					builder.Services.AddControllers();
 					builder.Services.AddEndpointsApiExplorer();
+					builder.Services.AddSignalR();
 					builder.Services.AddSwaggerGen();
 
 					var app = builder.Build();
@@ -38,8 +40,15 @@ namespace Howabout
 					app.UseSwagger();
 					app.UseSwaggerUI();
 					app.MapControllers();
+					app.MapHub<EventMessageHub>("/hubs/eventMessageHub");
 					app.MapFallbackToFile("/index.html");
 					app.UseKernelMemoryService();
+					app.UseCors(cors => cors
+						.AllowAnyMethod()
+						.AllowAnyHeader()
+						.SetIsOriginAllowed(origin => true)
+						.AllowCredentials()
+					);
 					await app.RunAsync();
 					break;
 
