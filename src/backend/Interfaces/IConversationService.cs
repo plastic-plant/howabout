@@ -4,7 +4,7 @@ namespace Howabout.Interfaces
 {
 	public interface IConversationService
 	{
-		List<ConversationMessage> GetMessages();
+		Task<List<ConversationMessage>> GetMessagesAsync();
 		void AddMessage(ConversationMessage message);
 	}
 }

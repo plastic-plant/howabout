@@ -6,6 +6,7 @@ using Howabout.Hubs;
 using Howabout.Interfaces;
 using Howabout.Repositories;
 using Howabout.Services;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Howabout
 {
@@ -41,6 +42,8 @@ namespace Howabout
 					app.UseSwagger();
 					app.UseSwaggerUI();
 					app.MapControllers();
+					app.MapGet("/healthy", () => Results.Ok());
+					app.MapGet("/ready", async (IKernelMemoryService kernelMemoryService) => await kernelMemoryService.IsReadyAsync() ? Results.Ok() : Results.BadRequest());
 					app.MapHub<EventMessageHub>("/hubs/eventMessageHub");
 					app.MapFallbackToFile("/index.html");
 					app.UseKernelMemoryService();

@@ -16,9 +16,9 @@ namespace Howabout.Controllers
         }
 
 		[HttpGet("api/messages")]
-		public List<ConversationMessage> getMessages()
+		public Task<List<ConversationMessage>> GetMessagesAsync()
 		{
-			return _conversation.GetMessages();
+			return _conversation.GetMessagesAsync();
 		}
 
 		[HttpPost("api/messages/add")]

@@ -18,6 +18,19 @@ namespace Howabout.Services
 
 		public IKernelMemory? Get() => _kernelMemory;
 
+		public async Task<bool> IsReadyAsync()
+		{
+			try
+			{
+				var indexes = await _kernelMemory?.ListIndexesAsync();
+				return indexes?.Count() != null;
+			}
+			catch (Exception)
+			{
+				return false;
+			}
+		}
+
 		public void Configure()
 		{
 			_kernelMemory = new KernelMemoryBuilder()
