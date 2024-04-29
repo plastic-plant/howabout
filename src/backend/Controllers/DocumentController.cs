@@ -148,24 +148,28 @@ namespace Howabout.Controllers
 		}
 		
 
-		[HttpGet("documents/ask")]
-		public async Task<string> Ask(string question)
+		[HttpPost("api/ask")]
+		public async Task<string> Ask([FromBody] DocumentAskRequest request)
 		{
 			var memory = _kernelMemoryService.Get();
 
-			var answer = await memory.AskAsync(question);
+			var answer = await memory.AskAsync(request.Question);
 			return answer.Result;
 		}
 	}
-	
 
 
-
-	public class  DocumentAddRequest()
+	public class DocumentAddRequest()
     {
 		public List<string> Tags { get; set; } = new();
 		public List<string> Urls { get; set; } = new();
         public List<string> WebUrls => Urls.Where(path => path.StartsWith("http")).ToList();
 		public List<string> FileUrls => Urls.Where(path => path.StartsWith("file://")).ToList();
+	}
+
+	public class DocumentAskRequest()
+	{
+        public string Question { get; set; }
+		public List<string> Tags { get; set; } = new();
 	}
 }

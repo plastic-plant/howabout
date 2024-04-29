@@ -1,4 +1,3 @@
-
 using Howabout.Configuration;
 using Howabout.Controllers;
 using Howabout.Extensions;
@@ -6,7 +5,7 @@ using Howabout.Hubs;
 using Howabout.Interfaces;
 using Howabout.Repositories;
 using Howabout.Services;
-using System.Text.Json;
+using System.Text;
 
 namespace Howabout
 {
@@ -130,10 +129,28 @@ namespace Howabout
 					if (urls.Count() > 0)
 					{
 						using var client2 = new HttpClient();
-						var response = await client2.PostAsJsonAsync("http://localhost:5153/api/add", new DocumentAddRequest() { Tags = cli.GetTags(), Urls = urls }, ConfigExtensions.JsonOptions);
+						var request = new DocumentAddRequest() { Tags = cli.GetTags(), Urls = urls };
+						var response = await client2.PostAsJsonAsync("http://localhost:5153/api/add", request, ConfigExtensions.JsonOptions);
 						if (response.IsSuccessStatusCode)
 						{
 							Console.WriteLine($"Uploaded successfully.");
+						}
+						else
+						{
+							Console.WriteLine($"Error uploading: {response.ReasonPhrase}");
+						}
+					}
+					break;
+
+				case CommandLineStartupArguments.CommandArg.Ask:
+					Console.WriteLine("Ask command.");
+					using (var client3 = new HttpClient())
+					{
+						var request = new DocumentAskRequest { Question = string.Join(" ", cli.Options), Tags = cli.GetTags() };
+						var response = await client3.PostAsJsonAsync("http://localhost:5153/api/ask", request, ConfigExtensions.JsonOptions);
+						if (response.IsSuccessStatusCode)
+						{
+							Console.WriteLine(await response.Content.ReadAsStringAsync());
 						}
 						else
 						{

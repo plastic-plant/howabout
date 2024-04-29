@@ -57,6 +57,10 @@
     "howabout ask <question>": {
       "commandName": "Project",
       "commandLineArgs": "ask Can you give me a summary?"
+    },
+    "howabout ask \"<question>\" --tag <tag>": {
+      "commandName": "Project",
+      "commandLineArgs": "ask \"Can you give me a summary?\" --tag test3"
     }
   }
 }

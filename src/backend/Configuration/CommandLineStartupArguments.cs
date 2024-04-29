@@ -30,6 +30,7 @@
 			Start,
 			Stop,
 			Add,
+			Ask,
 		}
 
 		void ParseStartupArguments(string[] args)
@@ -50,6 +51,7 @@
 					"start" => CommandArg.Start,
 					"stop" => CommandArg.Stop,
 					"add" => CommandArg.Add,
+					"ask" => CommandArg.Ask,
 
 					_ => CommandArg.None
 				};
