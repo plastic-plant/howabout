@@ -1,4 +1,5 @@
 ﻿using Howabout.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -21,13 +22,14 @@ namespace Howabout.Configuration
 		{
 			WriteIndented = true,
 			PropertyNameCaseInsensitive = true,
+			PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
 			AllowTrailingCommas = true,
 			NumberHandling = JsonNumberHandling.AllowReadingFromString,
 			ReadCommentHandling = JsonCommentHandling.Skip,
 			PreferredObjectCreationHandling = JsonObjectCreationHandling.Populate,
 			Converters =
 			{
-				new JsonStringEnumConverter(JsonNamingPolicy.SnakeCaseLower)
+				new JsonStringEnumConverter(JsonNamingPolicy.CamelCase),
 			}
 		};
 	}

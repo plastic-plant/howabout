@@ -3,5 +3,6 @@ interface ConversationMessage {
 	messageType: string;
 	role: string;
 	time: string;
-	messageText: string
+	messageText: string;
+	messageData: any;
 }

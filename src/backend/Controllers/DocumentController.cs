@@ -1,10 +1,13 @@
 ﻿using DocumentFormat.OpenXml.InkML;
 using Howabout.Configuration;
+using Howabout.Extensions;
 using Howabout.Hubs;
 using Howabout.Interfaces;
+using Howabout.Models;
 using Howabout.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using System;
 using System.Text.Json;
 
 namespace Howabout.Controllers
@@ -16,15 +19,17 @@ namespace Howabout.Controllers
 		private readonly IKernelMemoryService _kernelMemoryService;
 		private readonly IDocumentCache _documentCache;
 		private readonly IHubContext<EventMessageHub, IEventMessageClient> _eventMessageHub;
+		private readonly IConversationService _conversation;
 
 
-		public DocumentController(ILogger<DocumentController> logger, IConfiguration configuration, IHostApplicationLifetime lifeTime, IKernelMemoryService kernelMemoryService, IDocumentCache documentCache, IHubContext<EventMessageHub, IEventMessageClient> eventMessageHub)
+		public DocumentController(ILogger<DocumentController> logger, IConfiguration configuration, IHostApplicationLifetime lifeTime, IKernelMemoryService kernelMemoryService, IDocumentCache documentCache, IHubContext<EventMessageHub, IEventMessageClient> eventMessageHub, IConversationService conversation)
 		{
 			_logger = logger ?? throw new ArgumentNullException(nameof(logger));
 			_configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
 			_kernelMemoryService = kernelMemoryService ?? throw new ArgumentNullException(nameof(kernelMemoryService));
 			_documentCache = documentCache ?? throw new ArgumentNullException(nameof(documentCache));
 			_eventMessageHub = eventMessageHub ?? throw new ArgumentNullException(nameof(eventMessageHub));
+			_conversation = conversation ?? throw new ArgumentNullException(nameof(conversation));
 		}
 
 		[HttpPost("api/add")]
@@ -51,7 +56,15 @@ namespace Howabout.Controllers
 					using (var stream = upload.OpenReadStream())
 					{
 						var id = await memory.ImportDocumentAsync(stream, upload.FileName);
-						_documentCache.AddOrUpdate(new() { Id = id, Tags = request.Tags, Name = upload.Name, OriginalPath = upload.FileName });
+						var document = new DocumentProperties() { Id = id, Tags = request.Tags, Name = upload.Name, Extension = Path.GetExtension(upload.FileName)?.ToLower().Replace(".", "") ?? "", OriginalPath = upload.FileName, Size = upload.Length.ToFileSizeFormatted() };
+						if (_documentCache.AddOrUpdate(document))
+						{
+							_conversation.AddMessage(new ConversationMessage
+							{
+								MessageType = ConversationMessageType.DocumentChange,
+								MessageData = document
+							});
+						}
 					}
 				}
 
@@ -60,14 +73,30 @@ namespace Howabout.Controllers
 					if (Uri.TryCreate(url, UriKind.Absolute, out _))
 					{
 						var id = await memory.ImportWebPageAsync(url);
-						_documentCache.AddOrUpdate(new() { Id = id, Tags = request.Tags, OriginalPath = url });
+						var document = new DocumentProperties() { Id = id, Tags = request.Tags, Name = url, Extension = Path.GetExtension(url)?.ToLower().Replace(".", "") ?? "", OriginalPath = url };
+						if (_documentCache.AddOrUpdate(document))
+						{
+							_conversation.AddMessage(new()
+							{
+								MessageType = ConversationMessageType.DocumentChange,
+								MessageData = document
+							});
+						}
 					}
 				}
 
 				foreach (var path in request.FileUrls)
 				{
 					var id = await memory.ImportDocumentAsync(path.Replace("file://", ""));
-					_documentCache.AddOrUpdate(new() { Id = id, Tags = request.Tags, Name = path, OriginalPath = path });
+					var document = new DocumentProperties() { Id = id, Tags = request.Tags, Name = path, Extension = Path.GetExtension(path)?.ToLower().Replace(".", "") ?? "", OriginalPath = path };
+					if (_documentCache.AddOrUpdate(document))
+					{
+						_conversation.AddMessage(new()
+						{
+							MessageType = ConversationMessageType.DocumentChange,
+							MessageData = document
+						});
+					}
 				}
 
 				await _eventMessageHub.Clients.All.DocumentChangedEvent();

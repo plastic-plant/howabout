@@ -6,7 +6,7 @@ using Howabout.Hubs;
 using Howabout.Interfaces;
 using Howabout.Repositories;
 using Howabout.Services;
-using Microsoft.AspNetCore.Http.HttpResults;
+using System.Text.Json;
 
 namespace Howabout
 {
@@ -31,10 +31,23 @@ namespace Howabout
 					builder.Services.AddSingleton<IKernelMemoryService, KernelMemoryService>();
 					builder.Services.AddSingleton<IDocumentCache, DocumentRepository>();
 					builder.Services.AddSingleton<IConversationService, ConversationService>();
-					builder.Services.AddControllers();
+					builder.Services.AddControllers().AddJsonOptions(options =>
+					{
+						options.JsonSerializerOptions.PropertyNameCaseInsensitive = ConfigExtensions.JsonOptions.PropertyNameCaseInsensitive;
+						options.JsonSerializerOptions.PropertyNamingPolicy = ConfigExtensions.JsonOptions.PropertyNamingPolicy;
+						options.JsonSerializerOptions.WriteIndented = ConfigExtensions.JsonOptions.WriteIndented;
+						options.JsonSerializerOptions.AllowTrailingCommas = ConfigExtensions.JsonOptions.AllowTrailingCommas;
+						options.JsonSerializerOptions.NumberHandling = ConfigExtensions.JsonOptions.NumberHandling;
+						options.JsonSerializerOptions.ReadCommentHandling = ConfigExtensions.JsonOptions.ReadCommentHandling;
+						options.JsonSerializerOptions.PreferredObjectCreationHandling = ConfigExtensions.JsonOptions.PreferredObjectCreationHandling;
+						ConfigExtensions.JsonOptions.Converters.ToList().ForEach(options.JsonSerializerOptions.Converters.Add);
+					});					
+					builder.Services.AddSignalR().AddJsonProtocol(options => {
+						options.PayloadSerializerOptions = ConfigExtensions.JsonOptions;
+					});
 					builder.Services.AddEndpointsApiExplorer();
-					builder.Services.AddSignalR();
 					builder.Services.AddSwaggerGen();
+
 
 					var app = builder.Build();
 					app.UseDefaultFiles();
@@ -52,6 +65,8 @@ namespace Howabout
 						.AllowAnyHeader()
 						.SetIsOriginAllowed(origin => true)
 						.AllowCredentials()
+
+					// ConfigExtensions.JsonOptions
 					);
 					await app.RunAsync();
 					break;

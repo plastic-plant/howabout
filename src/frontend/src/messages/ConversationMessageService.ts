@@ -4,7 +4,7 @@ export async function getMessages(): Promise<ConversationMessage[]> {
         const response = await fetch('/api/messages');
 
         if (response.ok) {
-            const data = await response.json();
+            const data: ConversationMessage[] = await response.json();
             return data;
         } else {
             return [];
@@ -22,7 +22,7 @@ export async function addMessage(message: ConversationMessage): Promise<string> 
         });
 
         if (response.ok) {
-            const data = await response.json();
+            const data: string = await response.json();
             return data;
         } else {
             return 'Error adding message.';

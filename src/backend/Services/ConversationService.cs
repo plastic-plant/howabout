@@ -20,8 +20,8 @@ namespace Howabout.Services
 
         public void AddMessage(ConversationMessage message)
 		{
-			_eventMessageHub.Clients.All.MessageAddedEvent(message);
 			_messages.Add(message);
+			_eventMessageHub.Clients.All.MessageAddedEvent(message);
 		}
 
 		public async Task<List<ConversationMessage>> GetMessagesAsync()

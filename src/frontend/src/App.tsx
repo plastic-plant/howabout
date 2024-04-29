@@ -3,10 +3,8 @@ import './App.css';
 import DocumentUpload from './documents/DocumentUpload';
 import SystemInfoBar from './system/SystemInfoBar';
 import Logo from './menu/Logo';
-import Chat from './messages/Conversation';
+import Conversation from './messages/Conversation';
 import ChatEditor from './messages/ChatEditor';
-import DocumentUploadedMessage from './messages/DocumentUploadedMessage';
-import WelcomeHelpMessage from './messages/WelcomeHelpMessage';
 import DocumentsOverview from './documents/DocumentsOverview';
 
 function App() {
@@ -33,9 +31,7 @@ function App() {
                 </aside>
                 <main className="w-4/6 px-6 py-2 relative">
 
-                    <WelcomeHelpMessage />
-                    <Chat />
-                    <DocumentUploadedMessage />
+                    <Conversation />                 
 
                     <section className="absolute bottom-0 left-0 w-full">                    
                         <ChatEditor />

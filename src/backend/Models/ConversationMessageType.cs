@@ -7,6 +7,6 @@
 		WelcomeUploadRequired, // with the option to have a quick example test upload.
 		WelcomeReady, // with an invitation to start a conversation.
 		DocumentChange, // with a document icon and file details.
-		Conversation
+		Conversation // for regular request and response messages with model.
 	}
 }

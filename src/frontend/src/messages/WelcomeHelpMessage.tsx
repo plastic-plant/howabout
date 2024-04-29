@@ -1,6 +1,3 @@
-
-const howabout = <span className="howabout">How<i>about</i></span>;
-
 const stopServer = async () => {
     const response = await fetch('http://localhost:5153/configuration/stop');
     if (response.ok) {
@@ -10,18 +7,17 @@ const stopServer = async () => {
     }
 };
 
-function WelcomeHelpMessage()
-{
+export default function WelcomeHelpMessage({ message }: { message: ConversationMessage }) {
   return (
-      <article className="flex items-start gap-2.5 my-6">
+      <article key={message.id} className="flex items-start gap-2.5 my-6">
           <img className="w-8 h-8 rounded-full" src="/assistant.jpg" alt="Assistant profile picture" />
           <div className="flex flex-col gap-1 w-full max-w-[320px]">
               <div className="flex items-center space-x-2 rtl:space-x-reverse">
-                  <span className="text-sm font-semibold text-gray-900 dark:text-white">Assistant</span>
-                  <span className="text-sm font-normal text-gray-500 dark:text-gray-400">18:02</span>
+                  <span className="text-sm font-semibold text-gray-900 dark:text-white">{message.role}</span>
+                  <span className="text-sm font-normal text-gray-500 dark:text-gray-400">{message.time}</span>
               </div>
               <div className="flex flex-col leading-1.5 p-4 border-gray-200 bg-gray-100 rounded-e-xl rounded-es-xl dark:bg-gray-700">
-                  <p className="text-sm font-normal text-gray-900 dark:text-white">Welcome. {howabout} started succesfully. I see you haven't setup providers for embedding and conversation in my appsettings.json configuration. <b>Can I help you setup?</b></p>
+                  <p className="text-sm font-normal text-gray-900 dark:text-white">{message.messageText}</p>
               </div>
               <span className="text-sm font-normal text-gray-500 dark:text-gray-400">Ready</span>
           </div>
@@ -46,5 +42,3 @@ function WelcomeHelpMessage()
       </article>
   );
 }
-
-export default WelcomeHelpMessage;
