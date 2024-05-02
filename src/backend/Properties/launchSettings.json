@@ -13,6 +13,10 @@
       "commandName": "Project",
       "commandLineArgs": "help"
     },
+    "howabout version": {
+      "commandName": "Project",
+      "commandLineArgs": "version"
+    },
     "howabout start": {
       "commandName": "Project",
       "commandLineArgs": "start",

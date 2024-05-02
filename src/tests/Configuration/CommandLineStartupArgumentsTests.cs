@@ -1,5 +1,5 @@
 ﻿using Howabout.Configuration;
-using static Howabout.Configuration.CommandLineStartupArguments;
+using static Howabout.Configuration.ConsoleStartupArguments;
 
 namespace Howabout.Tests.Configuration
 {
@@ -22,7 +22,7 @@ namespace Howabout.Tests.Configuration
 		public void ParseStartupArguments_Returns(string given, CommandArg expected)
 		{
 			var args = new string[] { given };
-			var sut = new CommandLineStartupArguments(args);
+			var sut = new ConsoleStartupArguments(args);
 			Assert.Equal(expected, sut.Command);
 		}
 	}

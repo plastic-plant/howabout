@@ -10,7 +10,7 @@
 	/// Parameters  are arguments that start with a double dash and have a value, e.g. '--tag archive2024'.
 	/// Flags       are arguments that start with a single or double dash and have no value, e.g. '-v' and '--verbose'.
 	/// </summary>
-	public class CommandLineStartupArguments
+	public class ConsoleStartupArguments
 	{
         public CommandArg Command { get; set; } = CommandArg.None;
 		public List<string> Arguments { get; set; } = new();
@@ -18,7 +18,7 @@
 		public List<string> Flags { get; set; } = new();		
 		public List<KeyValuePair<string, string>> Parameters { get; set; } = new();
 
-		public CommandLineStartupArguments(string[] args)
+		public ConsoleStartupArguments(string[] args)
 		{			
 			ParseStartupArguments(args);
 		}
@@ -31,6 +31,7 @@
 			Stop,
 			Add,
 			Ask,
+			Test,
 		}
 
 		void ParseStartupArguments(string[] args)
@@ -52,6 +53,7 @@
 					"stop" => CommandArg.Stop,
 					"add" => CommandArg.Add,
 					"ask" => CommandArg.Ask,
+					"test" => CommandArg.Test,
 
 					_ => CommandArg.None
 				};

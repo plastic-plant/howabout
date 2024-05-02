@@ -26,7 +26,16 @@ namespace Howabout.Services
 
 		public async Task<List<ConversationMessage>> GetMessagesAsync()
 		{
-			// bool isReadyWithFirstUpload = _messages.Count < 3 && _messages.First().MessageType == ConversationMessageType.DocumentChange;
+			await IncludeStartupMessages();
+
+			return _messages;
+		}
+
+		/// <summary>
+		/// Flow control. Should not be here, just a quick inject as proof of ceoncept.
+		/// </summary>
+		private async Task IncludeStartupMessages()
+		{
 			bool isEmptyNeedsWelcome = _messages.Count == 0;
 			if (isEmptyNeedsWelcome)
 			{
@@ -35,10 +44,21 @@ namespace Howabout.Services
 				{
 					MessageType = isReady ? ConversationMessageType.WelcomeUploadRequired : ConversationMessageType.WelcomeSetupRequired,
 					Role = ConversationMessageRole.Assistant,
-					MessageText = isReady ? "Welcome! Howabout started succesfully. Please upload a document to get started. You can then ask questions about it. If you like to, you can add tags to group multiple documents." : "Welcome! Howabout started succesfully. I see you haven't setup providers for embedding and conversation in my appsettings.json configuration. Can I help you setup?"
+					MessageText = isReady ? "Welcome! Please upload a document to get started. You can then ask questions about it." : "Welcome! It sems you haven't setup providers for embedding and conversation. Open appsettings.json configuration and start again."
 				});
 			}
-			return _messages;
+
+			bool isReadyWithFirstUpload = _messages.Count < 3 && _messages.First().MessageType == ConversationMessageType.DocumentChange;
+			if (isReadyWithFirstUpload)
+			{
+				bool isReady = await _kernelMemoryService.IsReadyAsync();
+				_messages.Add(new ConversationMessage
+				{
+					MessageType = ConversationMessageType.WelcomeReady,
+					Role = ConversationMessageRole.Assistant,
+					MessageText = "Nice, we have a document upload. How about you ask for a summary?"
+				});
+			}
 		}
 	}
 }
