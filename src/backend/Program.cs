@@ -3,9 +3,9 @@ using Howabout.Controllers;
 using Howabout.Extensions;
 using Howabout.Hubs;
 using Howabout.Interfaces;
-using Howabout.Repositories;
-using Howabout.Services;
-using System.Text;
+using Serilog;
+using Serilog.Events;
+using static Howabout.Configuration.ConsoleStartupArguments;
 
 namespace Howabout
 {
@@ -13,16 +13,16 @@ namespace Howabout
 	{
 		public static async Task Main(string[] args)
 		{
-			var cli = new CommandLineStartupArguments(args);
-			switch (cli.Command)
-			{
-				case CommandLineStartupArguments.CommandArg.Help:
-					Console.WriteLine("Help information.");
-					break;
+			Log.Logger = new LoggerConfiguration()
+				.MinimumLevel.Verbose()
+				.WriteTo.Console(outputTemplate: "{Timestamp:HH:mm} {Message:lj}{NewLine}{Exception}")
+				.MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+				.MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+				.MinimumLevel.Override("Microsoft.KernelMemory.Handlers", LogEventLevel.Warning)
+				.Enrich.FromLogContext()
+				.CreateLogger();
 
-				case CommandLineStartupArguments.CommandArg.Version:
-					Console.WriteLine("Version information.");
-					break;
+			//Serilog.Debugging.SelfLog.Enable(msg => Console.WriteLine(msg));
 
 				case CommandLineStartupArguments.CommandArg.Start:
 					var builder = WebApplication.CreateBuilder(args);
