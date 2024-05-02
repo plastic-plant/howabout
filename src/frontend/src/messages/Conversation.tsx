@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import EventMessageService from './EventMessageService';
 import { getMessages } from './ConversationMessageService';
 import WelcomeHelpMessage from './WelcomeHelpMessage';
@@ -11,33 +11,40 @@ export default function Conversation() {
     const { events } = EventMessageService();
 
     let mounted = false;
-    const messagesEndRef = React.createRef<HTMLDivElement>();
+
+    const messagesEndRef = useRef<null | HTMLDivElement>(null)
     const handleMessageAddedEvent = (message: ConversationMessage) => {
         setMessages(prevMessages => [...prevMessages, message]);
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        scrollToLastmessage(messagesEndRef);
     }
     const loadMessages = async () => setMessages(await getMessages());
     
     useEffect(() => {
         if (!mounted) { // Prevents multiple event subscriptions when running in dev-mode with React.Strict.
             loadMessages();
+            scrollToLastmessage(messagesEndRef);
             events(undefined, handleMessageAddedEvent);
         }
         mounted = true;
     }, []);
 
     return (
-        <div>
+        <section>
             {messages ? messages.map((message: ConversationMessage) => (
-                <ConversationMessageComponent message={message} />
+                <div key={message.id}>
+                    <ConversationMessageComponent message={message} />
+                </div>
             )) : (
             <p>Loading...</p>
             )}
             <div ref={messagesEndRef} />
-        </div>
+        </section>
     );
 }
 
+function scrollToLastmessage(messagesEndRef: React.MutableRefObject<HTMLDivElement | null>) {
+    window.setTimeout(() => messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' }), 0);
+}
 function ConversationMessageComponent({ message }: { message: ConversationMessage }) {
 
     const roleProfileImage = `/${message.role}.jpg`;

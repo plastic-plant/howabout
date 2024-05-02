@@ -4,7 +4,7 @@ export default function DocumentUploadedMessage({ message }: { message: Conversa
     const document: IDocumentProperties = message.messageData;
  
     return (
-        <article key={message.id} className="flex items-start gap-2.5">
+        <article key={message.id} className="flex items-start gap-2.5 my-6">
             <img className="w-8 h-8 rounded-full" src="/user.png" alt="User profile picture" />
             <div className="flex flex-col gap-1">
                 <div className="flex items-center space-x-2 rtl:space-x-reverse">
