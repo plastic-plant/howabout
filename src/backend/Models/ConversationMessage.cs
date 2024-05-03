@@ -8,6 +8,6 @@
 		public string Time { get; set; } = DateTime.UtcNow.ToString("HH:mm");
 		public string MessageText { get; set; } = string.Empty;
 
-        public Object? MessageData { get; set; } // Often: DocumentProperties
+        public Object? MessageData { get; set; } // DocumentProperties, List<Citation>
 	}
 }

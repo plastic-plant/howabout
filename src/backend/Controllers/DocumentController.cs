@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.InkML;
-using Howabout.Configuration;
+﻿using Howabout.Configuration;
 using Howabout.Extensions;
 using Howabout.Hubs;
 using Howabout.Interfaces;
@@ -7,7 +6,6 @@ using Howabout.Models;
 using Howabout.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
-using System;
 using System.Text.Json;
 
 namespace Howabout.Controllers
@@ -190,6 +188,6 @@ namespace Howabout.Controllers
 	public class DocumentAskRequest()
 	{
         public string Question { get; set; }
-		public List<string> Tags { get; set; } = new();
+        public List<string> Tags { get; set; } = new();
 	}
 }

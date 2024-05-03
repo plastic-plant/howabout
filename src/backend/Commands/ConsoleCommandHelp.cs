@@ -50,6 +50,12 @@ You can ask questions about the documents:
   ask Can you give me a summary?
   ask 'What do given documents have in common?'
   ask ""Who is the protagonist in this story?""
+
+You can ask for citations about the source of the answer:
+
+  ask Is there a summary in the books? --cite
+  ask Why did the wizard come to town? --cite
+
 ");
 
 			return Task.CompletedTask;
