@@ -1,10 +1,10 @@
 
-export async function getMessages(): Promise<ConversationMessage[]> {
+export async function getMessages(): Promise<IConversationMessage[]> {
     try {
         const response = await fetch('/api/messages');
 
         if (response.ok) {
-            const data: ConversationMessage[] = await response.json();
+            const data: IConversationMessage[] = await response.json();
             return data;
         } else {
             return [];

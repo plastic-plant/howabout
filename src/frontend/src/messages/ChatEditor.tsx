@@ -26,7 +26,7 @@ function ChatEditor() {
             <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
 
                 <div className="relative px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
-                    <textarea id="comment" rows={4} value={messageText} onChange={(e) => setMessageText(e.target.value)} onKeyPress={sendMessageOnEnterKey} className="w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400" placeholder="Ask a question..." required ></textarea>
+                    <textarea id="comment" rows={4} value={messageText} onChange={(e) => setMessageText(e.target.value)} onKeyPress={sendMessageOnEnterKey} className="w-full px-0 text-sm text-gray-900 bg-white border-0 border-transparent focus:border-transparent focus:ring-0 !outline-none" placeholder="Ask a question..."></textarea>
                 </div>
 
                 <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">

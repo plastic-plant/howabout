@@ -7,7 +7,7 @@ const stopServer = async () => {
     }
 };
 
-export default function WelcomeHelpMessage({ message }: { message: ConversationMessage }) {
+export default function WelcomeHelpMessage({ message }: { message: IConversationMessage }) {
   return (
       <article key={message.id} className="flex items-start gap-2.5 my-6">
           <img className="w-8 h-8 rounded-full" src="/assistant.png" alt="Assistant profile picture" />

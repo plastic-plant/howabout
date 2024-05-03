@@ -1,6 +1,6 @@
 import { IDocumentProperties } from "../documents/DocumentService";
 
-export default function DocumentUploadedMessage({ message }: { message: ConversationMessage }) {
+export default function DocumentUploadedMessage({ message }: { message: IConversationMessage }) {
     const document: IDocumentProperties = message.messageData;
  
     return (
@@ -44,6 +44,9 @@ export default function DocumentUploadedMessage({ message }: { message: Conversa
                             </a>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <small className="text-sm font-normal text-gray-500 dark:text-gray-400">{message.processingTimeSeconds} seconds</small>
                 </div>
             </div>
         </article>

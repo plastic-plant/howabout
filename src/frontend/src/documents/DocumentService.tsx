@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import EventMessageService from "../messages/EventMessageService";
+import { IDocumentAddRequest } from "./IDocumentAddRequest";
+import { IDocumentProperties } from "./IDocumentProperties";
 
 export function useDocuments(): Record<string, IDocumentProperties[]> | undefined {
     const [documents, setDocuments] = useState<Record<string, IDocumentProperties[]>>();
@@ -44,16 +46,3 @@ export async function addDocument(file: Blob, tags: string[]): Promise<string> {
     }
 };
 
-export interface IDocumentProperties {
-    id: string;
-    name: string;
-    extension: string;
-    originalPath: string;
-    tags: string[];
-    size: string;
-}
-
-export interface IDocumentAddRequest {
-    tags: string[];
-    urls: string[];
-}

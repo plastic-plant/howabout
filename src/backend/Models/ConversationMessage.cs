@@ -9,5 +9,6 @@
 		public string MessageText { get; set; } = string.Empty;
 
         public Object? MessageData { get; set; } // DocumentProperties, List<Citation>
-	}
+        public int ProcessingTimeSeconds { get; set; }
+    }
 }

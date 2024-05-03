@@ -6,7 +6,7 @@ class EventMessageService {
     private connection: HubConnection;
     public events: (
         onDocumentChangedEvent?: () => void,
-        onMessageAddedEvent?: (message: ConversationMessage) => void
+        onMessageAddedEvent?: (message: IConversationMessage) => void
     ) => void
     static instance: EventMessageService;
 

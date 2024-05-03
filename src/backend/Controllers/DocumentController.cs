@@ -6,6 +6,7 @@ using Howabout.Models;
 using Howabout.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using System.Diagnostics;
 using System.Text.Json;
 
 namespace Howabout.Controllers
@@ -51,16 +52,19 @@ namespace Howabout.Controllers
 			{
 				foreach (var upload in uploads)
 				{
+					var stopwatch = Stopwatch.StartNew();
 					using (var stream = upload.OpenReadStream())
 					{
 						var id = await memory.ImportDocumentAsync(stream, upload.FileName);
 						var document = new DocumentProperties() { Id = id, Tags = request.Tags, Name = upload.Name, Extension = Path.GetExtension(upload.FileName)?.ToLower().Replace(".", "") ?? "", OriginalPath = upload.FileName, Size = upload.Length.ToFileSizeFormatted() };
 						if (_documentCache.AddOrUpdate(document))
 						{
+							stopwatch.Stop();
 							_conversation.AddMessage(new ConversationMessage
 							{
 								MessageType = ConversationMessageType.DocumentChange,
-								MessageData = document
+								MessageData = document,
+								ProcessingTimeSeconds = (int)stopwatch.Elapsed.TotalSeconds
 							});
 						}
 					}
@@ -70,6 +74,7 @@ namespace Howabout.Controllers
 				{
 					if (Uri.TryCreate(url, UriKind.Absolute, out _))
 					{
+						var stopwatch = Stopwatch.StartNew();
 						var id = await memory.ImportWebPageAsync(url);
 						var document = new DocumentProperties() { Id = id, Tags = request.Tags, Name = url, Extension = Path.GetExtension(url)?.ToLower().Replace(".", "") ?? "", OriginalPath = url };
 						if (_documentCache.AddOrUpdate(document))
@@ -77,7 +82,8 @@ namespace Howabout.Controllers
 							_conversation.AddMessage(new()
 							{
 								MessageType = ConversationMessageType.DocumentChange,
-								MessageData = document
+								MessageData = document,
+								ProcessingTimeSeconds = (int)stopwatch.Elapsed.TotalSeconds
 							});
 						}
 					}
@@ -85,6 +91,7 @@ namespace Howabout.Controllers
 
 				foreach (var path in request.FileUrls)
 				{
+					var stopwatch = Stopwatch.StartNew();
 					var id = await memory.ImportDocumentAsync(path.Replace("file://", ""));
 					var document = new DocumentProperties() { Id = id, Tags = request.Tags, Name = path, Extension = Path.GetExtension(path)?.ToLower().Replace(".", "") ?? "", OriginalPath = path };
 					if (_documentCache.AddOrUpdate(document))
@@ -92,7 +99,8 @@ namespace Howabout.Controllers
 						_conversation.AddMessage(new()
 						{
 							MessageType = ConversationMessageType.DocumentChange,
-							MessageData = document
+							MessageData = document,
+							ProcessingTimeSeconds = (int)stopwatch.Elapsed.TotalSeconds
 						});
 					}
 				}
@@ -153,10 +161,10 @@ namespace Howabout.Controllers
 			{
 				Role = ConversationMessageRole.User,
 				MessageType = ConversationMessageType.Conversation,
-				MessageText = request.Question
-			
+				MessageText = request.Question			
 			});
 
+			var stopwatch = Stopwatch.StartNew();
 			var memory = _kernelMemoryService.Get();
 			var answer = await memory.AskAsync(request.Question);
 
@@ -165,7 +173,8 @@ namespace Howabout.Controllers
 				Role = ConversationMessageRole.Assistant,
 				MessageType = ConversationMessageType.Conversation,
 				MessageText = answer.Result,
-				MessageData = answer.RelevantSources
+				MessageData = answer.RelevantSources,
+				ProcessingTimeSeconds = (int)stopwatch.Elapsed.TotalSeconds
 			});
 			return answer.Result;
 		}
