@@ -14,17 +14,5 @@ namespace Howabout.Controllers
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 			_conversation = conversation ?? throw new ArgumentNullException(nameof(conversation));
         }
-
-		[HttpGet("api/messages")]
-		public Task<List<ConversationMessage>> GetMessagesAsync()
-		{
-			return _conversation.GetMessagesAsync();
-		}
-
-		[HttpPost("api/messages/add")]
-		public void AddMessage(ConversationMessage message)
-		{
-			_conversation.AddMessage(message);
-		}
 	}
 }

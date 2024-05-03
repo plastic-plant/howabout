@@ -10,8 +10,8 @@ const stopServer = async () => {
 export default function WelcomeHelpMessage({ message }: { message: ConversationMessage }) {
   return (
       <article key={message.id} className="flex items-start gap-2.5 my-6">
-          <img className="w-8 h-8 rounded-full" src="/assistant.jpg" alt="Assistant profile picture" />
-          <div className="flex flex-col gap-1 w-full max-w-[320px]">
+          <img className="w-8 h-8 rounded-full" src="/assistant.png" alt="Assistant profile picture" />
+          <div className="flex flex-col gap-1 w-full max-w-[640px]">
               <div className="flex items-center space-x-2 rtl:space-x-reverse">
                   <span className="text-sm font-semibold text-gray-900 dark:text-white capitalize">{message.role}</span>
                   <span className="text-sm font-normal text-gray-500 dark:text-gray-400">{message.time}</span>

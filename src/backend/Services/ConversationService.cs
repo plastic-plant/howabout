@@ -20,6 +20,10 @@ namespace Howabout.Services
 
         public void AddMessage(ConversationMessage message)
 		{
+			if (message.MessageText.Contains("INFO NOT FOUND"))
+			{
+				message.MessageText = "Sorry, I couldn't find any information on that in the uploaded documents.";
+			}
 			_messages.Add(message);
 			_eventMessageHub.Clients.All.MessageAddedEvent(message);
 		}
@@ -32,7 +36,7 @@ namespace Howabout.Services
 		}
 
 		/// <summary>
-		/// Flow control. Should not be here, just a quick inject as proof of ceoncept.
+		/// Flow control. Should not be here, just a quick inject as proof of concept.
 		/// </summary>
 		private async Task IncludeStartupMessages()
 		{

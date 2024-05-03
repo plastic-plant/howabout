@@ -12,7 +12,7 @@ export default function DocumentsOverview() {
                         <div key={tag}>
                             <button type="button" className="flex items-center p-2 w-full text-base font-bold text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" data-collapse-toggle={`dropdown_${tag}`.replace(/\W/g, '')}>
                                 <svg aria-hidden="true" className="flex-shrink-0 w-6 h-6 text-gray-400 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"></path></svg>
-                                <span className="flex-1 ml-3 text-left whitespace-nowrap">{tag}</span>
+                                <span className="flex-1 ml-3 text-left whitespace-nowrap capitalize">{tag}</span>
                                 <svg aria-hidden="true" className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>
                             </button>
                             <ul id={`dropdown_${tag}`.replace(/\W/g, '')} className="unhidden">

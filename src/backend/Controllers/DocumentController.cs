@@ -151,13 +151,33 @@ namespace Howabout.Controllers
 		[HttpPost("api/ask")]
 		public async Task<string> Ask([FromBody] DocumentAskRequest request)
 		{
-			var memory = _kernelMemoryService.Get();
+			_conversation.AddMessage(new()
+			{
+				Role = ConversationMessageRole.User,
+				MessageType = ConversationMessageType.Conversation,
+				MessageText = request.Question
+			
+			});
 
+			var memory = _kernelMemoryService.Get();
 			var answer = await memory.AskAsync(request.Question);
+
+			_conversation.AddMessage(new()
+			{
+				Role = ConversationMessageRole.Assistant,
+				MessageType = ConversationMessageType.Conversation,
+				MessageText = answer.Result,
+				MessageData = answer.RelevantSources
+			});
 			return answer.Result;
 		}
-	}
 
+		[HttpGet("api/messages")]
+		public Task<List<ConversationMessage>> GetMessagesAsync()
+		{
+			return _conversation.GetMessagesAsync();
+		}
+	}
 
 	public class DocumentAddRequest()
     {

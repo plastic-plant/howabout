@@ -14,16 +14,20 @@ export async function getMessages(): Promise<ConversationMessage[]> {
     }
 };
 
-export async function addMessage(message: ConversationMessage): Promise<string> {
+export async function askMessage(message: string): Promise<string> {
     try {
-        const response = await fetch('/api/messages/add', {
+        const response = await fetch('/api/ask', {
             method: 'POST',
-            body: JSON.stringify(message),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ question: message }),
+
         });
 
         if (response.ok) {
-            const data: string = await response.json();
-            return data;
+            await response.json();
+            return '';
         } else {
             return 'Error adding message.';
         }
