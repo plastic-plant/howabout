@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import EventMessageService from "../messages/EventMessageService";
 import { IDocumentAddRequest } from "./IDocumentAddRequest";
 import { IDocumentProperties } from "./IDocumentProperties";
+export type { IDocumentProperties } from "./IDocumentProperties";
 
 export function useDocuments(): Record<string, IDocumentProperties[]> | undefined {
     const [documents, setDocuments] = useState<Record<string, IDocumentProperties[]>>();
@@ -10,7 +11,7 @@ export function useDocuments(): Record<string, IDocumentProperties[]> | undefine
 
     useEffect(() => {
         const updateDocumentGroupedByTags = async (): Promise<Record<string, IDocumentProperties[]>> => {
-            const response = await fetch('api/listgroupedbytag');
+            const response = await fetch('/api/listgroupedbytag');
             const data: Record<string, IDocumentProperties[]> = await response.json();
             setDocuments(data);
             return data;

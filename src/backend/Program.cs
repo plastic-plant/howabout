@@ -13,10 +13,11 @@ namespace Howabout
 		{
 			Log.Logger = new LoggerConfiguration()
 				.MinimumLevel.Verbose()
+				.ReadFrom.Configuration(new ConfigurationBuilder().AddJsonFile("appsettings.json").Build())
 				.WriteTo.Console(outputTemplate: "{Timestamp:HH:mm} {Message:lj}{NewLine}{Exception}")
-				.MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-				.MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
-				.MinimumLevel.Override("Microsoft.KernelMemory.Handlers", LogEventLevel.Warning)
+				//.MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+				//.MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+				//.MinimumLevel.Override("Microsoft.KernelMemory.Handlers", LogEventLevel.Warning)
 				.Enrich.FromLogContext()
 				.CreateLogger();
 

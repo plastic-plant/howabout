@@ -53,7 +53,7 @@ namespace Howabout.Commands
 		private async Task SendUrls(HttpClient client, List<string> urls)
 		{
 			var request = new DocumentAddRequest() { Tags = _args.GetTags(), Urls = urls };
-			var response = await client.PostAsJsonAsync("http://localhost:5153/api/add", request, ConfigExtensions.JsonOptions);
+			var response = await client.PostAsJsonAsync("http://localhost:5153/api/add", request, ConfigExtensions.JsonDefaults);
 			if (response.IsSuccessStatusCode)
 			{
 				Log.Information("Urls added: {Url}", string.Join(", ", urls));
@@ -68,7 +68,7 @@ namespace Howabout.Commands
 		{
 			using (var multipart = new MultipartFormDataContent())
 			{
-				multipart.Add(JsonContent.Create(new DocumentAddRequest() { Tags = _args.GetTags() }, options: ConfigExtensions.JsonOptions), "json", "request.json");
+				multipart.Add(JsonContent.Create(new DocumentAddRequest() { Tags = _args.GetTags() }, options: ConfigExtensions.JsonDefaults), "json", "request.json");
 				using (var binaryContent = new ByteArrayContent(await File.ReadAllBytesAsync(filepath)))
 				{
 					binaryContent.Headers.ContentType = new("application/octet-stream");

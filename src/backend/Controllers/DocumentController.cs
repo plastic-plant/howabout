@@ -45,7 +45,7 @@ namespace Howabout.Controllers
 				throw new Exception("Kernel Memory not yet started. Please verify configuration.");
 			}
 
-			var request = await JsonSerializer.DeserializeAsync<DocumentAddRequest>(json.OpenReadStream(), ConfigExtensions.JsonOptions) ?? new();
+			var request = await JsonSerializer.DeserializeAsync<DocumentAddRequest>(json.OpenReadStream(), ConfigExtensions.JsonDefaults) ?? new();
 			var uploads = (Request.HasFormContentType ? Request.Form?.Files.Where(upload => upload.FileName != "request.json") : null) ?? new FormFileCollection();
 
             try

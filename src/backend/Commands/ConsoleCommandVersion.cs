@@ -20,7 +20,8 @@ namespace Howabout.Commands
 
 		public Task Execute()
 		{
-			Log.Information("{Version}", typeof(Program).Assembly.GetName()?.Version?.ToString(2));
+			var os = Environment.OSVersion;
+			Log.Information("{AppVersion}|{PlatformSystem:G}|{PlatformVersion}", typeof(Program).Assembly.GetName()?.Version?.ToString(2), os.Platform, os.VersionString);
 			return Task.CompletedTask;
 		}
 

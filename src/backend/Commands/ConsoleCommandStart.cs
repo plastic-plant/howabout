@@ -1,4 +1,5 @@
-﻿using Howabout.Configuration;
+﻿using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using Howabout.Configuration;
 using Howabout.Hubs;
 using Howabout.Interfaces;
 using Howabout.Repositories;
@@ -30,23 +31,12 @@ namespace Howabout.Commands
 			builder.Services.AddSingleton<IKernelMemoryService, KernelMemoryService>();
 			builder.Services.AddSingleton<IDocumentCache, DocumentRepository>();
 			builder.Services.AddSingleton<IConversationService, ConversationService>();
-			builder.Services.AddControllers().AddJsonOptions(options =>
-			{
-				options.JsonSerializerOptions.PropertyNameCaseInsensitive = ConfigExtensions.JsonOptions.PropertyNameCaseInsensitive;
-				options.JsonSerializerOptions.PropertyNamingPolicy = ConfigExtensions.JsonOptions.PropertyNamingPolicy;
-				options.JsonSerializerOptions.WriteIndented = ConfigExtensions.JsonOptions.WriteIndented;
-				options.JsonSerializerOptions.AllowTrailingCommas = ConfigExtensions.JsonOptions.AllowTrailingCommas;
-				options.JsonSerializerOptions.NumberHandling = ConfigExtensions.JsonOptions.NumberHandling;
-				options.JsonSerializerOptions.ReadCommentHandling = ConfigExtensions.JsonOptions.ReadCommentHandling;
-				options.JsonSerializerOptions.PreferredObjectCreationHandling = ConfigExtensions.JsonOptions.PreferredObjectCreationHandling;
-				ConfigExtensions.JsonOptions.Converters.ToList().ForEach(options.JsonSerializerOptions.Converters.Add);
-			});
-			builder.Services.AddSignalR().AddJsonProtocol(options => {
-				options.PayloadSerializerOptions = ConfigExtensions.JsonOptions;
-			});
+			builder.Services.AddSingleton<IShellCommand, ShellCommand>();
+			builder.Services.AddSystemMetrics();
+			builder.Services.AddControllers().WithJsonOptions(ConfigExtensions.JsonDefaults);
+			builder.Services.AddSignalR().WithJsonOptions(ConfigExtensions.JsonDefaults);
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
-
 
 			var app = builder.Build();
 			app.UseDefaultFiles();

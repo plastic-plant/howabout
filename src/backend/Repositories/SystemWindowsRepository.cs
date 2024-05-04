@@ -1,34 +1,23 @@
-﻿using System.Management;
-using System.Runtime.InteropServices;
+﻿
+using System.Management;
 using System.Runtime.Versioning;
+using Howabout.Models;
 
 namespace Howabout.Repositories
 {
-	public static class SystemMetricsRepository
+    [SupportedOSPlatform("Windows")]
+	public class SystemWindowsRepository : ISystemRepository
 	{
-		public static async Task<SystemInfo> GetMetricsAsync()
+		public async Task<SystemInfo> GetMetricsAsync()
 		{
-			var metrics = new SystemInfo();
-
-			if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+			return new SystemInfo()
 			{
-				throw new NotImplementedException("Linux not implemented yet");
-			}
-			else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-			{
-				throw new NotImplementedException("macOS not implemented yet");
-			}
-			else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-			{
-				metrics.CpuUsagePercentage = await GetCpuUsagePercentageWindowsAsync();
-				metrics.MemoryUsagePercentage = await GetMemoryUsagePercentageWindowsAsync();
-			}
-
-			return metrics;
+				CpuUsagePercentage = await GetCpuAsync(),
+				MemoryUsagePercentage = await GetMemoryAsync()
+			};
 		}
-
-		[SupportedOSPlatform("WINDOWS")]
-		public static async Task<int> GetCpuUsagePercentageWindowsAsync()
+		
+		private async Task<int> GetCpuAsync()
 		{
 			var tasker = new TaskCompletionSource<int>();
 			var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PerfFormattedData_PerfOS_Processor WHERE Name = '_Total'");
@@ -56,9 +45,8 @@ namespace Howabout.Repositories
 
 			return await tasker.Task;
 		}
-
-		[SupportedOSPlatform("WINDOWS")]
-		public static async Task<int> GetMemoryUsagePercentageWindowsAsync()
+	
+		private async Task<int> GetMemoryAsync()
 		{
 			var tasker = new TaskCompletionSource<int>();
 			var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_OperatingSystem");
@@ -89,11 +77,4 @@ namespace Howabout.Repositories
 			return await tasker.Task;
 		}
 	}
-}
-
-
-public class SystemInfo
-{
-    public int CpuUsagePercentage { get; set; }
-	public int MemoryUsagePercentage { get; set; }
 }

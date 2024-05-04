@@ -4,3 +4,5 @@
 *.suo
 .vs
 *.output.css
+src/backend/wwwroot
+!.gitkeep

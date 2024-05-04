@@ -29,7 +29,7 @@ namespace Howabout.Commands
 
 			var question = string.Join(" ", _args.Options);
 			var request = new DocumentAskRequest { Question = question, Tags = _args.GetTags() };
-			var response = await client.PostAsJsonAsync("http://localhost:5153/api/ask", request, ConfigExtensions.JsonOptions);
+			var response = await client.PostAsJsonAsync("http://localhost:5153/api/ask", request, ConfigExtensions.JsonDefaults);
 			if (response.IsSuccessStatusCode)
 			{
 				Log.Information(await response.Content.ReadAsStringAsync());

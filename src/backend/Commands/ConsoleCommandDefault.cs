@@ -1,5 +1,6 @@
 ﻿using Howabout.Configuration;
 using Howabout.Interfaces;
+using Serilog;
 
 namespace Howabout.Commands
 {
@@ -19,7 +20,19 @@ namespace Howabout.Commands
 
 		public Task Execute()
 		{
-			Console.WriteLine("Help information.");
+			Log.Information(@"
+Usage: howabout <command> [options]
+
+Commands:
+  help      Display help information.
+  start     Start the server.
+  stop      Stop the server.
+  add       Add documents to the server.
+  ask       Ask questions.
+
+Type 'howabout help' for examples.
+Type 'howabout start' to run server.
+");
 			return Task.CompletedTask;
 		}
 
