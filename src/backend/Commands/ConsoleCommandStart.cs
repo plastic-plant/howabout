@@ -44,8 +44,8 @@ namespace Howabout.Commands
 			app.UseSwagger();
 			app.UseSwaggerUI();
 			app.MapControllers();
-			app.MapGet("/healthy", () => Results.Ok());
-			app.MapGet("/ready", async (IKernelMemoryService kernelMemoryService) => await kernelMemoryService.IsReadyAsync() ? Results.Ok() : Results.BadRequest());
+			app.MapGet("/api/healthy", () => Results.Ok());
+			app.MapGet("/api/ready", async (IKernelMemoryService kernelMemoryService) => await kernelMemoryService.IsReadyAsync() ? Results.Ok() : Results.BadRequest());
 			app.MapHub<EventMessageHub>("/hubs/eventMessageHub");
 			app.MapFallbackToFile("/index.html");
 			app.UseKernelMemoryService();

@@ -1,17 +1,79 @@
-@Howabout_HostAddress = http://localhost:5153
+@Howabout_HostAddress = http://localhost:5000
+
+### DOCUMENT
 
 ###
-GET {{Howabout_HostAddress}}/configuration/reload
+POST {{Howabout_HostAddress}}/api/add
+Accept: application/json
+Content-Type: multipart/form-data;boundary="boundary"
+
+--boundary
+Content-Disposition: form-data; name="request.json"
+Content-Type: application/json
+
+{
+  tags = ["collectionharrypotterbooks"],
+	urls = [],
+
+--boundary
+Content-Disposition: form-data; name="document.txt"; filename="document.txt"
+
+<base64>
+
+--boundary--
+
+###
+GET {{Howabout_HostAddress}}/api/listbytag/{tag}
+Accept: application/json
+
+
+###
+GET {{Howabout_HostAddress}}/api/listbytag/{tag}
 Accept: application/json
 
 ###
-GET {{Howabout_HostAddress}}/configuration/stop
+GET {{Howabout_HostAddress}}/api/listgroupedbytag
 Accept: application/json
 
 ###
-GET {{Howabout_HostAddress}}/configuration/bebop
+GET {{Howabout_HostAddress}}/api/ask
+Accept: application/json
+Content-Type: application/json
+
+{
+  "question": "Can you write me a summary?",
+  "tags": [
+    "collectionharrypotterbooks"
+  ]
+}
+
+###
+GET {{Howabout_HostAddress}}/api/messages
+Accept: application/json
+
+
+
+### HEALTH
+
+###
+GET {{Howabout_HostAddress}}/api/healthy
 Accept: text/plain
 
 ###
-GET {{Howabout_HostAddress}}/system/metrics
+GET {{Howabout_HostAddress}}/api/ready
+Accept: text/plain
+
+
+### SYSTEM
+
+###
+GET {{Howabout_HostAddress}}/api/metrics
+Accept: application/json
+
+###
+GET {{Howabout_HostAddress}}/api/reload
+Accept: application/json
+
+###
+GET {{Howabout_HostAddress}}/api/stop
 Accept: application/json

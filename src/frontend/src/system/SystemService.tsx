@@ -27,7 +27,7 @@ export function useSystemInfo(pause: boolean = false, intervalSeconds: number = 
     }, [pause]);
 
     const getSystemInfo = async (): Promise<SystemInfo> => {
-        const response = await fetch('system/metrics');
+        const response = await fetch('/api/metrics');
         const data: SystemInfo = await response.json();
 
         // Pause the view when both CPU and memory usage are 0.

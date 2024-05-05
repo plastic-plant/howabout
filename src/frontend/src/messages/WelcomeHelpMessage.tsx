@@ -1,5 +1,5 @@
 const stopServer = async () => {
-    const response = await fetch('http://localhost:5153/configuration/stop');
+    const response = await fetch('/api/stop');
     if (response.ok) {
         window.alert('Couldn\'t stop the server.');
     } else {
