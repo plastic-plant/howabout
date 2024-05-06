@@ -10,6 +10,8 @@
 ### Builds for Linux
 
 - Release [linux-x64-tgz](linux-x64-tgz/) for Linux 64-bit distributions like Debian, Ubuntu, Fedora, CentOS.
+- Release [linux-x64-deb](linux-x64-deb/) for Linux 64-bit distributions with DEB package manager like Debian, Ubuntu.
+- Release [linux-x64-rpm](linux-x64-rpm/) for Linux 64-bit distributions with RPM package manager like Fedora, CentOS.
 - Release [linux-musl-x64-tgz](linux-musl-x64-tgz/) for lightweight Linux 64-bit distributions using musl like Alpine.
 - Release [linux-musl-arm64-tgz](linux-musl-arm64-tgz/) for lightweight Linux 64-bit ARMv8 to build Docker images.
 - Release [linux-arm-tgz](linux-arm-tgz/) for Linux distributions on ARM like Raspbian on Raspberry Pi Model 2+.

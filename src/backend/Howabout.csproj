@@ -2,12 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>$(MSBuildProjectName.ToLower())</AssemblyName>
+    <SelfContained>true</SelfContained>
+    <RuntimeIdentifiers>win-x86;win-x64;win-arm64;linux-x64;linux-x64;linux-x64;linux-musl-x64;linux-musl-arm64;linux-arm;linux-arm64;osx-x64;osx-arm64</RuntimeIdentifiers>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <SpaRoot>..\frontend</SpaRoot>
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:5100</SpaProxyServerUrl>
-    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_").ToLower())</RootNamespace>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

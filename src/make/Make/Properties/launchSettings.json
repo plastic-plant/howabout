@@ -7,6 +7,14 @@
     "make --buildconfig linux-x64-tgz": {
       "commandName": "Project",
       "commandLineArgs": "--buildconfig linux-x64-tgz"
+    },
+    "make --buildconfig linux-x64-deb": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig linux-x64-deb"
+    },
+    "make --buildconfig linux-x64-rpm": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig linux-x64-rpm"
     }
   }
 }

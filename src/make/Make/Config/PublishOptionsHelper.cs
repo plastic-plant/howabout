@@ -7,14 +7,16 @@ namespace Make.Config
 {
 	public static class PublishOptionsHelper
 	{
-		public static List<BuildConfig> ToBuildConfigs(this List<PublishOptions> selected, string solutionFilePath, string publishFolderPath)
+		public static List<BuildConfig> ToBuildConfigs(this List<PublishOptions> selected, string solutionFilePath, string projectFilePath, string publishFolderPath)
 		{
 			return selected.Select(publish => new BuildConfig
 			{
 				PublishOptions = publish,
 				SolutionFilePath = solutionFilePath,
 				SolutionFolderPath = Path.GetDirectoryName(solutionFilePath),
-				BuildArtifactsFolderPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(solutionFilePath), $"backend\\bin\\{publish.Configuration}\\net8.0\\{publish.Runtime}\\publish")),
+				ProjectFilePath = projectFilePath,
+				ProjectFolderPath = Path.GetDirectoryName(projectFilePath),
+				BuildArtifactsFolderPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(solutionFilePath), $"backend\\bin\\{publish.Configuration}\\net8.0\\{publish.Runtime}")),
 				PackagePublishFolderPath = Path.Combine(publishFolderPath, $@"{publish.Name}"),
 			}).ToList();
 		}
@@ -27,6 +29,8 @@ namespace Make.Config
 				new() { Name = "win-x86-zip", Runtime = "win-x86", Package = PackageType.Zip  },
 				new() { Name = "win-arm64-zip", Runtime = "win-arm64", Package = PackageType.Zip },
 				new() { Name = "linux-x64-tgz" , Runtime = "linux-x64", Package = PackageType.TarGz },
+				new() { Name = "linux-x64-deb" , Runtime = "linux-x64", Package = PackageType.Deb },
+				new() { Name = "linux-x64-rpm" , Runtime = "linux-x64", Package = PackageType.Rpm },
 				new() { Name = "linux-musl-x64-tgz" , Runtime = "linux-musl-x64", Package = PackageType.TarGz },
 				new() { Name = "linux-musl-arm64-tgz" , Runtime = "linux-musl-arm64", Package = PackageType.TarGz },
 				new() { Name = "linux-arm-tgz" , Runtime = "linux-arm", Package = PackageType.TarGz },

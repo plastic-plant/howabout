@@ -5,5 +5,7 @@
 		None,
 		Zip,
 		TarGz,
+		Deb,
+		Rpm,
 	}
 }

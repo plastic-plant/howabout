@@ -1,6 +1,8 @@
 ﻿using SharpCompress.Common;
 using SharpCompress.Writers;
+using System;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 
 namespace Make.Config
@@ -15,17 +17,23 @@ namespace Make.Config
 
 			switch (config.PublishOptions.Package)
 			{
-				case PackageType.Zip:					
-					Compress(ArchiveType.Zip, CompressionType.Deflate, config.BuildArtifactsFolderPath, Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.PublishOptions.Name}.zip"));
+				case PackageType.Zip:
+					Compress(ArchiveType.Zip, CompressionType.Deflate, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.PublishOptions.Name}.zip"));
 					break;
 
 				case PackageType.TarGz:
-					Compress(ArchiveType.Tar, CompressionType.GZip, config.BuildArtifactsFolderPath, Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.PublishOptions.Name}.tar.gz"));
+					Compress(ArchiveType.Tar, CompressionType.GZip, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.PublishOptions.Name}.tar.gz"));
+					break;
+
+				case PackageType.Deb:
+				case PackageType.Rpm:
+					var packageType = Enum.GetName(typeof(PackageType), config.PublishOptions.Package).ToLower(); // deb rpm
+					CopyFiles(config.BuildArtifactsFolderPath, $"*.{packageType}", config.PackagePublishFolderPath);
 					break;
 
 				case PackageType.None:
 				default:
-					CopyDirectory(config.BuildArtifactsFolderPath, config.PackagePublishFolderPath);
+					CopyDirectory(Path.Combine(config.BuildArtifactsFolderPath, "publish"), config.PackagePublishFolderPath);
 					break;
 			}
 
@@ -63,6 +71,32 @@ namespace Make.Config
 					UnixFileMode.OtherRead | UnixFileMode.OtherWrite;
 				Directory.CreateDirectory(folderPath, chmod775);
 			}
+		}
+
+		public static void CopyFile(string sourceFileName, string targetFolderPath, string targetFileName)
+		{
+			if (!File.Exists(sourceFileName))
+			{
+				throw new DirectoryNotFoundException($"File {sourceFileName} does not exist.");
+			}
+
+			EnsureDirectoryExists(targetFolderPath);
+			File.Copy(sourceFileName, Path.Combine(targetFolderPath, targetFileName), true);
+		}
+
+		public static void CopyFiles(string sourceFolderPath, string matchFileName, string targetFolderPath)
+		{
+			if (!Directory.Exists(sourceFolderPath))
+			{
+				throw new DirectoryNotFoundException($"Directory {sourceFolderPath} does not exist.");
+			}
+
+			EnsureDirectoryExists(targetFolderPath);
+			Directory.GetFiles(sourceFolderPath, matchFileName).ToList().ForEach(file =>
+			{
+				string targetFileName = Path.GetFileName(file).ToLower();
+				File.Copy(file, Path.Combine(targetFolderPath, targetFileName), true);
+			});
 		}
 
 		public static void CopyDirectory(string sourceFolderPath, string targetFolderPath)
