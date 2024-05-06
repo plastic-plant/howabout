@@ -4,5 +4,7 @@
 *.suo
 .vs
 *.output.css
+releases/*/
 src/backend/wwwroot
 !.gitkeep
+!*.md

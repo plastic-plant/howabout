@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "make -bc all": {
+      "commandName": "Project",
+      "commandLineArgs": "-bc all"
+    },
+    "make --buildconfig linux-x64-tgz": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig linux-x64-tgz"
+    }
+  }
+}

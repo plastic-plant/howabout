@@ -7,6 +7,7 @@
     <SpaRoot>..\frontend</SpaRoot>
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:5100</SpaProxyServerUrl>
+    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_").ToLower())</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
