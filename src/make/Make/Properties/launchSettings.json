@@ -15,6 +15,14 @@
     "make --buildconfig linux-x64-rpm": {
       "commandName": "Project",
       "commandLineArgs": "--buildconfig linux-x64-rpm"
+    },
+    "make --buildconfig win-x64-exe": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig win-x64-exe"
+    },
+    "make --buildconfig win-x86-exe": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig win-x86-exe"
     }
   }
 }

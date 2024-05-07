@@ -31,6 +31,10 @@ namespace Make.Config
 					CopyFiles(config.BuildArtifactsFolderPath, $"*.{packageType}", config.PackagePublishFolderPath);
 					break;
 
+				case PackageType.Exe:
+					CopyFiles(Path.Combine(config.BuildArtifactsFolderPath, "setup"), $"*.exe", config.PackagePublishFolderPath);
+					break;
+
 				case PackageType.None:
 				default:
 					CopyDirectory(Path.Combine(config.BuildArtifactsFolderPath, "publish"), config.PackagePublishFolderPath);

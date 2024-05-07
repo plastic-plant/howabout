@@ -7,5 +7,6 @@
 		TarGz,
 		Deb,
 		Rpm,
+		Exe,
 	}
 }

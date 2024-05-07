@@ -11,6 +11,7 @@
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:5100</SpaProxyServerUrl>
     <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <AssemblyVersion>1.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>

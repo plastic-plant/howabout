@@ -26,7 +26,9 @@ namespace Make.Config
 			return new List<PublishOptions>()
 			{
 				new() { Name = "win-x64-zip", Runtime = "win-x64", Package = PackageType.Zip },
+				new() { Name = "win-x64-exe", Runtime = "win-x64", Package = PackageType.Exe },
 				new() { Name = "win-x86-zip", Runtime = "win-x86", Package = PackageType.Zip  },
+				new() { Name = "win-x86-exe", Runtime = "win-x86", Package = PackageType.Exe },
 				new() { Name = "win-arm64-zip", Runtime = "win-arm64", Package = PackageType.Zip },
 				new() { Name = "linux-x64-tgz" , Runtime = "linux-x64", Package = PackageType.TarGz },
 				new() { Name = "linux-x64-deb" , Runtime = "linux-x64", Package = PackageType.Deb },
