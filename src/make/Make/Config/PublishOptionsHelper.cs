@@ -26,7 +26,9 @@ namespace Make.Config
 			return new List<PublishOptions>()
 			{
 				new() { Name = "win-x64-zip", Runtime = "win-x64", Package = PackageType.Zip },
+				new() { Name = "win-x64-exe", Runtime = "win-x64", Package = PackageType.Exe },
 				new() { Name = "win-x86-zip", Runtime = "win-x86", Package = PackageType.Zip  },
+				new() { Name = "win-x86-exe", Runtime = "win-x86", Package = PackageType.Exe },
 				new() { Name = "win-arm64-zip", Runtime = "win-arm64", Package = PackageType.Zip },
 				new() { Name = "linux-x64-tgz" , Runtime = "linux-x64", Package = PackageType.TarGz },
 				new() { Name = "linux-x64-deb" , Runtime = "linux-x64", Package = PackageType.Deb },
@@ -36,7 +38,11 @@ namespace Make.Config
 				new() { Name = "linux-arm-tgz" , Runtime = "linux-arm", Package = PackageType.TarGz },
 				new() { Name = "linux-arm64-tgz" , Runtime = "linux-arm64", Package = PackageType.TarGz },
 				new() { Name = "macos-x64-tgz" , Runtime = "osx-x64", Package = PackageType.TarGz },
+				new() { Name = "macos-x64-app" , Runtime = "osx-x64", Package = PackageType.App },
+				new() { Name = "macos-x64-dmg" , Runtime = "osx-x64", Package = PackageType.Dmg },
 				new() { Name = "macos-arm64-tgz" , Runtime = "osx-arm64", Package = PackageType.TarGz },
+				new() { Name = "macos-arm64-app" , Runtime = "osx-arm64", Package = PackageType.App },
+				new() { Name = "macos-arm64-dmg" , Runtime = "osx-arm64", Package = PackageType.Dmg },
 			};
 		}
 

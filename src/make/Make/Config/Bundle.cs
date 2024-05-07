@@ -31,6 +31,19 @@ namespace Make.Config
 					CopyFiles(config.BuildArtifactsFolderPath, $"*.{packageType}", config.PackagePublishFolderPath);
 					break;
 
+				case PackageType.Exe:
+					CopyFiles(Path.Combine(config.BuildArtifactsFolderPath, "setup"), "*.exe", config.PackagePublishFolderPath);
+					break;
+
+				case PackageType.App:
+					CopyDirectory(Path.Combine(config.BuildArtifactsFolderPath, "setup"), config.PackagePublishFolderPath);
+					break;
+
+				case PackageType.Dmg:
+					// TODO: Apple Disk Image is possible with create-dmg in Linux and macOS. For now just zipping it; simply copy contents to /Applications/.
+					Compress(ArchiveType.Zip, CompressionType.Deflate, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.PublishOptions.Name}.zip"));
+					break;
+
 				case PackageType.None:
 				default:
 					CopyDirectory(Path.Combine(config.BuildArtifactsFolderPath, "publish"), config.PackagePublishFolderPath);

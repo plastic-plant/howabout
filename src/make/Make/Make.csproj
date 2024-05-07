@@ -4,10 +4,25 @@
     <TargetFramework>net8.0</TargetFramework>
     <RunWorkingDirectory>$(MSBuildProjectDirectory)</RunWorkingDirectory>
     <IsPublishable>false</IsPublishable>
+    <AssemblyVersion>1.0</AssemblyVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Bullseye" Version="5.0.0" />
     <PackageReference Include="SharpCompress" Version="0.37.2" />
     <PackageReference Include="SimpleExec" Version="12.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Templates\inno-windows-setup-exe.iss">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\macOS.app\Contents\Info.plist">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\macOS.app\Contents\MacOS\launcher">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\macOS.app\Contents\Resources\logo.icns">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

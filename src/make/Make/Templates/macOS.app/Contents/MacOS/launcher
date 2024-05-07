@@ -1,0 +1,9 @@
+﻿#!/bin/sh
+
+# Set the working directory
+DIR=$(cd "$(dirname "$0")"; pwd)
+
+# Run the application
+echo "running from $DIR/howabout"
+
+open -a Terminal $DIR/howabout/howabout start

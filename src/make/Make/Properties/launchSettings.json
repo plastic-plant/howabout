@@ -15,6 +15,31 @@
     "make --buildconfig linux-x64-rpm": {
       "commandName": "Project",
       "commandLineArgs": "--buildconfig linux-x64-rpm"
+    },
+    "make --buildconfig win-x64-exe": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig win-x64-exe"
+    },
+    "make --buildconfig win-x86-exe": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig win-x86-exe"
+    },
+    "make --buildconfig macos-x64-app": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig macos-x64-app"
+    },
+    "make --buildconfig macos-arm64-app": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig macos-arm64-app"
+    },
+
+    "make --buildconfig macos-x64-dmg": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig macos-x64-dmg"
+    },
+    "make --buildconfig macos-arm64-dmg": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig macos-arm64-dmg"
     }
   }
 }
