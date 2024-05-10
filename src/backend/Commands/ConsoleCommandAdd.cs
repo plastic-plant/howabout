@@ -53,7 +53,7 @@ namespace Howabout.Commands
 		private async Task SendUrls(HttpClient client, List<string> urls)
 		{
 			var request = new DocumentAddRequest() { Tags = _args.GetTags(), Urls = urls };
-			var response = await client.PostAsJsonAsync("http://localhost:5153/api/add", request, ConfigExtensions.JsonDefaults);
+			var response = await client.PostAsJsonAsync(App.Settings.Url + "api/add", request, ConfigExtensions.JsonDefaults);
 			if (response.IsSuccessStatusCode)
 			{
 				Log.Information("Urls added: {Url}", string.Join(", ", urls));
@@ -73,7 +73,7 @@ namespace Howabout.Commands
 				{
 					binaryContent.Headers.ContentType = new("application/octet-stream");
 					multipart.Add(binaryContent, Path.GetFileName(filepath), Path.GetFileName(filepath));
-					var response = await client.PostAsync("http://localhost:5153/api/add", multipart);
+					var response = await client.PostAsync(App.Settings.Url + "api/add", multipart);
 					if (response.IsSuccessStatusCode)
 					{
 						Log.Information("Document added: {FileName}", filepath);

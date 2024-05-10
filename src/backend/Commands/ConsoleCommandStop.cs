@@ -25,7 +25,8 @@ namespace Howabout.Commands
 			using (var client = new HttpClient(_httpMessageHandler))
 			{
 				client.Timeout = TimeSpan.FromMinutes(15);
-				var response = await client.GetAsync("http://localhost:5153/configuration/stop");
+				Console.WriteLine(App.Settings.Url + "api/stop");
+				var response = await client.GetAsync(App.Settings.Url + "api/stop");
 				if (response.IsSuccessStatusCode)
 				{
 					Log.Information("Stopped.");

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/0.5.271090-alpha">
+﻿<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/0.5.271090-alpha">
   <PropertyGroup>
     <StartupCommand>npm run dev</StartupCommand>
     <JavaScriptTestRoot>src\</JavaScriptTestRoot>
@@ -7,7 +7,6 @@
     <ShouldRunBuildScript>false</ShouldRunBuildScript>
     <!-- Folder where production build objects will be placed -->
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist</BuildOutputFolder>
-    <RuntimeIdentifiers>win-x86;win-x64;win-arm64;linux-x64;linux-x64;linux-x64;linux-musl-x64;linux-musl-arm64;linux-arm;linux-arm64;osx-x64;osx-arm64</RuntimeIdentifiers>
     <AssemblyVersion>1.0</AssemblyVersion>
   </PropertyGroup>
   <ItemGroup>

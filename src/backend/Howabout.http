@@ -1,9 +1,9 @@
-@Howabout_HostAddress = http://localhost:5000
+@Howabout_Url = http://localhost:5000/
 
 ### DOCUMENT
 
 ###
-POST {{Howabout_HostAddress}}/api/add
+POST {{Howabout_Url}}api/add
 Accept: application/json
 Content-Type: multipart/form-data;boundary="boundary"
 
@@ -23,20 +23,20 @@ Content-Disposition: form-data; name="document.txt"; filename="document.txt"
 --boundary--
 
 ###
-GET {{Howabout_HostAddress}}/api/listbytag/{tag}
+GET {{Howabout_Url}}api/listbytag/{tag}
 Accept: application/json
 
 
 ###
-GET {{Howabout_HostAddress}}/api/listbytag/{tag}
+GET {{Howabout_Url}}api/listbytag/{tag}
 Accept: application/json
 
 ###
-GET {{Howabout_HostAddress}}/api/listgroupedbytag
+GET {{Howabout_Url}}api/listgroupedbytag
 Accept: application/json
 
 ###
-GET {{Howabout_HostAddress}}/api/ask
+GET {{Howabout_Url}}api/ask
 Accept: application/json
 Content-Type: application/json
 
@@ -48,7 +48,7 @@ Content-Type: application/json
 }
 
 ###
-GET {{Howabout_HostAddress}}/api/messages
+GET {{Howabout_Url}}api/messages
 Accept: application/json
 
 
@@ -56,24 +56,24 @@ Accept: application/json
 ### HEALTH
 
 ###
-GET {{Howabout_HostAddress}}/api/healthy
+GET {{Howabout_Url}}api/healthy
 Accept: text/plain
 
 ###
-GET {{Howabout_HostAddress}}/api/ready
+GET {{Howabout_Url}}api/ready
 Accept: text/plain
 
 
 ### SYSTEM
 
 ###
-GET {{Howabout_HostAddress}}/api/metrics
+GET {{Howabout_Url}}api/metrics
 Accept: application/json
 
 ###
-GET {{Howabout_HostAddress}}/api/reload
+GET {{Howabout_Url}}api/reload
 Accept: application/json
 
 ###
-GET {{Howabout_HostAddress}}/api/stop
+GET {{Howabout_Url}}api/stop
 Accept: application/json

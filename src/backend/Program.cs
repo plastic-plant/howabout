@@ -12,16 +12,17 @@ namespace Howabout
 		public static async Task<int> Main(string[] args)
 		{
 			Log.Logger = new LoggerConfiguration()
-				.MinimumLevel.Verbose()
 				.ReadFrom.Configuration(new ConfigurationBuilder().AddJsonFile("appsettings.json").Build())
 				.WriteTo.Console(outputTemplate: "{Timestamp:HH:mm} {Message:lj}{NewLine}{Exception}")
-				//.MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-				//.MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
-				//.MinimumLevel.Override("Microsoft.KernelMemory.Handlers", LogEventLevel.Warning)
 				.Enrich.FromLogContext()
 				.CreateLogger();
 
 			//Serilog.Debugging.SelfLog.Enable(msg => Console.WriteLine(msg));
+
+			App.Settings = new AppSettings()
+				.ReadFromAppSettings()
+				.ReadFromEnvironmentVariables()
+				.VerifyOrThrow();
 
 			var cli = new ConsoleStartupArguments(args);
 			IConsoleCommand command = cli.Command switch
