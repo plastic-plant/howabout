@@ -1,4 +1,6 @@
-﻿namespace Howabout.Extensions
+﻿using System.Globalization;
+
+namespace Howabout.Extensions
 {
 	public static class FileSizeExtensions
 	{
@@ -13,7 +15,7 @@
             double pow = Math.Floor((bytesLength > 0 ? Math.Log(bytesLength) : 0) / Math.Log(1024));
 			pow = Math.Min(pow, Units.Length - 1);
 			double value = (double)bytesLength / Math.Pow(1024, pow);
-			return value.ToString(pow == 0 ? "F0" : "F" + precision.ToString()) + " " + Units[(int)pow];
+			return value.ToString(pow == 0 ? "F0" : "F" + precision.ToString(), CultureInfo.InvariantCulture) + " " + Units[(int)pow];
 		}
 	}
 }
