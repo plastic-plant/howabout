@@ -2,6 +2,9 @@
 using Howabout.Interfaces;
 using Microsoft.Extensions.Options;
 using Microsoft.KernelMemory;
+using Microsoft.KernelMemory.FileSystem.DevTools;
+using Microsoft.KernelMemory.MemoryStorage.DevTools;
+using Serilog;
 
 namespace Howabout.Services
 {
@@ -33,16 +36,37 @@ namespace Howabout.Services
 
 		public void Configure()
 		{
-			_kernelMemory = new KernelMemoryBuilder()
+			var builder = new KernelMemoryBuilder()
 				.WithOpenAITextGeneration(_options.Completions)
 				.WithOpenAITextEmbeddingGeneration(_options.Embeddings)
-				.WithCustomTextPartitioningOptions(new()
-				{
-					MaxTokensPerParagraph = _options.Embeddings.EmbeddingModelMaxTokenTotal, // Can do 8K, but 512 is LM Studio limit embeddings for vram for now
-					MaxTokensPerLine = _options.Embeddings.EmbeddingModelMaxTokenTotal,
-					OverlappingTokens = _options.Partitioning.OverlappingTokens,
-				})
-				.Build();
+				.WithCustomTextPartitioningOptions(_options.Partitioning);
+
+			builder.Services.AddLogging(builder =>
+			{
+				builder.AddConfiguration(new ConfigurationBuilder().AddJsonFile("appsettings.json").Build());
+			});
+
+			switch (_options.Persistence.Storage)
+			{
+				case ModelProviderOptions.StorageProviders.File:
+					builder.WithSimpleVectorDb(new SimpleVectorDbConfig()
+					{
+						StorageType = FileSystemTypes.Disk,
+						Directory = _options.Persistence.Directory,
+					});
+					break;
+
+				case ModelProviderOptions.StorageProviders.Qdrant:
+					builder.WithQdrantMemoryDb(_options.Persistence);
+					break;
+
+				case ModelProviderOptions.StorageProviders.None:
+				default:
+					builder.WithSimpleVectorDb(SimpleVectorDbConfig.Volatile);
+					break;
+			}
+
+			_kernelMemory = builder.Build();
 		}
 	}
 }

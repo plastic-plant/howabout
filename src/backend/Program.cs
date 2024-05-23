@@ -2,7 +2,6 @@ using Howabout.Commands;
 using Howabout.Configuration;
 using Howabout.Interfaces;
 using Serilog;
-using Serilog.Events;
 using static Howabout.Configuration.ConsoleStartupArguments;
 
 namespace Howabout
@@ -11,13 +10,13 @@ namespace Howabout
 	{
 		public static async Task<int> Main(string[] args)
 		{
-			Log.Logger = new LoggerConfiguration()
-				.ReadFrom.Configuration(new ConfigurationBuilder().AddJsonFile("appsettings.json").Build())
-				.WriteTo.Console(outputTemplate: "{Timestamp:HH:mm} {Message:lj}{NewLine}{Exception}")
-				.Enrich.FromLogContext()
-				.CreateLogger();
-
-			//Serilog.Debugging.SelfLog.Enable(msg => Console.WriteLine(msg));
+			if (Log.Logger.IsDefaultUnconfigured())
+			{
+				Log.Logger = new LoggerConfiguration()
+					.ReadFrom.Configuration(new ConfigurationBuilder().AddJsonFile("appsettings.json").Build())
+					.Enrich.FromLogContext()
+					.CreateLogger();
+			}
 
 			App.Settings = new AppSettings()
 				.ReadFromAppSettings()

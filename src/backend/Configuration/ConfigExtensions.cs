@@ -77,5 +77,15 @@ namespace Howabout.Configuration
 
             return app;
         }
+
+		/// <summary>
+		/// Verifies if ILogger is the default bind SilentLogger.
+		/// During tests, we have TestCorrelator setup and we don't want to overwrite that.
+		/// </summary>
+		public static bool IsDefaultUnconfigured(this Serilog.ILogger logger)
+		{
+			// SilentLogger is sealed, compiler stops us from using it in a direct type comparisation.
+			return logger?.GetType().Name == "SilentLogger";
+		}
 	}
 }

@@ -1,11 +1,9 @@
-﻿using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
-using Howabout.Configuration;
+﻿using Howabout.Configuration;
 using Howabout.Hubs;
 using Howabout.Interfaces;
 using Howabout.Repositories;
 using Howabout.Services;
 using Serilog;
-using Serilog.Events;
 
 namespace Howabout.Commands
 {
@@ -26,7 +24,7 @@ namespace Howabout.Commands
 		public async Task Execute()
 		{
 			var builder = WebApplication.CreateBuilder(_args.Arguments.ToArray());
-			builder.Host.UseSerilog(Log.Logger);
+			builder.Host.UseSerilog(Log.Logger); //Serilog.Debugging.SelfLog.Enable(msg => Console.WriteLine(msg));
 			builder.Services.Configure<ModelProviderOptions>(builder.Configuration.GetSection(ModelProviderOptions.Section));
 			builder.Services.AddSingleton<IKernelMemoryService, KernelMemoryService>();
 			builder.Services.AddSingleton<IDocumentCache, DocumentRepository>();
@@ -55,6 +53,8 @@ namespace Howabout.Commands
 				.SetIsOriginAllowed(origin => true)
 				.AllowCredentials()
 			);
+
+			Log.Logger.Information("Starting server...");
 			await app.RunAsync();
 		}
 

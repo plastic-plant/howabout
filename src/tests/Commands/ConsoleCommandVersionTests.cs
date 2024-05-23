@@ -36,7 +36,7 @@ namespace Howabout.Tests.Commands
 
 				TestCorrelator.GetLogEventsFromCurrentContext()
 					.Should().ContainSingle()
-					.Which.Properties.Should().ContainKey("Version")
+					.Which.Properties.Should().ContainKey("AppVersion")
 						.WhoseValue.Should().BeOfType<ScalarValue>()
 						.Which.Value.Should().BeOfType<string>()
 						.Which.Should().MatchRegex(matchVersionNumber);

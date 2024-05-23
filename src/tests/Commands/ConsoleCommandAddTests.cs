@@ -38,6 +38,7 @@ namespace Howabout.Tests.Commands
 		public async Task Execute_Succeeds(string givenPath, int expectedCount)
 		{
 			Log.Logger = new LoggerConfiguration().WriteTo.TestCorrelator().CreateLogger();
+			App.Settings = new AppSettings { Url = "http://anyhost/" };
 			using (TestCorrelator.CreateContext())
 			{
 				var givenArgs = new ConsoleStartupArguments(new string[] { "add", givenPath });
@@ -57,7 +58,7 @@ namespace Howabout.Tests.Commands
 				TestCorrelator.GetLogEventsFromCurrentContext()
 					.Should().HaveCount(expectedCount)
 					.And.Subject.Select(logevent => logevent.MessageTemplate.Text)
-					.Should().Contain("Document added: {FileName}");
+					.Should().Contain(entry => entry.Contains("Document added: {FileName}") || entry.Contains("Urls added: {Url}"));
 			}
 		}
 	}

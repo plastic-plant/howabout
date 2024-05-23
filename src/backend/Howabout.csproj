@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <RuntimeIdentifiers>win-x64; win-x86; win-arm64; linux-x64; linux-musl-x64; linux-musl-arm64; linux-arm; linux-arm64; osx-x64; osx-arm64</RuntimeIdentifiers>
     <AssemblyName>$(MSBuildProjectName.ToLower())</AssemblyName>
     <SelfContained>true</SelfContained>
     <Nullable>enable</Nullable>
@@ -43,16 +44,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Examples\myblogwiki.txt">
+    <None Update="Examples\faq-01.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Examples\mydocument.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Examples\newproduct.pdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Examples\whitepaper.docx">
+    <None Update="Examples\faq-02.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Import\Baum\Dorothy and the Wizard in Oz.txt">

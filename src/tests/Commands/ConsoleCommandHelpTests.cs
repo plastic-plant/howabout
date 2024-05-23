@@ -1,18 +1,14 @@
-﻿using Howabout.Commands;
+﻿using FluentAssertions;
+using Howabout.Commands;
 using Howabout.Configuration;
+using Serilog;
+using Serilog.Sinks.TestCorrelator;
 using Xunit.Abstractions;
 
 namespace Howabout.Tests.Commands
 {
 	public class ConsoleCommandHelpTests
 	{
-		private readonly ITestOutputHelper _consoleOutput;
-
-		public ConsoleCommandHelpTests(ITestOutputHelper output)
-		{
-			_consoleOutput = output;
-		}
-
 		[Fact]
 		public void Verify_Succeeds()
 		{
@@ -27,12 +23,21 @@ namespace Howabout.Tests.Commands
 		[Fact]
 		public async Task Execute_Succeeds()
 		{
-			var givenArgs = new ConsoleStartupArguments(new string[] { "help" });
-			var sut = new ConsoleCommandHelp(givenArgs);
+			using (TestCorrelator.CreateContext())
+			{
+				using var logger = new LoggerConfiguration().WriteTo.Sink(new TestCorrelatorSink()).Enrich.FromLogContext().CreateLogger();
+				Log.Logger = logger;
 
-			await sut.Execute();
+				var givenArgs = new ConsoleStartupArguments(new string[] { "help" });
+				var sut = new ConsoleCommandHelp(givenArgs);
 
-			Assert.Contains("Usage: howabout <command> [options]", _consoleOutput.ToString());
+				await sut.Execute();
+
+				var logs = TestCorrelator.GetLogEventsFromCurrentContext();
+				logs.Should().ContainSingle()
+				.And.Subject.Select(logevent => logevent.MessageTemplate.Text)
+				.Should().Contain(entry => entry.Contains("Usage: howabout <command> [options]"));
+			}
 		}
 	}
 }

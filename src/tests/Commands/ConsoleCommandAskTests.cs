@@ -30,6 +30,7 @@ namespace Howabout.Tests.Commands
 		public async Task Executes_Succeeds(params string[] givenQuestion)
 		{
 			Log.Logger = new LoggerConfiguration().WriteTo.TestCorrelator().CreateLogger();
+			App.Settings = new AppSettings { Url = "http://anyhost/" };
 			using (TestCorrelator.CreateContext())
 			{
 				var givenArgs = new ConsoleStartupArguments(givenQuestion);
