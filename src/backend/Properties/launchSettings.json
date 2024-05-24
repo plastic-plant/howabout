@@ -29,6 +29,19 @@
         "ASPNETCORE_URLS": "http://localhost:5000/"
       }
     },
+    "howabout start (WSL)": {
+      "commandName": "WSL2",
+      "commandLineArgs": "\"{OutDir}/howabout.dll\" start",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.SpaProxy",
+        "ASPNETCORE_URLS": "http://localhost:5000/"
+      },
+      "distributionName": ""
+    },
     "howabout stop": {
       "commandName": "Project",
       "commandLineArgs": "stop"
