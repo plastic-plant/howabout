@@ -15,6 +15,16 @@ namespace Howabout.Configuration
 
 	public class AppSettings
 	{
+		static IConfigurationRoot? _config = null;
+		public IConfigurationRoot Configuration
+		{
+			get => _config ??= new ConfigurationBuilder()
+						.SetBasePath(Program.ApplicationRootDirectory)
+						.AddJsonFile("appsettings.json", optional: false)
+						.Build();
+			set => _config = value;
+		}
+
 		static string? _url = string.Empty;
 		public string? Url
 		{
@@ -24,8 +34,7 @@ namespace Howabout.Configuration
 
 		public AppSettings ReadFromAppSettings()
 		{
-			var config = new ConfigurationBuilder().AddJsonFile("appsettings.json", optional: false).Build();
-			Url = config.GetSection("Urls").Value;
+			Url = Configuration.GetSection("Urls").Value;
 			return this;
 		}
 

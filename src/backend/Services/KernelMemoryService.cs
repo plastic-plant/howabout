@@ -43,7 +43,7 @@ namespace Howabout.Services
 
 			builder.Services.AddLogging(builder =>
 			{
-				builder.AddConfiguration(new ConfigurationBuilder().AddJsonFile("appsettings.json").Build());
+				builder.AddConfiguration(App.Settings.Configuration);
 			});
 
 			switch (_options.Persistence.Storage)
@@ -52,7 +52,7 @@ namespace Howabout.Services
 					builder.WithSimpleVectorDb(new SimpleVectorDbConfig()
 					{
 						StorageType = FileSystemTypes.Disk,
-						Directory = _options.Persistence.Directory,
+						Directory = Path.IsPathRooted(_options.Persistence.Directory) ? _options.Persistence.Directory : Path.Combine(Program.ApplicationRootDirectory, _options.Persistence.Directory),
 					});
 					break;
 

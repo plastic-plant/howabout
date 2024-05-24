@@ -23,7 +23,11 @@ namespace Howabout.Commands
 
 		public async Task Execute()
 		{
-			var builder = WebApplication.CreateBuilder(_args.Arguments.ToArray());
+			var builder = WebApplication.CreateBuilder(new WebApplicationOptions()
+			{
+				Args = _args.Arguments.ToArray(),
+				ContentRootPath = Program.ApplicationRootDirectory
+			});
 			builder.Host.UseSerilog(Log.Logger); //Serilog.Debugging.SelfLog.Enable(msg => Console.WriteLine(msg));
 			builder.Services.Configure<ModelProviderOptions>(builder.Configuration.GetSection(ModelProviderOptions.Section));
 			builder.Services.AddSingleton<IKernelMemoryService, KernelMemoryService>();

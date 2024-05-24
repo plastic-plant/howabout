@@ -2,18 +2,22 @@ using Howabout.Commands;
 using Howabout.Configuration;
 using Howabout.Interfaces;
 using Serilog;
+using System.Reflection;
 using static Howabout.Configuration.ConsoleStartupArguments;
 
 namespace Howabout
 {
 	public class Program
 	{
+		public static string OriginalWorkingDirectory = Directory.GetCurrentDirectory();
+		public static string ApplicationRootDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? OriginalWorkingDirectory;
+
 		public static async Task<int> Main(string[] args)
 		{
 			if (Log.Logger.IsDefaultUnconfigured())
 			{
 				Log.Logger = new LoggerConfiguration()
-					.ReadFrom.Configuration(new ConfigurationBuilder().AddJsonFile("appsettings.json").Build())
+					.ReadFrom.Configuration(App.Settings.Configuration)
 					.Enrich.FromLogContext()
 					.CreateLogger();
 			}

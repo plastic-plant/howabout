@@ -30,7 +30,7 @@ namespace Howabout.Configuration
 		{
 			public const string Section = $"{ModelProviderOptions.Section}:Persistence";
             public StorageProviders Storage { get; set; }
-			public string Directory { get; set; } = "_tmp-memory-vectors";
+			public string Directory { get; set; } = "_vectors";
 
 		}
 

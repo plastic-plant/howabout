@@ -80,7 +80,7 @@ namespace Howabout.Tests.Configuration
 			Assert.Equal(100, options.Partitioning.OverlappingTokens);
 
 			Assert.Equal(StorageProviders.None, options.Persistence.Storage);
-			Assert.Equal("_tmp-memory-vectors", options.Persistence.Directory);
+			Assert.Equal("_vectors", options.Persistence.Directory);
 			Assert.Equal(string.Empty, options.Persistence.Endpoint);
 			Assert.Equal(string.Empty, options.Persistence.APIKey);
 
