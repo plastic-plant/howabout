@@ -15,6 +15,7 @@ foreach (var config in configs)
 {
 	Target($"publish-{config.PublishOptions.Name}", async () =>
 	{
+		await Solution.CleanAsync(config);
 		await Solution.BuildAsync(config);
 		Bundle.Create(config);
 	});

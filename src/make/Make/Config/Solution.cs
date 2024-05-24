@@ -8,10 +8,40 @@ namespace Make.Config
 {
 	public class Solution
 	{
+		public static async Task<BuildConfig> CleanAsync(BuildConfig config)
+		{
+			var binDirectory = Path.Combine(config.ProjectFolderPath, "bin");
+			var objDirectory = Path.Combine(config.ProjectFolderPath, "obj");
+
+			if (Directory.Exists(binDirectory))
+			{
+				Directory.Delete(binDirectory, true);
+			}
+
+			if (Directory.Exists(objDirectory))
+			{
+				Directory.Delete(objDirectory, true);
+			}
+
+			await RunAsync("dotnet", $"clean {config.ProjectFilePath} --configuration {config.PublishOptions.Configuration} --runtime {config.PublishOptions.Runtime}");
+						
+			if (Directory.Exists(binDirectory))
+			{
+				Directory.Delete(binDirectory, true);
+			}
+
+			if (Directory.Exists(objDirectory))
+			{
+				Directory.Delete(objDirectory, true);
+			}
+
+			await RunAsync("dotnet", $"restore {config.ProjectFilePath} --runtime {config.PublishOptions.Runtime}");
+
+			return config;
+		}
+
 		public static async Task<BuildConfig> BuildAsync(BuildConfig config)
 		{
-			await RunAsync("dotnet", $"clean {config.ProjectFilePath}");
-
 			switch (config.PublishOptions.Package)
 			{
 				// https://github.com/quamotion/dotnet-packaging
@@ -23,6 +53,7 @@ namespace Make.Config
 
 				// https://jrsoftware.org/isinfo.php
 				case PackageType.Exe:
+					await RunAsync("dotnet", $"publish {config.SolutionFilePath} --configuration {config.PublishOptions.Configuration} --runtime {config.PublishOptions.Runtime} --self-contained {config.PublishOptions.SelfContainedString}");
 					await RunInnoCompiler(config);
 					break;
 

@@ -25,11 +25,6 @@ namespace Make.Config
 		{
 			return new List<PublishOptions>()
 			{
-				new() { Name = "win-x64-zip", Runtime = "win-x64", Package = PackageType.Zip },
-				new() { Name = "win-x64-exe", Runtime = "win-x64", Package = PackageType.Exe },
-				new() { Name = "win-x86-zip", Runtime = "win-x86", Package = PackageType.Zip  },
-				new() { Name = "win-x86-exe", Runtime = "win-x86", Package = PackageType.Exe },
-				new() { Name = "win-arm64-zip", Runtime = "win-arm64", Package = PackageType.Zip },
 				new() { Name = "linux-x64-tgz" , Runtime = "linux-x64", Package = PackageType.TarGz },
 				new() { Name = "linux-x64-deb" , Runtime = "linux-x64", Package = PackageType.Deb },
 				new() { Name = "linux-x64-rpm" , Runtime = "linux-x64", Package = PackageType.Rpm },
@@ -43,7 +38,24 @@ namespace Make.Config
 				new() { Name = "macos-arm64-tgz" , Runtime = "osx-arm64", Package = PackageType.TarGz },
 				new() { Name = "macos-arm64-app" , Runtime = "osx-arm64", Package = PackageType.App },
 				new() { Name = "macos-arm64-dmg" , Runtime = "osx-arm64", Package = PackageType.Dmg },
+				new() { Name = "win-x64-zip", Runtime = "win-x64", Package = PackageType.Zip },
+				new() { Name = "win-x64-exe", Runtime = "win-x64", Package = PackageType.Exe },
+				new() { Name = "win-x86-zip", Runtime = "win-x86", Package = PackageType.Zip  },
+				new() { Name = "win-x86-exe", Runtime = "win-x86", Package = PackageType.Exe },
+				new() { Name = "win-arm64-zip", Runtime = "win-arm64", Package = PackageType.Zip },
 			};
+		}
+
+		public static string GetPublishNameWithoutPackageType(this string publishName)
+		{
+			return publishName
+				.Replace("-app", "")
+				.Replace("-deb", "")
+				.Replace("-dmg", "")
+				.Replace("-exe", "")
+				.Replace("-rpm", "")
+				.Replace("-tgz", "")
+				.Replace("-zip", "");
 		}
 
 		/// <summary>

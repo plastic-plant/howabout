@@ -18,11 +18,11 @@ namespace Make.Config
 			switch (config.PublishOptions.Package)
 			{
 				case PackageType.Zip:
-					Compress(ArchiveType.Zip, CompressionType.Deflate, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.PublishOptions.Name}.zip"));
+					Compress(ArchiveType.Zip, CompressionType.Deflate, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.PublishOptions.Name.GetPublishNameWithoutPackageType()}.zip"));
 					break;
 
 				case PackageType.TarGz:
-					Compress(ArchiveType.Tar, CompressionType.GZip, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.PublishOptions.Name}.tar.gz"));
+					Compress(ArchiveType.Tar, CompressionType.GZip, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.PublishOptions.Name.GetPublishNameWithoutPackageType()}.tar.gz"));
 					break;
 
 				case PackageType.Deb:
@@ -41,7 +41,7 @@ namespace Make.Config
 
 				case PackageType.Dmg:
 					// TODO: Apple Disk Image is possible with create-dmg in Linux and macOS. For now just zipping it; simply copy contents to /Applications/.
-					Compress(ArchiveType.Zip, CompressionType.Deflate, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.PublishOptions.Name}.zip"));
+					Compress(ArchiveType.Zip, CompressionType.Deflate, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.PublishOptions.Name.GetPublishNameWithoutPackageType()}.zip"));
 					break;
 
 				case PackageType.None:
@@ -137,10 +137,14 @@ namespace Make.Config
 
 		public static void Compress(ArchiveType archiveType, CompressionType compressionType, string sourceFolderPath, string targetFilePath)
 		{
+			var options = new WriterOptions(compressionType);
+			options.LeaveStreamOpen = false;
 			using (var stream = File.OpenWrite(targetFilePath))
-			using (var writer = WriterFactory.Open(stream, archiveType, compressionType))
 			{
-				writer.WriteAll(sourceFolderPath, "*", SearchOption.AllDirectories);
+				using (var writer = WriterFactory.Open(stream, archiveType, options))
+				{
+					writer.WriteAll(sourceFolderPath, "*", SearchOption.AllDirectories);
+				}
 			}
 		}
 	}

@@ -16,30 +16,65 @@
       "commandName": "Project",
       "commandLineArgs": "--buildconfig linux-x64-rpm"
     },
-    "make --buildconfig win-x64-exe": {
+    "make --buildconfig linux-musl-x64-tgz": {
       "commandName": "Project",
-      "commandLineArgs": "--buildconfig win-x64-exe"
+      "commandLineArgs": "--buildconfig linux-musl-x64-tgz"
     },
-    "make --buildconfig win-x86-exe": {
+    "make --buildconfig linux-musl-arm64-tgz": {
       "commandName": "Project",
-      "commandLineArgs": "--buildconfig win-x86-exe"
+      "commandLineArgs": "--buildconfig linux-musl-arm64-tgz"
+    },
+    "make --buildconfig linux-arm-tgz": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig linux-arm-tgz"
+    },
+    "make --buildconfig linux-arm64-tgz": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig linux-arm64-tgz"
+    },
+    "make --buildconfig macos-x64-tgz": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig macos-x64-tgz"
     },
     "make --buildconfig macos-x64-app": {
       "commandName": "Project",
       "commandLineArgs": "--buildconfig macos-x64-app"
     },
-    "make --buildconfig macos-arm64-app": {
-      "commandName": "Project",
-      "commandLineArgs": "--buildconfig macos-arm64-app"
-    },
-
     "make --buildconfig macos-x64-dmg": {
       "commandName": "Project",
       "commandLineArgs": "--buildconfig macos-x64-dmg"
     },
+    "make --buildconfig macos-arm64-tgz": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig macos-arm64-tgz"
+    },
+    "make --buildconfig macos-arm64-app": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig macos-arm64-app"
+    },
     "make --buildconfig macos-arm64-dmg": {
       "commandName": "Project",
       "commandLineArgs": "--buildconfig macos-arm64-dmg"
+    },
+    "make --buildconfig win-x64-zip": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig win-x64-zip"
+    },
+    "make --buildconfig win-x64-exe": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig win-x64-exe"
+    },
+    "make --buildconfig win-x86-zip": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig win-x86-zip"
+    },
+    "make --buildconfig win-x86-exe": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig win-x86-exe"
+    },
+    "make --buildconfig win-arm64-zip": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig win-arm64-zip"
     }
   }
 }
