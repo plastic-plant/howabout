@@ -25,7 +25,7 @@ namespace Howabout.Services
 		{
 			try
 			{
-				var indexes = await _kernelMemory?.ListIndexesAsync();
+				var indexes = await _kernelMemory!.ListIndexesAsync();
 				return indexes?.Count() != null;
 			}
 			catch (Exception)

@@ -119,7 +119,7 @@ namespace Howabout.Controllers
 		}
 
 		[HttpPost("api/list")]
-		public ICollection<DocumentProperties> List(string? id = null, List<string> tags = null)
+		public ICollection<DocumentProperties> List(string? id = null, List<string>? tags = null)
 		{
 			return _documentCache.ListByMatchingProperties(new() { Id = id, Tags = tags ?? new List<string>() });
 		}
@@ -166,17 +166,17 @@ namespace Howabout.Controllers
 
 			var stopwatch = Stopwatch.StartNew();
 			var memory = _kernelMemoryService.Get();
-			var answer = await memory.AskAsync(request.Question);
+			var answer = memory == null ? null : await memory.AskAsync(request.Question);
 
 			_conversation.AddMessage(new()
 			{
 				Role = ConversationMessageRole.Assistant,
 				MessageType = ConversationMessageType.Conversation,
-				MessageText = answer.Result,
-				MessageData = answer.RelevantSources,
+				MessageText = answer?.Result ?? "Memory service not available.",
+				MessageData = answer?.RelevantSources,
 				ProcessingTimeSeconds = (int)stopwatch.Elapsed.TotalSeconds
 			});
-			return answer.Result;
+			return answer?.Result ?? "Memory service not available.";
 		}
 
 		[HttpGet("api/messages")]
@@ -196,7 +196,7 @@ namespace Howabout.Controllers
 
 	public class DocumentAskRequest()
 	{
-        public string Question { get; set; }
+		public string Question { get; set; } = string.Empty;
         public List<string> Tags { get; set; } = new();
 	}
 }
