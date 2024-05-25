@@ -1,6 +1,8 @@
 
 ## Releases
 
+Howabout is published on the [releases page](https://github.com/plastic-plant/howabout/releases).
+
 ### Builds for Windows
 
 - Release [win-x64-zip](win-x64-zip/) as .zip for Windows 64-bit.
