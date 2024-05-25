@@ -1,0 +1,3 @@
+Transparent is not a colour. It is a property of a colour. It is a property of a colour that allows the background to show through.
+
+Yellow is a lighter colour than blue. It is a lighter colour than blue because it has a higher value.

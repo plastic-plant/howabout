@@ -1,0 +1,26 @@
+Product A comes in purple and yellow color.
+Product B comes in red and blue color.
+Product C comes in green and orange color.
+Product D comes in black and white color.
+Product E comes in pink and brown color.
+Product F comes in blue and yellow color.
+Product G comes in red and white color.
+Product H comes in green and yellow color.
+Product I comes in black and orange color.
+Product J comes in pink and purple color.
+Product K comes in blue and green color.
+Product L comes in red and brown color.
+Product M comes in black and yellow color.
+Product N comes in pink and white color.
+Product O comes in blue and orange color.
+Product P comes in red and purple color.
+Product Q comes in green and brown color.
+Product R comes in black and purple color.
+Product S comes in pink and green color.
+Product T comes in blue and brown color.
+Product U comes in red and yellow color.
+Product V comes in green and purple color.
+Product W comes in black and green color.
+Product X comes in pink and orange color.
+Product Y comes in blue and purple color.
+Product Z comes in red, blue and transparent color.
