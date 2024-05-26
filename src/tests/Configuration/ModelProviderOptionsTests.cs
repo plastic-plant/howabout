@@ -17,9 +17,9 @@ namespace Howabout.Tests.Configuration
 		private const string _appSettingsProvidersDefault = @"
         {
           ""Providers"": {
-            ""Partitioning"": {
-            },
             ""Persistence"": {
+            },
+            ""Partitioning"": {
             },
             ""Embeddings"": {
             },
@@ -31,18 +31,19 @@ namespace Howabout.Tests.Configuration
 		private const string _appSettingsProvidersCustom = @"
         {
           ""Providers"": {
+            ""Persistence"": {
+              ""Provider"": ""Qdrant"",
+              ""Directory"": ""_tmp"",
+              ""Endpoint"": ""http://localhost:6333"",
+              ""APIKey"": ""None""
+            },
             ""Partitioning"": {
               ""MaxTokensPerParagraph"": 1000,
               ""MaxTokensPerLine"": 300,
               ""OverlappingTokens"": 100
             },
-            ""Persistence"": {
-              ""Storage"": ""Qdrant"",
-              ""Directory"": ""_tmp"",
-              ""Endpoint"": ""http://localhost:6333"",
-              ""APIKey"": ""None""
-            },
             ""Embeddings"": {
+              ""Provider"": ""OpenAI"",
               ""Endpoint"": ""http://localhost:1234/v1/"",
               ""EmbeddingModel"": ""lm-studio"",
               ""EmbeddingModelMaxTokenTotal"": 2048,
@@ -79,7 +80,7 @@ namespace Howabout.Tests.Configuration
 			Assert.Equal(300, options.Partitioning.MaxTokensPerLine);
 			Assert.Equal(100, options.Partitioning.OverlappingTokens);
 
-			Assert.Equal(StorageProviders.None, options.Persistence.Storage);
+			Assert.Equal(StorageProvider.None, options.Persistence.Provider);
 			Assert.Equal("_vectors", options.Persistence.Directory);
 			Assert.Equal(string.Empty, options.Persistence.Endpoint);
 			Assert.Equal(string.Empty, options.Persistence.APIKey);
@@ -117,11 +118,12 @@ namespace Howabout.Tests.Configuration
 			Assert.Equal(300, options.Partitioning.MaxTokensPerLine);
 			Assert.Equal(100, options.Partitioning.OverlappingTokens);
 
-			Assert.Equal(StorageProviders.Qdrant, options.Persistence.Storage);
+			Assert.Equal(StorageProvider.Qdrant, options.Persistence.Provider);
 			Assert.Equal("_tmp", options.Persistence.Directory);
 			Assert.Equal("http://localhost:6333", options.Persistence.Endpoint);
 			Assert.Equal("None", options.Persistence.APIKey);
 
+			Assert.Equal(ModelProvider.OpenAI, options.Embeddings.Provider);
 			Assert.Equal("http://localhost:1234/v1/", options.Embeddings.Endpoint);
 			Assert.Equal("lm-studio", options.Embeddings.EmbeddingModel);
 			Assert.Equal(2048, options.Embeddings.EmbeddingModelMaxTokenTotal);
@@ -129,6 +131,7 @@ namespace Howabout.Tests.Configuration
 			Assert.Equal("org-aBCd", options.Embeddings.OrgId);
 			Assert.Equal(12, options.Embeddings.MaxRetries);
 
+			Assert.Equal(ModelProvider.OpenAI, options.Embeddings.Provider);
 			Assert.Equal("http://localhost:1234/v1/", options.Completions.Endpoint);
 			Assert.Equal("lm-studio", options.Completions.TextModel);
 			Assert.Equal(32768, options.Completions.TextModelMaxTokenTotal);

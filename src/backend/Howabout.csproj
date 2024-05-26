@@ -19,6 +19,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="LLamaSharp.Backend.Cpu" Version="0.12.0" />
+    <PackageReference Include="LLamaSharp.Backend.Cuda11" Version="0.12.0" />
+    <PackageReference Include="LLamaSharp.Backend.Cuda12" Version="0.12.0" />
+    <PackageReference Include="LLamaSharp.Backend.MacMetal" Version="0.7.0" />
+    <PackageReference Include="LLamaSharp.Backend.OpenCL" Version="0.12.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
       <Version>8.*-*</Version>
     </PackageReference>
