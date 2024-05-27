@@ -14,16 +14,16 @@
     <AssemblyVersion>1.1</AssemblyVersion>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Remove="wwwroot\.gitkeep" />
-  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="LLamaSharp.Backend.Cpu" Version="0.12.0" />
+    <!-- https://github.com/SciSharp/LLamaSharp/issues/382
     <PackageReference Include="LLamaSharp.Backend.Cuda11" Version="0.12.0" />
     <PackageReference Include="LLamaSharp.Backend.Cuda12" Version="0.12.0" />
     <PackageReference Include="LLamaSharp.Backend.MacMetal" Version="0.7.0" />
     <PackageReference Include="LLamaSharp.Backend.OpenCL" Version="0.12.0" />
+    -->
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
       <Version>8.*-*</Version>
     </PackageReference>
@@ -35,130 +35,26 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../frontend\frontend.esproj">
+    <ProjectReference Include="../frontend/frontend.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\.gitkeep" />
+    <Content Include="_wwwroot\.gitkeep" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Examples\faq-01.txt">
+    <None Update="_import/Examples/faq-01.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Examples\faq-02.txt">
+    <None Update="_import/Examples/faq-02.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Import\Baum\Dorothy and the Wizard in Oz.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Baum\Glinda of Oz.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Baum\Little Wizard Stories of Oz.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Baum\Ozma of Oz.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Baum\Rinkitink in Oz.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Baum\The Emerald City of Oz.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Baum\The Lost King of Oz.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Baum\The Lost Princess of Oz.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Baum\The Magic of Oz.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Baum\The Marvelous Land of Oz.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Baum\The Patchwork Girl of Oz.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Baum\The Road to Oz.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Baum\The Royal Book of Oz.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Baum\The Scarecrow of Oz.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Baum\The Tin Woodman of Oz.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Baum\The Wonderful Wizard of Oz.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Baum\Tik-Tok of Oz.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Milne\A Gallery of Children.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Milne\Belinda.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Milne\First Plays.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Milne\Happy Days.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Milne\If I May.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Milne\Mr. Pim Passes By.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Milne\Not that it Matters.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Milne\Now we are six.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Milne\Once a week.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Milne\Once on a Time.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Milne\Second Plays.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Milne\The day%27s play.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Milne\The holiday round.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Milne\The house at Pooh Corner.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Milne\The Red House Mystery.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Milne\The sunny side.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Milne\Three Plays.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Milne\When we were very young.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Import\Milne\Winnie-the-Pooh.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>
