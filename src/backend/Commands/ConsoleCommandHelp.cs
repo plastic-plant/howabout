@@ -40,11 +40,6 @@ You can upload documents by name, folder or url:
   howabout add /home/user/docs
   howabout add https://server/file2.pdf
 
-You can group documents with a tag or multiple tags:
-
-  howabout add file.txt --tag Documents
-  howabout add file.pdf --tag Documents --tag Books
-
 You can ask questions about the documents:
 
   ask Can you give me a summary?

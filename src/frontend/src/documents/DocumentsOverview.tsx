@@ -5,7 +5,6 @@ export default function DocumentsOverview() {
     const documents = useDocuments();
     return (
         <div>
-            <div className="text-base font-medium text-gray">Documents</div>
             {documents ? (
                 <div>
                     {Object.keys(documents).map((tag) => (
