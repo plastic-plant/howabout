@@ -138,7 +138,7 @@ namespace Howabout.Controllers
 				var hasTag = document.Tags.Count() > 0;
                 if (!hasTag)
                 {
-					document.Tags.Add("default");
+					document.Tags.Add("Documents");
                 }
 
                 foreach (var tag in document.Tags)
