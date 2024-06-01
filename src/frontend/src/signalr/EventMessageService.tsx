@@ -1,9 +1,8 @@
-
-
 import { HubConnection, HubConnectionBuilder, HttpTransportType } from '@microsoft/signalr';
+import { IConversationMessage } from '../messages/Models';
 
-class EventMessageService {
-    private connection: HubConnection;
+export class EventMessageService {
+    public connection: HubConnection;
     public events: (
         onDocumentChangedEvent?: () => void,
         onMessageAddedEvent?: (message: IConversationMessage) => void
@@ -29,4 +28,5 @@ class EventMessageService {
         return EventMessageService.instance;
     }
 }
+
 export default EventMessageService.getInstance;

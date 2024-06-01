@@ -1,8 +1,36 @@
-import { useDocuments } from "./DocumentService";
+import React, { useEffect, useState } from 'react';
+import EventMessageService from '../signalr/EventMessageService';
 
+interface IDocumentProperties {
+    id: string;
+    name: string;
+    extension: string;
+    originalPath: string;
+    tags: string[];
+    size: string;
+}
 
-export default function DocumentsOverview() {
-    const documents = useDocuments();
+const DocumentsOverviewComponent: React.FC = () => {
+    const [documents, setDocuments] = useState<Record<string, IDocumentProperties[]> | undefined>(undefined);
+
+    useEffect(() => {
+        const useDocuments = async () => {
+            const { events } = EventMessageService();
+
+            try {
+                const response = await fetch('/api/listgroupedbytag');
+                const data: Record<string, IDocumentProperties[]> = await response.json();
+                setDocuments(data);
+            } catch (error) {
+                console.error('Error fetching documents:', error);
+            }
+
+            events(() => useDocuments(), undefined);
+        };
+
+        useDocuments();
+    }, []);
+
     return (
         <div>
             {documents ? (
@@ -35,4 +63,6 @@ export default function DocumentsOverview() {
             )}
         </div>
     );
-}
+};
+
+export default DocumentsOverviewComponent;

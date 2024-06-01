@@ -7,6 +7,8 @@ namespace Howabout.Repositories
 	{
 		private ConcurrentDictionary<string, DocumentProperties> _documents { get; set; } = new();
 
+		public bool HasDocuments() => _documents.Count > 0;
+
 		public bool AddOrUpdate(DocumentProperties document)
 		{
 			if (string.IsNullOrWhiteSpace(document.Id))

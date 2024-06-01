@@ -5,6 +5,7 @@ namespace Howabout.Interfaces
 {
 	public interface IDocumentCache
 	{
+		bool HasDocuments();
 		DocumentProperties? GetById(string id);
 		ICollection<DocumentProperties> List();
 		ICollection<DocumentProperties> ListByMatchingProperties(DocumentProperties properties);

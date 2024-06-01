@@ -48,8 +48,10 @@ namespace Howabout.Controllers
 			var request = await JsonSerializer.DeserializeAsync<DocumentAddRequest>(json.OpenReadStream(), ConfigExtensions.JsonDefaults) ?? new();
 			var uploads = (Request.HasFormContentType ? Request.Form?.Files.Where(upload => upload.FileName != "request.json") : null) ?? new FormFileCollection();
 
-            try
+			try
 			{
+				var hadDocuments = _documentCache.HasDocuments();
+
 				foreach (var upload in uploads)
 				{
 					var stopwatch = Stopwatch.StartNew();
@@ -64,7 +66,8 @@ namespace Howabout.Controllers
 							{
 								MessageType = ConversationMessageType.DocumentChange,
 								MessageData = document,
-								ProcessingTimeSeconds = (int)stopwatch.Elapsed.TotalSeconds
+								ProcessingTimeSeconds = (int)stopwatch.Elapsed.TotalSeconds,
+								Role = ConversationMessageRole.User
 							});
 						}
 					}
@@ -83,7 +86,8 @@ namespace Howabout.Controllers
 							{
 								MessageType = ConversationMessageType.DocumentChange,
 								MessageData = document,
-								ProcessingTimeSeconds = (int)stopwatch.Elapsed.TotalSeconds
+								ProcessingTimeSeconds = (int)stopwatch.Elapsed.TotalSeconds,
+								Role = ConversationMessageRole.User
 							});
 						}
 					}
@@ -100,12 +104,23 @@ namespace Howabout.Controllers
 						{
 							MessageType = ConversationMessageType.DocumentChange,
 							MessageData = document,
-							ProcessingTimeSeconds = (int)stopwatch.Elapsed.TotalSeconds
+							ProcessingTimeSeconds = (int)stopwatch.Elapsed.TotalSeconds,
+							Role = ConversationMessageRole.User
 						});
 					}
 				}
 
 				await _eventMessageHub.Clients.All.DocumentChangedEvent();
+
+				if (!hadDocuments && _documentCache.HasDocuments())
+				{
+					_conversation.AddMessage(new()
+					{
+						MessageType = ConversationMessageType.WelcomeReady,
+						MessageText = "Nice, we have a document upload. How about you ask for a summary?",
+						Role = ConversationMessageRole.Assistant,
+					});
+				}
 				return Ok();
 			}
 			catch (AggregateException ex)
@@ -180,8 +195,22 @@ namespace Howabout.Controllers
 		}
 
 		[HttpGet("api/messages")]
-		public Task<List<ConversationMessage>> GetMessagesAsync()
+		public async Task<List<ConversationMessage>> GetMessagesAsync()
 		{
+			bool isReady = await _kernelMemoryService.IsReadyAsync();
+			if (!isReady)
+			{
+				return new List<ConversationMessage>()
+				{
+					new ConversationMessage
+					{
+						MessageType = ConversationMessageType.WelcomeSetupRequired,
+						MessageText = "Welcome! It seems you haven't setup model providers. Open appsettings.json configuration and start again.",
+						Role = ConversationMessageRole.Assistant,
+					}
+				};
+			}
+
 			return _conversation.GetMessagesAsync();
 		}
 	}

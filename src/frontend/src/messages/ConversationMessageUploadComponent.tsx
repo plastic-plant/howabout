@@ -1,8 +1,9 @@
-import { IDocumentProperties } from "../documents/DocumentService";
+import React from 'react';
+import { IConversationMessage, IDocumentProperties } from "./Models";
 
-export default function DocumentUploadedMessage({ message }: { message: IConversationMessage }) {
-    const document: IDocumentProperties = message.messageData;
- 
+const ConversationMessageUploadComponent: React.FC<{ message: IConversationMessage }> = ({ message }) => {
+    const document = message.messageData as IDocumentProperties;
+
     return (
         <article key={message.id} className="flex items-start gap-2.5 my-6">
             <img className="w-8 h-8 rounded-full" src="/user.png" alt="User profile picture" />
@@ -16,8 +17,8 @@ export default function DocumentUploadedMessage({ message }: { message: IConvers
                     <div className="flex items-start bg-orange dark:bg-gray-600 rounded-xl p-2">
                         <div className="me-2">
                             <span className="flex items-center gap-2 text-sm font-medium text-gray-900 dark:text-white pb-2">
-                                <GetDocumentIcon document={document} />
-                                {document.name == 'file' ? 'Document upload' : document.name}
+                                <DocumentIcon document={document} />
+                                {document.name === 'file' ? 'Document upload' : document.name}
                             </span>
                             <span className="flex text-xs font-normal text-gray-500 dark:text-gray-400 gap-2">
                                 <span className="uppercase">
@@ -50,7 +51,7 @@ export default function DocumentUploadedMessage({ message }: { message: IConvers
     );
 }
 
-function GetDocumentIcon({ document }: { document: IDocumentProperties }) {
+export const DocumentIcon: React.FC<{ document: IDocumentProperties }> = ({ document }) => {
 
     switch (document.extension) {
         case 'doc':
@@ -90,3 +91,5 @@ function GetDocumentIcon({ document }: { document: IDocumentProperties }) {
             return (<div className="me-2"></div>);
     }
 }
+
+export default ConversationMessageUploadComponent;

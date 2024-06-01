@@ -1,4 +1,4 @@
-function Logo() {
+const Logo: React.FC = () => {
   return (
       <a href="https://github.com/plastic-plant/howabout/" className="flex ms-2 md:me-24">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-8 me-3" viewBox="0 0 512 512" version="1.1">
