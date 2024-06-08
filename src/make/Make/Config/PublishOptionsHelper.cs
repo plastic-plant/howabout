@@ -18,6 +18,7 @@ namespace Make.Config
 				ProjectFolderPath = Path.GetDirectoryName(projectFilePath),
 				BuildArtifactsFolderPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(solutionFilePath), $"backend\\bin\\{publish.Configuration}\\net8.0\\{publish.Runtime}")),
 				PackagePublishFolderPath = Path.Combine(publishFolderPath, $@"{publish.Name}"),
+				VersionShort = File.ReadAllText(Path.Combine(repositoryFolderPath, "version")).Trim(),
 			}).ToList();
 		}
 

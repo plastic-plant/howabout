@@ -110,7 +110,7 @@ namespace Make.Config
 			string templatePath = Path.Combine(exeFolder, "Templates", "inno-windows-setup-exe.iss");
 			string template = File
 				.ReadAllText(templatePath)
-				.Replace(@"#define MyAppVersion ""0.0""", $@"#define MyAppVersion ""{typeof(Program).Assembly.GetName()?.Version?.ToString(2)}""")
+				.Replace(@"#define MyAppVersion ""0.0""", $@"#define MyAppVersion ""{config.VersionShort}""")
 				.Replace(@"#define BuildArtifactsDir = """"", $@"#define BuildArtifactsDir = ""{config.BuildArtifactsFolderPath}""")
 				.Replace(@"#define OutputDir = """"", $@"#define OutputDir = ""{outputPath}");
 			

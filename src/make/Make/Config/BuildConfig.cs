@@ -9,5 +9,7 @@
 		public string ProjectFolderPath { get; set; }
 		public string BuildArtifactsFolderPath { get; set; }
 		public string PackagePublishFolderPath { get; set; }
+        public string VersionShort { get; set; }
+		public string VersionLong => $"{VersionShort}.0";
     }
 }
