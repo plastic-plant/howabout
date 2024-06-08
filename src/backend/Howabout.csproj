@@ -69,6 +69,11 @@
     <Target Name="CopyRuntimesFolderOnBuild" AfterTargets="Build">
         <Delete Files="$(OutDir)llama.dll" />
         <Delete Files="$(OutDir)llava_shared.dll" />
+        <Delete Files="$(OutDir)libllama.so" />
+        <Delete Files="$(OutDir)libllava_shared.so" />
+        <Delete Files="$(OutDir)ggml-metal.metal" />
+        <Delete Files="$(OutDir)libllama.dylib" />
+        <Delete Files="$(OutDir)libllava_shared.dylib" />
         <Copy SourceFiles="@(LlamaSharpBackendCpu)" DestinationFolder="$(OutputPath)\runtimes\%(RecursiveDir)" />
         <Copy SourceFiles="@(LlamaSharpBackendCuda11)" DestinationFolder="$(OutputPath)\runtimes\%(RecursiveDir)" />
         <Copy SourceFiles="@(LlamaSharpBackendCuda12)" DestinationFolder="$(OutputPath)\runtimes\%(RecursiveDir)" />
@@ -78,6 +83,11 @@
     <Target Name="CopyRuntimesFolderOnPublish" AfterTargets="Publish">
         <Delete Files="$(PublishDir)llama.dll" />
         <Delete Files="$(PublishDir)llava_shared.dll" />
+        <Delete Files="$(PublishDir)libllama.so" />
+        <Delete Files="$(PublishDir)libllava_shared.so" />
+        <Delete Files="$(PublishDir)ggml-metal.metal" />
+        <Delete Files="$(PublishDir)libllama.dylib" />
+        <Delete Files="$(PublishDir)libllava_shared.dylib" />
         <Copy SourceFiles="@(LlamaSharpBackendCpu)" DestinationFolder="$(PublishDir)\runtimes\%(RecursiveDir)" />
         <Copy SourceFiles="@(LlamaSharpBackendCuda11)" DestinationFolder="$(PublishDir)\runtimes\%(RecursiveDir)" />
         <Copy SourceFiles="@(LlamaSharpBackendCuda12)" DestinationFolder="$(PublishDir)\runtimes\%(RecursiveDir)" />

@@ -7,17 +7,18 @@ namespace Make.Config
 {
 	public static class PublishOptionsHelper
 	{
-		public static List<BuildConfig> ToBuildConfigs(this List<PublishOptions> selected, string solutionFilePath, string projectFilePath, string publishFolderPath)
+		public static List<BuildConfig> ToBuildConfigs(this List<PublishOptions> selected, string repositoryFolderPath, string solutionFilePath, string projectFilePath, string publishFolderPath)
 		{
-			return selected.Select(publish => new BuildConfig
+			return selected.Select(config => new BuildConfig
 			{
-				PublishOptions = publish,
+				PublishOptions = config,
+				RepositoryFolderpath = repositoryFolderPath,
 				SolutionFilePath = solutionFilePath,
-				SolutionFolderPath = Path.GetDirectoryName(solutionFilePath),
+				SolutionFolderPath = $"{Path.GetDirectoryName(solutionFilePath)}\\",
 				ProjectFilePath = projectFilePath,
-				ProjectFolderPath = Path.GetDirectoryName(projectFilePath),
-				BuildArtifactsFolderPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(solutionFilePath), $"backend\\bin\\{publish.Configuration}\\net8.0\\{publish.Runtime}")),
-				PackagePublishFolderPath = Path.Combine(publishFolderPath, $@"{publish.Name}"),
+				ProjectFolderPath = $"{Path.GetDirectoryName(projectFilePath)}\\",
+				BuildArtifactsFolderPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(solutionFilePath), $"backend\\bin\\{config.Configuration}\\net8.0\\{config.Runtime}\\")),
+				PackagePublishFolderPath = Path.Combine(publishFolderPath, $@"{config.Name}"),
 				VersionShort = File.ReadAllText(Path.Combine(repositoryFolderPath, "version")).Trim(),
 			}).ToList();
 		}
@@ -26,6 +27,8 @@ namespace Make.Config
 		{
 			return new List<PublishOptions>()
 			{
+				new() { Name = "docker-amd" , Runtime = "linux-musl-x64", Package = PackageType.Docker },
+				new() { Name = "docker-arm" , Runtime = "linux-musl-arm64", Package = PackageType.Docker },
 				new() { Name = "linux-x64-tgz" , Runtime = "linux-x64", Package = PackageType.TarGz },
 				new() { Name = "linux-x64-deb" , Runtime = "linux-x64", Package = PackageType.Deb },
 				new() { Name = "linux-x64-rpm" , Runtime = "linux-x64", Package = PackageType.Rpm },
@@ -43,7 +46,7 @@ namespace Make.Config
 				new() { Name = "win-x64-exe", Runtime = "win-x64", Package = PackageType.Exe },
 				new() { Name = "win-x86-zip", Runtime = "win-x86", Package = PackageType.Zip  },
 				new() { Name = "win-x86-exe", Runtime = "win-x86", Package = PackageType.Exe },
-				new() { Name = "win-arm64-zip", Runtime = "win-arm64", Package = PackageType.Zip },
+				new() { Name = "win-arm64-zip", Runtime = "win-arm64", Package = PackageType.Zip }				
 			};
 		}
 
@@ -106,6 +109,16 @@ namespace Make.Config
 			}
 
 			return selected;
+		}
+
+		public static string ToLinuxForwardSlashes(this string path)
+		{
+			return path.Replace("\\", "/");
+		}
+
+		public static string WithQuotes(this string path)
+		{
+			return $"\"{path}\"";
 		}
 	}
 }

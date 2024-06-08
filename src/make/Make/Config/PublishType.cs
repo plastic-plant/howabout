@@ -9,6 +9,7 @@
 		Rpm,    // Red Hat package: https://en.wikipedia.org/wiki/RPM_Package_Manager
 		Exe,    // Windows .exe installer: https://en.wikipedia.org/wiki/Windows_Installer
 		App,    // macOS .app application hierarchy: https://en.wikipedia.org/wiki/Bundle_(macOS)
-		Dmg,	// macOS disk image: https://en.wikipedia.org/wiki/Apple_Disk_Image
+		Dmg,    // macOS disk image: https://en.wikipedia.org/wiki/Apple_Disk_Image
+		Docker, // Docker image: https://en.wikipedia.org/wiki/Docker_(software)
 	}
 }

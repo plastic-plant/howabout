@@ -74,6 +74,42 @@ namespace Make.Config
 					// await RunAsync("create-dmg", $"--volname \"Howabout Installer\" \"{config.BuildArtifactsFolderPath}/howabout-v{typeof(Program).Assembly.GetName()?.Version?.ToString(2)}.dmg\" \"{config.BuildArtifactsFolderPath}/howabout.app\"");
 					break;
 
+				case PackageType.Docker:
+					var baseimg = config.PublishOptions.Runtime switch
+					{
+						"linux-musl-x64" => "mcr.microsoft.com/dotnet/aspnet:8.0.3-alpine3.18-amd64",
+						"linux-musl-arm64" => "mcr.microsoft.com/dotnet/aspnet:8.0.3-alpine3.18-arm64v8",
+						_ => throw new NotSupportedException($"Docker base image not defined for runtime {config.PublishOptions.Runtime}.")
+					};
+
+					var archtag = config.PublishOptions.Runtime switch
+					{
+						"linux-musl-x64" => "amd",
+						"linux-musl-arm64" => "arm",
+						_ => throw new NotSupportedException($"Docker tag name not defined for runtime {config.PublishOptions.Runtime}.")
+					};
+
+					var tags = new List<string>()
+					{
+						$"howabout/howabout:{archtag}",
+						$"howabout/howabout:{config.VersionShort}-{archtag}",
+					};
+					
+					if (archtag == "amd")
+					{
+						// Docker builds for x32-x64/amd are most popular, run almost anywhere and 
+						// a good default fetch for `docker run howabout` when runtime unspecified.
+						tags.Add($"howabout/howabout:latest");
+					}
+
+					Bundle.EnsureDirectoryExists(config.BuildArtifactsFolderPath);
+					var output = Path.Combine(config.BuildArtifactsFolderPath, $"howabout-{config.VersionLong}.{config.PublishOptions.Name}.tar");
+					var context = config.SolutionFolderPath.ToLinuxForwardSlashes().WithQuotes(); 
+					var dockerfile = Path.Combine(config.SolutionFolderPath, "Dockerfile").ToLinuxForwardSlashes().WithQuotes();
+
+					await RunAsync("docker", $"build -t {string.Join(" -t ", tags)} -f {dockerfile} {context} --build-arg RUNTIME={config.PublishOptions.Runtime} --build-arg BASEIMG={baseimg}");
+					break;
+
 				// https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish
 				case PackageType.TarGz:
 				case PackageType.Zip:

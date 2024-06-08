@@ -52,7 +52,7 @@ namespace Howabout.Repositories
 				return list;
 			}
 
-			return _documents.Values.Where(document => document.OriginalPath == properties.OriginalPath ).ToList() ?? new();
+			return _documents.Values.Where(document => document.OriginalPath == properties.OriginalPath).ToList() ?? [];
 		}
 
 		public bool Remove(string id)
@@ -65,9 +65,9 @@ namespace Howabout.Repositories
 	{
         public string? Id { get; set; }
         public string? Name { get; set; }
-        public string Extension { get; set; }
+        public string Extension { get; set; } = "";
         public string? OriginalPath { get; set; }
-		public List<string> Tags { get; set; } = new();
-        public string Size { get; set; }
+		public List<string> Tags { get; set; } = [];
+		public string Size { get; set; } = "";
     }
 }

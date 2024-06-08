@@ -1,0 +1,12 @@
+name: howabout
+
+services:
+  howabout:
+    # build:
+    #   context: .
+    #   args:
+    #     - start
+    image: howabout/howabout
+    command: ["start"]    
+    ports:
+      - 5000:5000

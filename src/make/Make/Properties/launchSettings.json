@@ -4,6 +4,14 @@
       "commandName": "Project",
       "commandLineArgs": "-bc all"
     },
+    "make --buildconfig docker-amd": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig docker-amd"
+    },
+    "make --buildconfig docker-arm": {
+      "commandName": "Project",
+      "commandLineArgs": "--buildconfig docker-arm"
+    },
     "make --buildconfig linux-x64-tgz": {
       "commandName": "Project",
       "commandLineArgs": "--buildconfig linux-x64-tgz"
