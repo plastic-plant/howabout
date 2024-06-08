@@ -46,26 +46,29 @@ namespace Make.Config
 			{
 				// https://github.com/quamotion/dotnet-packaging
 				case PackageType.Deb:
+					await RunAsync("dotnet", $"msbuild {config.ProjectFilePath} -target:CreateDeb -property:Configuration={config.PublishOptions.Configuration} -property:RuntimeIdentifiers={config.PublishOptions.Runtime} --property:OutputPath=\"{config.BuildArtifactsFolderPath}\"");
+					break;
+
+				// https://github.com/quamotion/dotnet-packaging
 				case PackageType.Rpm:
-					var packageType = Enum.GetName(typeof(PackageType), config.PublishOptions.Package).ToLower(); // deb rpm
-					await RunAsync("dotnet", $"{packageType} --configuration {config.PublishOptions.Configuration} --runtime {config.PublishOptions.Runtime} {config.ProjectFilePath}");
+					await RunAsync("dotnet", $"msbuild {config.ProjectFilePath} -target:CreateDeb -property:Configuration={config.PublishOptions.Configuration} -property:RuntimeIdentifiers={config.PublishOptions.Runtime} --property:OutputPath=\"{config.BuildArtifactsFolderPath}\"");
 					break;
 
 				// https://jrsoftware.org/isinfo.php
 				case PackageType.Exe:
-					await RunAsync("dotnet", $"publish {config.SolutionFilePath} --configuration {config.PublishOptions.Configuration} --runtime {config.PublishOptions.Runtime} --self-contained {config.PublishOptions.SelfContainedString}");
+					await RunAsync("dotnet", $"publish {config.ProjectFilePath} --configuration {config.PublishOptions.Configuration} --runtime {config.PublishOptions.Runtime} --self-contained {config.PublishOptions.SelfContainedString}");
 					await RunInnoCompiler(config);
 					break;
 
 				// https://en.wikipedia.org/wiki/Bundle_(macOS)
 				case PackageType.App:
-					await RunAsync("dotnet", $"publish {config.SolutionFilePath} --configuration {config.PublishOptions.Configuration} --runtime {config.PublishOptions.Runtime} --self-contained {config.PublishOptions.SelfContainedString}");
+					await RunAsync("dotnet", $"publish {config.ProjectFilePath} --configuration {config.PublishOptions.Configuration} --runtime {config.PublishOptions.Runtime} --self-contained {config.PublishOptions.SelfContainedString}");
 					WrapInMacOsAppHierarchy(config);
 					break;
 
 				// https://github.com/create-dmg/create-dmg
 				case PackageType.Dmg:
-					await RunAsync("dotnet", $"publish {config.SolutionFilePath} --configuration {config.PublishOptions.Configuration} --runtime {config.PublishOptions.Runtime} --self-contained {config.PublishOptions.SelfContainedString}");
+					await RunAsync("dotnet", $"publish {config.ProjectFilePath} --configuration {config.PublishOptions.Configuration} --runtime {config.PublishOptions.Runtime} --self-contained {config.PublishOptions.SelfContainedString}");
 					WrapInMacOsAppHierarchy(config);
 					// TODO: create-dmg for Linux and macOS.
 					// await RunAsync("create-dmg", $"--volname \"Howabout Installer\" \"{config.BuildArtifactsFolderPath}/howabout-v{typeof(Program).Assembly.GetName()?.Version?.ToString(2)}.dmg\" \"{config.BuildArtifactsFolderPath}/howabout.app\"");
