@@ -18,11 +18,11 @@ namespace Make.Config
 			switch (config.PublishOptions.Package)
 			{
 				case PackageType.Zip:
-					Compress(ArchiveType.Zip, CompressionType.Deflate, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.PublishOptions.Name.GetPublishNameWithoutPackageType()}.zip"));
+					Compress(ArchiveType.Zip, CompressionType.Deflate, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.VersionLong}.{config.PublishOptions.Name.GetPublishNameWithoutPackageType()}.zip"));
 					break;
 
 				case PackageType.TarGz:
-					Compress(ArchiveType.Tar, CompressionType.GZip, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.PublishOptions.Name.GetPublishNameWithoutPackageType()}.tar.gz"));
+					Compress(ArchiveType.Tar, CompressionType.GZip, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.VersionLong}.{config.PublishOptions.Name.GetPublishNameWithoutPackageType()}.tar.gz"));
 					break;
 
 				case PackageType.Deb:
@@ -41,7 +41,7 @@ namespace Make.Config
 
 				case PackageType.Dmg:
 					// TODO: Apple Disk Image is possible with create-dmg in Linux and macOS. For now just zipping it; simply copy contents to /Applications/.
-					Compress(ArchiveType.Zip, CompressionType.Deflate, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.PublishOptions.Name.GetPublishNameWithoutPackageType()}.zip"));
+					Compress(ArchiveType.Zip, CompressionType.Deflate, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.VersionLong}.{config.PublishOptions.Name.GetPublishNameWithoutPackageType()}.zip"));
 					break;
 
 				case PackageType.None:
