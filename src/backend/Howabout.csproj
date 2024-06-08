@@ -1,60 +1,89 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <RuntimeIdentifiers>linux-x64; linux-musl-x64; linux-musl-arm64; linux-arm; linux-arm64; osx-x64; osx-arm64; win-x64; win-x86; win-arm64</RuntimeIdentifiers>
-    <AssemblyName>$(MSBuildProjectName.ToLower())</AssemblyName>
-    <SelfContained>false</SelfContained>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <SpaRoot>../frontend</SpaRoot>
-    <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
-    <SpaProxyServerUrl>https://localhost:5100</SpaProxyServerUrl>
-    <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
-    <AssemblyVersion>1.1</AssemblyVersion>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <AssemblyName>$(MSBuildProjectName.ToLower())</AssemblyName>
+        <SelfContained>false</SelfContained>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <SpaRoot>../frontend</SpaRoot>
+        <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
+        <SpaProxyServerUrl>https://localhost:5100</SpaProxyServerUrl>
+        <RootNamespace>$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+        <AssemblyVersion>1.1</AssemblyVersion>
 
+        <!-- Workaround LlamaSharp issue #382.
+      
+         Ignore publishing errors on extracting duplicates in LLamaSharp.Backend.* packages.
+         Result is on publishing a build the variants for llama.dll and llava_shared.dll are
+         overwriting in root folder. We'll remove these and copy the runtime folders instead.
+         LlamaSharp.dll picks up the correct files from runtime folders.
+         
+         See https://github.com/SciSharp/LLamaSharp/issues/382         
+        -->
+        <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+        <RestorePackagesPath>bin\$(Configuration)\.nuget\packages</RestorePackagesPath>
+    </PropertyGroup>
 
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
+            <Version>8.*-*</Version>
+        </PackageReference>
+        <PackageReference Include="Microsoft.KernelMemory.Core" Version="0.61.240524.1" />
+        <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
+        <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+        <PackageReference Include="System.Management" Version="8.0.0" />
+        <PackageReference Include="LLamaSharp" Version="0.12.0" />
+        <PackageReference Include="LLamaSharp.Backend.Cpu" Version="0.12.0" />
+        <PackageReference Include="LLamaSharp.Backend.Cuda11" Version="0.12.0" />
+        <PackageReference Include="LLamaSharp.Backend.Cuda12" Version="0.12.0" />
+        <PackageReference Include="LLamaSharp.Backend.OpenCL" Version="0.12.0" />
+        <!-- -->
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="LLamaSharp.Backend.Cpu" Version="0.12.0" />
-    <!-- https://github.com/SciSharp/LLamaSharp/issues/382
-    <PackageReference Include="LLamaSharp.Backend.Cuda11" Version="0.12.0" />
-    <PackageReference Include="LLamaSharp.Backend.Cuda12" Version="0.12.0" />
-    <PackageReference Include="LLamaSharp.Backend.MacMetal" Version="0.7.0" />
-    <PackageReference Include="LLamaSharp.Backend.OpenCL" Version="0.12.0" />
-    -->
-    <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
-      <Version>8.*-*</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.KernelMemory.Core" Version="0.61.240524.1" />
-    <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
-    <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
-    <PackageReference Include="System.Management" Version="8.0.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../frontend/Frontend.esproj">
+            <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+        </ProjectReference>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="../frontend/frontend.esproj">
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
+    <ItemGroup>
+        <None Update="_import/Examples/faq-01.txt">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="_import/Examples/faq-02.txt">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="_wwwroot\.gitkeep" />
-  </ItemGroup>
+    <!-- Workaround LlamaSharp issue #382. -->
 
-  <ItemGroup>
-    <None Update="_import/Examples/faq-01.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="_import/Examples/faq-02.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+    <ItemGroup>
+        <LlamaSharpBackendCpu Include="$(RestorePackagesPath)\llamasharp.backend.cpu\0.12.0\runtimes\**\*.*" />
+        <LlamaSharpBackendCuda11 Include="$(RestorePackagesPath)\llamasharp.backend.cuda11\0.12.0\runtimes\**\*.*" />
+        <LlamaSharpBackendCuda12 Include="$(RestorePackagesPath)\llamasharp.backend.cuda12\0.12.0\runtimes\**\*.*" />
+        <LlamaSharpBackendOpenCL Include="$(RestorePackagesPath)\llamasharp.backend.opencl\0.12.0\runtimes\**\*.*" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
+    <Target Name="CopyRuntimesFolderOnBuild" AfterTargets="Build">
+        <Delete Files="$(OutDir)llama.dll" />
+        <Delete Files="$(OutDir)llava_shared.dll" />
+        <Copy SourceFiles="@(LlamaSharpBackendCpu)" DestinationFolder="$(OutputPath)\runtimes\%(RecursiveDir)" />
+        <Copy SourceFiles="@(LlamaSharpBackendCuda11)" DestinationFolder="$(OutputPath)\runtimes\%(RecursiveDir)" />
+        <Copy SourceFiles="@(LlamaSharpBackendCuda12)" DestinationFolder="$(OutputPath)\runtimes\%(RecursiveDir)" />
+        <Copy SourceFiles="@(LlamaSharpBackendOpenCL)" DestinationFolder="$(OutputPath)\runtimes\%(RecursiveDir)" />
+    </Target>
+
+    <Target Name="CopyRuntimesFolderOnPublish" AfterTargets="Publish">
+        <Delete Files="$(PublishDir)llama.dll" />
+        <Delete Files="$(PublishDir)llava_shared.dll" />
+        <Copy SourceFiles="@(LlamaSharpBackendCpu)" DestinationFolder="$(PublishDir)\runtimes\%(RecursiveDir)" />
+        <Copy SourceFiles="@(LlamaSharpBackendCuda11)" DestinationFolder="$(PublishDir)\runtimes\%(RecursiveDir)" />
+        <Copy SourceFiles="@(LlamaSharpBackendCuda12)" DestinationFolder="$(PublishDir)\runtimes\%(RecursiveDir)" />
+        <Copy SourceFiles="@(LlamaSharpBackendOpenCL)" DestinationFolder="$(PublishDir)\runtimes\%(RecursiveDir)" />
+    </Target>
+
+    <!-- /Workaround -->
 
 </Project>

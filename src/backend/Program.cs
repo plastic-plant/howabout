@@ -1,5 +1,6 @@
 using Howabout.Commands;
 using Howabout.Configuration;
+using Howabout.Extensions;
 using Howabout.Interfaces;
 using Serilog;
 using System.Reflection;
@@ -48,7 +49,7 @@ namespace Howabout
 			}
 			catch (Exception exception)
 			{
-				Log.Error(exception.Message);
+				Log.Error(exception.GetFullMessage());
 				Log.Verbose(exception, "Error details:");
 				return (int)ConsoleExit.Error;
 			}

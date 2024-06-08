@@ -5,6 +5,7 @@
 .vs
 *.output.css
 releases/*/
+src/**/packages
 src/backend/wwwroot
 !.gitkeep
 !*.md

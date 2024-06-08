@@ -4,12 +4,12 @@ namespace Howabout.Configuration
 {
 	public static class App
 	{
-		static AppSettings _settings = new AppSettings();
+		static AppSettings _settings = new();
 
 		public static AppSettings Settings
 		{
 			get => _settings;
-			set => _settings = value ?? throw new ArgumentNullException();
+			set => _settings = value ?? throw new ArgumentNullException(nameof(Settings));
 		}
 	}
 
@@ -53,12 +53,12 @@ namespace Howabout.Configuration
 			return this;
 		}
 
-		private string? EnsureUrlEndsInSlash(string? urls)
+		private static string? EnsureUrlEndsInSlash(string? urls)
 		{
 			if (!string.IsNullOrWhiteSpace(urls))
 			{
 				string? url = urls.Split(';').FirstOrDefault();
-				return url.EndsWith("/") ? url : $"{url}/";
+				return (url?.EndsWith('/') ?? false) ? url : $"{url}/";
 			}
 			return _url;
 		}

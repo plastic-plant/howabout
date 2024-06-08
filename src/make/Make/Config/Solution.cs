@@ -23,7 +23,7 @@ namespace Make.Config
 				Directory.Delete(objDirectory, true);
 			}
 
-			await RunAsync("dotnet", $"clean {config.ProjectFilePath} --configuration {config.PublishOptions.Configuration} --runtime {config.PublishOptions.Runtime}");
+			await RunAsync("dotnet", $"clean {config.ProjectFilePath} --configuration {config.PublishOptions.Configuration}");
 						
 			if (Directory.Exists(binDirectory))
 			{
