@@ -7,7 +7,7 @@
     <ShouldRunBuildScript>false</ShouldRunBuildScript>
     <!-- Folder where production build objects will be placed -->
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist</BuildOutputFolder>
-    <AssemblyVersion>1.0</AssemblyVersion>
+    <AssemblyVersion>0.0</AssemblyVersion>
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\menu\" />
