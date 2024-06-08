@@ -1,0 +1,44 @@
+# ###############################################################################
+#
+# kubectl apply -f manifest.yaml
+# kubectl delete deployment howabout
+# kubectl delete service howabout
+#
+# ###############################################################################
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: howabout
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: howabout
+  template:
+    metadata:
+      labels:
+        app: howabout
+    spec:
+      containers:
+      - name: howabout
+        image: howabout/howabout:latest
+        imagePullPolicy: IfNotPresent
+        command: ["dotnet", "howabout.dll", "start"]
+        ports:
+        - containerPort: 5000
+        securityContext:
+          runAsUser: 1000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: howabout
+spec:
+  selector:
+    app: howabout
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+  type: NodePort

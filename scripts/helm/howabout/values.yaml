@@ -1,0 +1,12 @@
+replicaCount: 1
+
+image:
+  repository: howabout/howabout
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 5000
+
+securityContext:
+  runAsUser: 1000
