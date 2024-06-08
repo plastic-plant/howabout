@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import ConversationMessageGenericComponent from './ConversationMessageGenericComponent';
 import '@testing-library/jest-dom'
+import { ICitation } from './Models';
 
 describe('ConversationMessageGenericComponent', () => {
   const message = {
@@ -34,7 +35,7 @@ describe('ConversationMessageGenericComponent', () => {
         ],
         sourceName: 'Source 2',
       },
-    ],
+    ] as ICitation[],
     processingTimeSeconds: 5,
   };
 

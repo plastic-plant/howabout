@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { ConversationMessageRole, IConversationMessage } from './Models';
+import { ConversationMessageRole, ICitation, IConversationMessage } from './Models';
 
 const ConversationMessageGenericComponent: React.FC<{ message: IConversationMessage }> = ({ message }) => {
     const citationsRef = useRef<null | HTMLDivElement>(null);
@@ -45,7 +45,7 @@ const ConversationMessageGenericComponent: React.FC<{ message: IConversationMess
                         <span>{message.processingTimeSeconds} seconds</span>
                         <div ref={citationsRef} className="mt-6 hidden">
                             <strong>Response was inferred from {citations.length} citations:</strong>
-                            {message.messageData.map((citation: any) => (
+                            {(message.messageData as ICitation[]).map((citation: any) => (
                                 <ol className="p-3 list-decimal">
                                     {citation.partitions.map((partition: any, index: number) => (
                                         <li key={index}>
@@ -60,7 +60,7 @@ const ConversationMessageGenericComponent: React.FC<{ message: IConversationMess
                         </div>
                     </span>
                 ) : (
-
+                    <span></span>
                 )}
             </div>
             {message.role === ConversationMessageRole.assistant && (
