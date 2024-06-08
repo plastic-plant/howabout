@@ -3,11 +3,10 @@
 
 Howabout is published on the [releases page](https://github.com/plastic-plant/howabout/releases).
 
-### Builds for Windows
+### Builds for Docker
 
-- Release [win-x64-zip](win-x64-zip/) as .zip for Windows 64-bit.
-- Release [win-x86-zip](win-x86-zip/) as .zip for Windows 32-bit.
-- Release [win-arm64-zip](win-arm64-zip/) as .zip for Windows ARM64.
+- Release [docker-amd](docker-amd/) as OCI image for 64-bit AMD architecture (x32-x64) or emulation (howabout:latest, default).
+- Release [docker-arm](docker-arm/) as OCI image for 64-bit ARM like Raspberry and Apple Silicon (howabout:arm).
 
 ### Builds for Linux
 
@@ -23,3 +22,11 @@ Howabout is published on the [releases page](https://github.com/plastic-plant/ho
 
 - Release [macos-arm64-tgz](macos-arm64-tgz/) for macOS ARM64 on newer Apple Silicon based machines.
 - Release [macos-x64-tgz](macos-x64-tgz/) for macOS 64-bit on older Intel based machines (macOS 10.12 Sierra and later).
+
+### Builds for Windows
+
+- Release [win-x64-exe](win-x64-exe/) as setup installer for Windows 64-bit.
+- Release [win-x64-zip](win-x64-zip/) as .zip for Windows 64-bit.
+- Release [win-x86-exe](win-x86-exe/) as setup installer for Windows 32-bit.
+- Release [win-x86-zip](win-x86-zip/) as .zip for Windows 32-bit.
+- Release [win-arm64-zip](win-arm64-zip/) as .zip for Windows ARM64.

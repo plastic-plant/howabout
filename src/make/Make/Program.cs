@@ -5,11 +5,11 @@ using System.Linq;
 using static Bullseye.Targets;
 using static SimpleExec.Command;
 
-
-string solution = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\..\src\Howabout.sln"));
-string project = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\..\src\backend\Howabout.csproj"));
-string publish = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\..\releases\"));
-var configs = PublishOptionsHelper.TakePublishOptionsFromArguments(ref args).ToBuildConfigs(solution, project, publish);
+string repository = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, @"..\..\..\..\howabout\"));
+string solution = Path.GetFullPath(Path.Combine(repository, @"src\Howabout.sln"));
+string project = Path.GetFullPath(Path.Combine(repository, @"src\backend\Howabout.csproj"));
+string publish = Path.GetFullPath(Path.Combine(repository, @"releases\"));
+var configs = PublishOptionsHelper.TakePublishOptionsFromArguments(ref args).ToBuildConfigs(repository, solution, project, publish);
 
 foreach (var config in configs)
 {

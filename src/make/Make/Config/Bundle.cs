@@ -44,6 +44,13 @@ namespace Make.Config
 					Compress(ArchiveType.Zip, CompressionType.Deflate, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.VersionLong}.{config.PublishOptions.Name.GetPublishNameWithoutPackageType()}.zip"));
 					break;
 
+				case PackageType.Docker:
+					var filenameWithoutExtension = $"howabout-{config.VersionLong}.{config.PublishOptions.Name}";
+					var filePathIn = Path.Combine(config.BuildArtifactsFolderPath, $"{filenameWithoutExtension}.tar");
+					var filePathOut = Path.Combine(config.PackagePublishFolderPath, $"{filenameWithoutExtension}.tar.gz");
+					Compress(ArchiveType.GZip, CompressionType.GZip, filePathIn, filePathOut);
+					break;
+
 				case PackageType.None:
 				default:
 					CopyDirectory(Path.Combine(config.BuildArtifactsFolderPath, "publish"), config.PackagePublishFolderPath);
@@ -143,7 +150,14 @@ namespace Make.Config
 			{
 				using (var writer = WriterFactory.Open(stream, archiveType, options))
 				{
-					writer.WriteAll(sourceFolderPath, "*", SearchOption.AllDirectories);
+					if (File.Exists(sourceFolderPath))
+					{
+						writer.Write(Path.GetFileName(sourceFolderPath), sourceFolderPath);
+					}
+					else if (Directory.Exists(sourceFolderPath))
+					{
+						writer.WriteAll(sourceFolderPath, "*", SearchOption.AllDirectories);
+					}
 				}
 			}
 		}

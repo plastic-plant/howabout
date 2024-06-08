@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -108,6 +109,7 @@ namespace Make.Config
 					var dockerfile = Path.Combine(config.SolutionFolderPath, "Dockerfile").ToLinuxForwardSlashes().WithQuotes();
 
 					await RunAsync("docker", $"build -t {string.Join(" -t ", tags)} -f {dockerfile} {context} --build-arg RUNTIME={config.PublishOptions.Runtime} --build-arg BASEIMG={baseimg}");
+					await RunAsync("docker", $"save --output {output} {string.Join(" ", tags)}");
 					break;
 
 				// https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-publish
