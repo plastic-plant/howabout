@@ -18,11 +18,11 @@ namespace Make.Config
 			switch (config.PublishOptions.Package)
 			{
 				case PackageType.Zip:
-					Compress(ArchiveType.Zip, CompressionType.Deflate, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.VersionLong}.{config.PublishOptions.Name.GetPublishNameWithoutPackageType()}.zip"));
+					Compress(ArchiveType.Zip, CompressionType.Deflate, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, config.FileName + ".zip"));
 					break;
 
 				case PackageType.TarGz:
-					Compress(ArchiveType.Tar, CompressionType.GZip, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.VersionLong}.{config.PublishOptions.Name.GetPublishNameWithoutPackageType()}.tar.gz"));
+					Compress(ArchiveType.Tar, CompressionType.GZip, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, config.FileName + ".tar.gz"));
 					break;
 
 				case PackageType.Deb:
@@ -32,7 +32,7 @@ namespace Make.Config
 					break;
 
 				case PackageType.Exe:
-					CopyFiles(Path.Combine(config.BuildArtifactsFolderPath, "setup"), "*.exe", config.PackagePublishFolderPath);
+					CopyFile(Path.Combine(config.BuildArtifactsFolderPath, "setup", "howabout.exe"), config.PackagePublishFolderPath, config.FileName + ".exe");
 					break;
 
 				case PackageType.App:
@@ -41,13 +41,12 @@ namespace Make.Config
 
 				case PackageType.Dmg:
 					// TODO: Apple Disk Image is possible with create-dmg in Linux and macOS. For now just zipping it; simply copy contents to /Applications/.
-					Compress(ArchiveType.Zip, CompressionType.Deflate, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, $"howabout-{config.VersionLong}.{config.PublishOptions.Name.GetPublishNameWithoutPackageType()}.zip"));
+					Compress(ArchiveType.Zip, CompressionType.Deflate, Path.Combine(config.BuildArtifactsFolderPath, "publish"), Path.Combine(config.PackagePublishFolderPath, config.FileName + ".zip"));
 					break;
 
 				case PackageType.Docker:
-					var filenameWithoutExtension = $"howabout-{config.VersionLong}.{config.PublishOptions.Name}";
-					var filePathIn = Path.Combine(config.BuildArtifactsFolderPath, $"{filenameWithoutExtension}.tar");
-					var filePathOut = Path.Combine(config.PackagePublishFolderPath, $"{filenameWithoutExtension}.tar.gz");
+					var filePathIn = Path.Combine(config.BuildArtifactsFolderPath, config.FileName + ".tar");
+					var filePathOut = Path.Combine(config.PackagePublishFolderPath, config.FileName + ".tar.gz");
 					Compress(ArchiveType.GZip, CompressionType.GZip, filePathIn, filePathOut);
 					break;
 

@@ -23,43 +23,37 @@ namespace Make.Config
 			}).ToList();
 		}
 
+		/// <summary>
+		/// Please note that local model support with LlamaSharp (llama.cpp) is supported for
+		/// runtimes linux-x64, osx-arm64, osx-x64, win-x64 only. You can still use Kernel-Memory
+		/// with external providers like OpenAI, LLM Studio, etc. for win-x86 and linux-musl runtimes.
+		/// </summary>
+		/// <returns></returns>
 		public static List<PublishOptions> GetAvailablePublishOptions(string[] args)
 		{
 			return new List<PublishOptions>()
 			{
-				new() { Name = "docker-amd" , Runtime = "linux-musl-x64", Package = PackageType.Docker },
-				new() { Name = "docker-arm" , Runtime = "linux-musl-arm64", Package = PackageType.Docker },
+				new() { Name = "docker-amd", Runtime = "linux-x64", Package = PackageType.Docker, FileNameTemplate = "howabout-{0.0.0}.docker", IsRecommendedPlatformInstaller = true },
+				new() { Name = "docker-arm" , Runtime = "linux-musl-arm64", Package = PackageType.Docker, FileNameTemplate = "howabout-{0.0.0}.{name}" },
 				new() { Name = "linux-x64-tgz" , Runtime = "linux-x64", Package = PackageType.TarGz },
-				new() { Name = "linux-x64-deb" , Runtime = "linux-x64", Package = PackageType.Deb },
-				new() { Name = "linux-x64-rpm" , Runtime = "linux-x64", Package = PackageType.Rpm },
+				new() { Name = "linux-x64-deb" , Runtime = "linux-x64",	Package = PackageType.Deb, IsRecommendedPlatformInstaller = true },
+				new() { Name = "linux-x64-rpm" , Runtime = "linux-x64", Package = PackageType.Rpm, IsRecommendedPlatformInstaller = true },
 				new() { Name = "linux-musl-x64-tgz" , Runtime = "linux-musl-x64", Package = PackageType.TarGz },
 				new() { Name = "linux-musl-arm64-tgz" , Runtime = "linux-musl-arm64", Package = PackageType.TarGz },
 				new() { Name = "linux-arm-tgz" , Runtime = "linux-arm", Package = PackageType.TarGz },
 				new() { Name = "linux-arm64-tgz" , Runtime = "linux-arm64", Package = PackageType.TarGz },
-				new() { Name = "macos-x64-tgz" , Runtime = "osx-x64", Package = PackageType.TarGz },
-				new() { Name = "macos-x64-app" , Runtime = "osx-x64", Package = PackageType.App },
-				new() { Name = "macos-x64-dmg" , Runtime = "osx-x64", Package = PackageType.Dmg },
-				new() { Name = "macos-arm64-tgz" , Runtime = "osx-arm64", Package = PackageType.TarGz },
-				new() { Name = "macos-arm64-app" , Runtime = "osx-arm64", Package = PackageType.App },
-				new() { Name = "macos-arm64-dmg" , Runtime = "osx-arm64", Package = PackageType.Dmg },
-				new() { Name = "win-x64-zip", Runtime = "win-x64", Package = PackageType.Zip },
-				new() { Name = "win-x64-exe", Runtime = "win-x64", Package = PackageType.Exe },
-				new() { Name = "win-x86-zip", Runtime = "win-x86", Package = PackageType.Zip  },
-				new() { Name = "win-x86-exe", Runtime = "win-x86", Package = PackageType.Exe },
-				new() { Name = "win-arm64-zip", Runtime = "win-arm64", Package = PackageType.Zip }				
+				new() { Name = "macos-x64-tgz" , Runtime = "osx-x64", Package = PackageType.TarGz, FileNameTemplate = "howabout-{0.0.0}.macos-intel", IsRecommendedPlatformInstaller = true },
+				new() { Name = "macos-x64-app" , Runtime = "osx-x64", Package = PackageType.App, FileNameTemplate = "howabout-{0.0.0}.macos-intel" },
+				new() { Name = "macos-x64-dmg" , Runtime = "osx-x64", Package = PackageType.Dmg, FileNameTemplate = "howabout-{0.0.0}.macos-intel" },
+				new() { Name = "macos-arm64-tgz" , Runtime = "osx-arm64", Package = PackageType.TarGz, FileNameTemplate = "howabout-{0.0.0}.macos-silicon", IsRecommendedPlatformInstaller = true },
+				new() { Name = "macos-arm64-app" , Runtime = "osx-arm64", Package = PackageType.App, FileNameTemplate = "howabout-{0.0.0}.macos-silicon" },
+				new() { Name = "macos-arm64-dmg" , Runtime = "osx-arm64", Package = PackageType.Dmg, FileNameTemplate = "howabout-{0.0.0}.macos-silicon" },
+				new() { Name = "win-x64-zip", Runtime = "win-x64", Package = PackageType.Zip, FileNameTemplate = "howabout-{0.0.0}.windows-x64" },
+				new() { Name = "win-x64-exe", Runtime = "win-x64", Package = PackageType.Exe, FileNameTemplate = "howabout-{0.0.0}.windows-x64", IsRecommendedPlatformInstaller = true },
+				new() { Name = "win-x86-zip", Runtime = "win-x86", Package = PackageType.Zip, FileNameTemplate = "howabout-{0.0.0}.windows-x86"  },
+				new() { Name = "win-x86-exe", Runtime = "win-x86", Package = PackageType.Exe, FileNameTemplate = "howabout-{0.0.0}.windows-x86" },
+				new() { Name = "win-arm64-zip", Runtime = "win-arm64", Package = PackageType.Zip, FileNameTemplate = "howabout-{0.0.0}.windows-arm" }				
 			};
-		}
-
-		public static string GetPublishNameWithoutPackageType(this string publishName)
-		{
-			return publishName
-				.Replace("-app", "")
-				.Replace("-deb", "")
-				.Replace("-dmg", "")
-				.Replace("-exe", "")
-				.Replace("-rpm", "")
-				.Replace("-tgz", "")
-				.Replace("-zip", "");
 		}
 
 		/// <summary>
@@ -91,6 +85,24 @@ namespace Make.Config
 						Console.WriteLine("Selected all build configurations.");
 						selected.Clear();
 						selected.AddRange(configs);
+						break;
+					}
+
+					// Adds build configurations that have runtime support for LlamaSharp.
+					if (buildconfigname == "all_local_model_supported")
+					{
+						Console.WriteLine("Selected all build configurations with runtime support for LlamaSharp.");
+						selected.Clear();
+						selected.AddRange(configs.Where(config => config.LocalGgufModelSupported));
+						break;
+					}
+
+					// Adds build configurations that bundle with a platform installer for easy setup.
+					if (buildconfigname == "recommended")
+					{
+						Console.WriteLine("Selected all build configurations with recommended platform installers.");
+						selected.Clear();
+						selected.AddRange(configs.Where(config => config.IsRecommendedPlatformInstaller));
 						break;
 					}
 

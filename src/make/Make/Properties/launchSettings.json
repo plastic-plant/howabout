@@ -4,7 +4,15 @@
       "commandName": "Project",
       "commandLineArgs": "-bc all"
     },
-    "make --buildconfig docker-amd": {
+    "make -bc all_local_model_supported": {
+      "commandName": "Project",
+      "commandLineArgs": "-bc all_local_model_supported"
+    },
+    "make -bc recommended": {
+      "commandName": "Project",
+      "commandLineArgs": "-bc recommended"
+    },
+    "make --buildconfig docker-amd (recommended)": {
       "commandName": "Project",
       "commandLineArgs": "--buildconfig docker-amd"
     },
@@ -16,11 +24,11 @@
       "commandName": "Project",
       "commandLineArgs": "--buildconfig linux-x64-tgz"
     },
-    "make --buildconfig linux-x64-deb": {
+    "make --buildconfig linux-x64-deb (recommended)": {
       "commandName": "Project",
       "commandLineArgs": "--buildconfig linux-x64-deb"
     },
-    "make --buildconfig linux-x64-rpm": {
+    "make --buildconfig linux-x64-rpm (recommended)": {
       "commandName": "Project",
       "commandLineArgs": "--buildconfig linux-x64-rpm"
     },
@@ -42,7 +50,7 @@
     },
     "make --buildconfig macos-x64-tgz": {
       "commandName": "Project",
-      "commandLineArgs": "--buildconfig macos-x64-tgz"
+      "commandLineArgs": "--buildconfig macos-x64-tgz (recommended)"
     },
     "make --buildconfig macos-x64-app": {
       "commandName": "Project",
@@ -54,7 +62,7 @@
     },
     "make --buildconfig macos-arm64-tgz": {
       "commandName": "Project",
-      "commandLineArgs": "--buildconfig macos-arm64-tgz"
+      "commandLineArgs": "--buildconfig macos-arm64-tgz (recommended)"
     },
     "make --buildconfig macos-arm64-app": {
       "commandName": "Project",
@@ -68,7 +76,7 @@
       "commandName": "Project",
       "commandLineArgs": "--buildconfig win-x64-zip"
     },
-    "make --buildconfig win-x64-exe": {
+    "make --buildconfig win-x64-exe (recommended)": {
       "commandName": "Project",
       "commandLineArgs": "--buildconfig win-x64-exe"
     },
