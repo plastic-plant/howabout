@@ -106,6 +106,6 @@
 		}
 
 		public List<string> GetTags() => Parameters.ToLookup(kvp => kvp.Key, kvp => kvp.Value)["--tag"].ToList();
-		public List<string> GetUrls() => Options.Where(option => option.Contains("://") && Uri.TryCreate(option, UriKind.Absolute, out _)).ToList();
+		public List<string> GetUrls() => Options.Where(option => option.Contains("://") && Uri.TryCreate(option.Replace("+", "localhost"), UriKind.Absolute, out _)).ToList();
 	}
 }

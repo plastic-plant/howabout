@@ -19,7 +19,33 @@ spec:
         image: "{{ .Values.image.repository }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         command: ["dotnet", "howabout.dll", "start"]
+        env:
+        - name: ASPNETCORE_URLS
+          value: "http://+:{{ .Values.service.targetPort }}"
         ports:
-        - containerPort: {{ .Values.service.port }}
+        - containerPort: {{ .Values.service.targetPort }}
         securityContext:
           runAsUser: {{ .Values.securityContext.runAsUser }}
+        volumeMounts:
+        - name: appsettings-volume
+          mountPath: /app/appsettings.json
+          subPath: appsettings.json
+        readinessProbe:
+          httpGet:
+            path: /api/ready
+            port: 5000
+          initialDelaySeconds: 3
+          periodSeconds: 3
+        livenessProbe:
+          httpGet:
+            path: /api/healthy
+            port: 5000
+          initialDelaySeconds: 3
+          periodSeconds: 3
+      volumes:
+      - name: appsettings-volume
+        configMap:
+          name: {{ include "howabout.name" . }}-appsettings
+          items:
+            - key: appsettings.json
+              path: appsettings.json

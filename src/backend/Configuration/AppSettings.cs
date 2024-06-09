@@ -34,13 +34,13 @@ namespace Howabout.Configuration
 
 		public AppSettings ReadFromAppSettings()
 		{
-			Url = Configuration.GetSection("Urls").Value;
+			Url = Configuration.GetSection("Urls").Value?.Replace("+", "localhost");
 			return this;
 		}
 
 		public AppSettings ReadFromEnvironmentVariables()
 		{
-			Url = Environment.GetEnvironmentVariable("ASPNETCORE_URLS");
+			Url = Environment.GetEnvironmentVariable("ASPNETCORE_URLS")?.Replace("+", "localhost");
 			return this;
 		}
 
@@ -48,7 +48,7 @@ namespace Howabout.Configuration
 		{
 			if (!Uri.TryCreate(this.Url, UriKind.Absolute, out var _))
 			{
-				throw new ArgumentNullException(nameof(Url));
+				throw new ArgumentNullException(nameof(Url), this.Url);
 			}
 			return this;
 		}

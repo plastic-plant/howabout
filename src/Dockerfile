@@ -6,8 +6,7 @@
 #  or alternatively builds for ARM 64bit (Apple Silicon, Raspberry, Snapdragon).
 #
 #    docker build -t howabout/howabout .
-#    docker build -t howabout/howabout . --build-arg RUNTIME=linux-musl-x64 --build-arg BASEIMG=mcr.microsoft.com/dotnet/aspnet:8.0.3-alpine3.18-amd64
-#    docker build -t howabout/howabout . --build-arg RUNTIME=linux-arm64 --build-arg BASEIMG=mcr.microsoft.com/dotnet/aspnet:8.0.3-alpine3.18-arm64v8
+#    docker build -t howabout/howabout . --build-arg RUNTIME=osx-arm64 --build-arg BASEIMG=mcr.microsoft.com/dotnet/aspnet:8.0.3-alpine3.18-arm64v8
 #
 #  Then run image with docker run or compose:
 #
@@ -28,7 +27,7 @@ ARG BASEIMG=mcr.microsoft.com/dotnet/aspnet:8.0.3-alpine3.18-amd64
 
 # Build backend with .NET SDK, which depends on a build of frontend with Node.js.
 FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
-ARG RUNTIME=linux-musl-x64
+ARG RUNTIME=linux-x64
 COPY . /src
 WORKDIR /src
 RUN apk add nodejs npm

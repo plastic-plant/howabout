@@ -78,14 +78,14 @@ namespace Make.Config
 				case PackageType.Docker:
 					var baseimg = config.PublishOptions.Runtime switch
 					{
-						"linux-musl-x64" => "mcr.microsoft.com/dotnet/aspnet:8.0.3-alpine3.18-amd64",
+						"linux-x64" => "mcr.microsoft.com/dotnet/aspnet:8.0.3-alpine3.18-amd64",
 						"linux-musl-arm64" => "mcr.microsoft.com/dotnet/aspnet:8.0.3-alpine3.18-arm64v8",
 						_ => throw new NotSupportedException($"Docker base image not defined for runtime {config.PublishOptions.Runtime}.")
 					};
 
 					var archtag = config.PublishOptions.Runtime switch
 					{
-						"linux-musl-x64" => "amd",
+						"linux-x64" => "amd",
 						"linux-musl-arm64" => "arm",
 						_ => throw new NotSupportedException($"Docker tag name not defined for runtime {config.PublishOptions.Runtime}.")
 					};
@@ -98,8 +98,8 @@ namespace Make.Config
 					
 					if (archtag == "amd")
 					{
-						// Docker builds for x32-x64/amd are most popular, run almost anywhere and 
-						// a good default fetch for `docker run howabout` when runtime unspecified.
+						// Docker builds for x32-x64/amd are most popular, run (emulated) anywhere 
+						// and a good default fetch for `docker run howabout` when tag unspecified.
 						tags.Add($"howabout/howabout:latest");
 					}
 

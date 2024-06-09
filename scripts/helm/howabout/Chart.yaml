@@ -1,12 +1,3 @@
-# ###############################################################################
-#
-# helm install howabout ./howabout
-# helm del howabout
-#
-# helm package howabout
-#
-# ###############################################################################
-
 apiVersion: v2
 name: howabout
 description: Howabout
