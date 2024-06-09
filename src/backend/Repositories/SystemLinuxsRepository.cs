@@ -13,7 +13,7 @@ namespace Howabout.Repositories
 	public class SystemLinuxRepository : ISystemRepository
 	{
 		private readonly IShellCommand _shell;
-		private readonly CultureInfo _culture = new CultureInfo("en-US");
+		private readonly CultureInfo _culture = CultureInfo.InvariantCulture; // new CultureInfo("en-US");
 
 		public SystemLinuxRepository(IShellCommand shell)
 		{
