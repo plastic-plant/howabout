@@ -49,6 +49,7 @@ namespace Howabout.Commands
 			app.MapGet("/api/healthy", () => Results.Ok());
 			app.MapGet("/api/ready", async (IKernelMemoryService kernelMemoryService) => await kernelMemoryService.IsReadyAsync() ? Results.Ok() : Results.BadRequest());
 			app.MapHub<EventMessageHub>("/hubs/eventMessageHub");
+			app.MapHub<SystemInfoHub>("/hubs/systemInfoHub");
 			app.MapFallbackToFile("/index.html");
 			app.UseKernelMemoryService();
 			app.UseCors(cors => cors
