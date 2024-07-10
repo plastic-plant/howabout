@@ -31,15 +31,23 @@ namespace Howabout.Repositories
 		
 		private async Task<int> GetCpuAsync()
 		{
+			// nproc | sysctl -n hw.logicalcpu
+			if (!int.TryParse(await _shell.Execute("nproc", string.Empty), out int processorCount))
+			{
+				processorCount = 1;
+			}
+
 			var result = await _shell.Execute("top", "-bn1");
 			var lines = result.Split("\n", StringSplitOptions.RemoveEmptyEntries);
 			var cpuLine = lines[2].Split(",", StringSplitOptions.RemoveEmptyEntries);
 			var cpuUsage = cpuLine[0]
-				.Split(":", StringSplitOptions.RemoveEmptyEntries)[1] // "0.4 us"
-				.Replace("us", string.Empty).Trim();                  // "0.4"
-			if (float.TryParse(cpuUsage, _culture, out var cpuUsageFloat))      // 0.4
+				.Split(":", StringSplitOptions.RemoveEmptyEntries)[1]						// "0.4 us"
+				.Replace("us", string.Empty).Trim();										// "0.4"
+			if (float.TryParse(cpuUsage, _culture, out var cpuUsageFloat))					// 0.4
 			{
-				return (int)(cpuUsageFloat * 100);                    // 40
+				var cpuUsagePercentage = cpuUsageFloat * 100;								// 40
+				var cpuPercentagePerCore = Math.Round(cpuUsagePercentage / processorCount);	// 40 / 16 = 2.5%
+				return (int)(cpuPercentagePerCore);											// 3%
 			}
 			return 0;
 		}
