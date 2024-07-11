@@ -25,7 +25,7 @@
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
             },
-            "launchSettingsFilePath": "${workspaceFolder}/src/backend/Properties/launchSettings.json",
+            "launchSettingsFilePath": "${workspaceFolder}/backend/Properties/launchSettings.json",
             "launchSettingsProfile": "howabout start"
         },
         {
