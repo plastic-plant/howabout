@@ -21,10 +21,23 @@ Usage: howabout <command> [options]
 
 Commands:
   help      Display help information.
+  download  Download models.
   start     Start the server.
   stop      Stop the server.
   add       Add documents to the server.
   ask       Ask questions.
+
+You can configure and serve models from OpenAI, Hugging Face
+any .GGUF model on local disk, LM studio, Jan.ai, etc.
+
+  nano appsettings.json, notepad appsettings.json
+  howabout start
+
+Optionally, you can download a model from Hugging Face:
+
+  howabout download <repository/model>
+  howabout download <repository/model> [repository/model]
+  howabout download nomic-ai/nomic-embed-text-v1.5-GGUF google/gemma-2b-it
 
 You can upload documents by name, folder or url:
 

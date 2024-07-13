@@ -33,6 +33,7 @@ namespace Howabout
 			{
 				CommandArg.Help => new ConsoleCommandHelp(cli),
 				CommandArg.Version => new ConsoleCommandVersion(cli),
+				CommandArg.Download => new ConsoleCommandDownload(cli),
 				CommandArg.Start => new ConsoleCommandStart(cli),
 				CommandArg.Stop => new ConsoleCommandStop(cli),
 				CommandArg.Add => new ConsoleCommandAdd(cli),

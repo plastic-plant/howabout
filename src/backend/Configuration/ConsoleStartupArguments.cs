@@ -22,11 +22,13 @@
 		{			
 			ParseStartupArguments(args);
 		}
+
 		public enum CommandArg
 		{
 			None,
 			Help,
 			Version,
+			Download,
 			Start,
 			Stop,
 			Add,
@@ -49,6 +51,7 @@
 					"--version" => CommandArg.Version,
 					"version" => CommandArg.Version,
 
+					"download" => CommandArg.Download,
 					"start" => CommandArg.Start,
 					"stop" => CommandArg.Stop,
 					"add" => CommandArg.Add,

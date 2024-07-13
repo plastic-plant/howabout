@@ -25,6 +25,7 @@ Usage: howabout <command> [options]
 
 Commands:
   help      Display help information.
+  download  Download models.
   start     Start the server.
   stop      Stop the server.
   add       Add documents to the server.

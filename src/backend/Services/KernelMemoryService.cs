@@ -110,8 +110,6 @@ namespace Howabout.Services
 					break;
 			}
 
-			
-
 			_kernelMemory = builder.Build();
 		}
 	}

@@ -17,6 +17,10 @@
       "commandName": "Project",
       "commandLineArgs": "version"
     },
+    "howabout download repo/model": {
+      "commandName": "Project",
+      "commandLineArgs": "download nomic-ai/nomic-embed-text-v1.5-GGUF google/gemma-2b-it"
+    },
     "howabout start": {
       "commandName": "Project",
       "commandLineArgs": "start",

@@ -6,7 +6,7 @@ using Serilog;
 
 namespace Howabout.Commands
 {
-	public class ConsoleCommandAsk: IConsoleCommand
+	public class ConsoleCommandAsk : IConsoleCommand
 	{
 		private readonly ConsoleStartupArguments _args;
 		private readonly HttpMessageHandler _httpMessageHandler;
