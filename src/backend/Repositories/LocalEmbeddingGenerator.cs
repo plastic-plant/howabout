@@ -21,9 +21,16 @@ namespace Howabout.Repositories
 			MaxTokens = (int)(parameters.ContextSize ?? _context.ContextSize);
 		}
 
+		[Obsolete("Use GetTokens instead")]
 		public int CountTokens(string text)
 		{
 			return _context.Tokenize(text).Length;
+		}
+
+		public IReadOnlyList<string> GetTokens(string text)
+		{
+			var tokens = _context.Tokenize(text);
+			return tokens.Select(token => token.ToString()).ToArray();
 		}
 
 		public async Task<Embedding> GenerateEmbeddingAsync(string text, CancellationToken cancellationToken)
