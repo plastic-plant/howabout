@@ -19,7 +19,7 @@
     },
     "howabout download repo/model": {
       "commandName": "Project",
-      "commandLineArgs": "download nomic-ai/nomic-embed-text-v1.5-GGUF google/gemma-2b-it"
+      "commandLineArgs": "download https://github.com/plastic-plant/fineprint.git nomic-ai/nomic-embed-text-v1.5-GGUF google/gemma-2b-it --username abc --password def"
     },
     "howabout start": {
       "commandName": "Project",

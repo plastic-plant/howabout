@@ -3,6 +3,7 @@ using Howabout.Configuration;
 using Howabout.Controllers;
 using Howabout.Interfaces;
 using HuggingfaceHub;
+using LibGit2Sharp;
 using Serilog;
 
 namespace Howabout.Commands
@@ -33,12 +34,23 @@ namespace Howabout.Commands
 		{
 			foreach (var model in _args.Arguments)
 			{
-				var localModelDirectory = Path.Combine(_modelsDownloadPath, model);
-				if (!Directory.Exists(localModelDirectory))
+				var isGitRepo = model.StartsWith("https://");
+				if (isGitRepo)
 				{
-					Directory.CreateDirectory(localModelDirectory);
+					var repoModelPath = (new Uri(model)).Query.Trim('/').Replace(".git", ""); // e.g. https://github.com/plastic-plant/fineprint -> "plastic-plant/fineprint"
+					var localModelDirectory = Path.Combine(_modelsDownloadPath, repoModelPath);
+					Repository.Clone("https://github.com/libgit2/libgit2sharp.git", localModelDirectory);
 				}
-				await HFDownloader.DownloadSnapshotAsync(model, "main", localDir: localModelDirectory, maxWorkers: 4, progress: new DownloadFilesGroupProgress());
+				else // Download from Hugging Face.
+				{
+					var repoModelPath = model; // e.g. "google/gemma-2b-it"
+					var localModelDirectory = Path.Combine(_modelsDownloadPath, repoModelPath);
+					if (!Directory.Exists(localModelDirectory))
+					{
+						Directory.CreateDirectory(localModelDirectory);
+					}
+					await HFDownloader.DownloadSnapshotAsync(model, "main", localDir: localModelDirectory, maxWorkers: 4, progress: new DownloadFilesGroupProgress());
+				}
 			}
 			return;
 		}
