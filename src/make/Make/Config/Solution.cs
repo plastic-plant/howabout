@@ -47,12 +47,12 @@ namespace Make.Config
 			{
 				// https://github.com/quamotion/dotnet-packaging
 				case PackageType.Deb:
-					await RunAsync("dotnet", $"msbuild {config.ProjectFilePath} -target:CreateDeb -property:Configuration={config.PublishOptions.Configuration} -property:RuntimeIdentifiers={config.PublishOptions.Runtime} --property:OutputPath=\"{config.BuildArtifactsFolderPath}\"");
+					await RunAsync("dotnet", $"msbuild {config.ProjectFilePath} -target:CreateDeb -property:Version={config.VersionLong} -property:Configuration={config.PublishOptions.Configuration} -property:RuntimeIdentifiers={config.PublishOptions.Runtime} -property:OutputPath={config.BuildArtifactsFolderPath};NOOP=NOOP "); // Added ;NOOP=NOOP no-operation option to prevent -p:OutputPath="" gobbling up the rest of the command line in dotnet msbuild. Not sure what's going on here, the normal msbuild quotes " ' &quot; are somehow stripped by dotnet msbuild, but ; still works well.
 					break;
 
 				// https://github.com/quamotion/dotnet-packaging
 				case PackageType.Rpm:
-					await RunAsync("dotnet", $"msbuild {config.ProjectFilePath} -target:CreateDeb -property:Configuration={config.PublishOptions.Configuration} -property:RuntimeIdentifiers={config.PublishOptions.Runtime} --property:OutputPath=\"{config.BuildArtifactsFolderPath}\"");
+					await RunAsync("dotnet", $"msbuild {config.ProjectFilePath} -target:CreateRpm -property:Version={config.VersionLong} -property:Configuration={config.PublishOptions.Configuration} -property:RuntimeIdentifiers={config.PublishOptions.Runtime} -property:OutputPath={config.BuildArtifactsFolderPath};NOOP=NOOP ");
 					break;
 
 				// https://jrsoftware.org/isinfo.php
@@ -104,7 +104,8 @@ namespace Make.Config
 					}
 
 					Bundle.EnsureDirectoryExists(config.BuildArtifactsFolderPath);
-					var output = Path.Combine(config.BuildArtifactsFolderPath, $"howabout-{config.VersionLong}.{config.PublishOptions.Name}.tar");
+					//var output = Path.Combine(config.BuildArtifactsFolderPath, $"howabout-{config.VersionLong}.{config.PublishOptions.Name}.tar");
+					var output = Path.Combine(config.BuildArtifactsFolderPath, config.FileName + ".tar");
 					var context = config.SolutionFolderPath.ToLinuxForwardSlashes().WithQuotes(); 
 					var dockerfile = Path.Combine(config.SolutionFolderPath, "Dockerfile").ToLinuxForwardSlashes().WithQuotes();
 

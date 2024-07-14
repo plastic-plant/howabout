@@ -2,13 +2,14 @@ using Howabout.Commands;
 using Howabout.Configuration;
 using Howabout.Extensions;
 using Howabout.Interfaces;
+using Howabout.Models;
 using Serilog;
 using System.Reflection;
 using static Howabout.Configuration.ConsoleStartupArguments;
 
 namespace Howabout
 {
-	public class Program
+    public class Program
 	{
 		public static string OriginalWorkingDirectory = Directory.GetCurrentDirectory();
 		public static string ApplicationRootDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? OriginalWorkingDirectory;
