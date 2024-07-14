@@ -1,11 +1,11 @@
 ﻿using FluentAssertions;
-using Howabout.Commands;
+using Howabout.Models;
 using Serilog;
 using Serilog.Sinks.TestCorrelator;
 
 namespace Howabout.Tests
 {
-	public class ProgramTests
+    public class ProgramTests
 	{
 
 		[Fact]

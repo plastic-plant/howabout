@@ -37,11 +37,13 @@ any .GGUF model on local disk, LM studio, Jan.ai, etc.
   nano appsettings.json, notepad appsettings.json
   howabout start
 
-Optionally, you can download a model from Hugging Face:
+Optionally, you can download a model from Hugging Face. Some examples:
 
   howabout download <repository/model>
   howabout download <repository/model> [repository/model]
   howabout download nomic-ai/nomic-embed-text-v1.5-GGUF google/gemma-2b-it
+  howabout download https://github.com/plastic-plant/fineprint.git 
+                                   --username sixfingers --password 123456!
 
 You can upload documents by name, folder or url:
 

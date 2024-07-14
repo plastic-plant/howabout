@@ -1,27 +1,29 @@
-﻿using Azure;
-using Howabout.Configuration;
-using Howabout.Controllers;
+﻿using Howabout.Configuration;
 using Howabout.Interfaces;
+using Howabout.Models;
+using Howabout.Repositories;
 using HuggingfaceHub;
 using LibGit2Sharp;
 using Serilog;
+using SharpCompress.Archives;
+using SharpCompress.Common;
+using System.IO.Compression;
 
 namespace Howabout.Commands
 {
 	public class ConsoleCommandDownload: IConsoleCommand
 	{
 		private readonly ConsoleStartupArguments _args;
-		private readonly HttpMessageHandler _httpMessageHandler;
-		private readonly string _modelsDownloadPath;
+		private readonly IDownloadRepository _download;
 
-		public ConsoleCommandDownload(ConsoleStartupArguments args, HttpMessageHandler? httpMessageHandler = null)
+		public ConsoleCommandDownload(ConsoleStartupArguments args, IDownloadRepository? download = null)
         {
 			_args = args ?? throw new ArgumentNullException(nameof(args));
-			_httpMessageHandler = httpMessageHandler ?? new HttpClientHandler();
-			_modelsDownloadPath = Path.Combine(Program.ApplicationRootDirectory, "_models");
+			_download = download ?? new DownloadRepository(args);
+			
 		}
 
-        public Task Verify()
+		public Task Verify()
 		{
 			if (_args.Arguments.Count == 0)
 			{
@@ -34,32 +36,30 @@ namespace Howabout.Commands
 		{
 			foreach (var model in _args.Arguments)
 			{
-				var isGitRepo = model.StartsWith("https://");
-				if (isGitRepo)
+				var downloadpath = await _download.DownloadAsync(model);
+				Directory.CreateDirectory(_download.LocalModelDirectory);
+				switch (_download.DownloadType)
 				{
-					var repoModelPath = (new Uri(model)).Query.Trim('/').Replace(".git", ""); // e.g. https://github.com/plastic-plant/fineprint -> "plastic-plant/fineprint"
-					var localModelDirectory = Path.Combine(_modelsDownloadPath, repoModelPath);
-					Repository.Clone("https://github.com/libgit2/libgit2sharp.git", localModelDirectory);
-				}
-				else // Download from Hugging Face.
-				{
-					var repoModelPath = model; // e.g. "google/gemma-2b-it"
-					var localModelDirectory = Path.Combine(_modelsDownloadPath, repoModelPath);
-					if (!Directory.Exists(localModelDirectory))
-					{
-						Directory.CreateDirectory(localModelDirectory);
-					}
-					await HFDownloader.DownloadSnapshotAsync(model, "main", localDir: localModelDirectory, maxWorkers: 4, progress: new DownloadFilesGroupProgress());
-				}
-			}
-			return;
-		}
+					// Extract downloaded .tar.gz or .zip archive.
+					case DownloadType.HttpTarGz:
+					case DownloadType.HttpZip:
+						using (var archive = ArchiveFactory.Open(downloadpath))
+						{
+							foreach (var entry in archive.Entries.Where(entry => !entry.IsDirectory))
+							{
+								entry.WriteToDirectory(_download.LocalModelDirectory, new ExtractionOptions()
+								{
+									ExtractFullPath = true,
+									Overwrite = false
+								});
+							}
+						}
+						break;
 
-		private class DownloadFilesGroupProgress : IGroupedProgress
-		{
-			public void Report(string filename, int progress)
-			{
-				Log.Information(filename + " " + progress + "%");
+					// Do not extract downloaded model files from cloned repository.
+					default:
+						break;
+				}
 			}
 		}
 	}
