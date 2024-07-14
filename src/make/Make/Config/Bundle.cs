@@ -36,7 +36,7 @@ namespace Make.Config
 					break;
 
 				case PackageType.App:
-					CopyDirectory(Path.Combine(config.BuildArtifactsFolderPath, "setup"), config.PackagePublishFolderPath);
+					CopyDirectory(Path.Combine(config.BuildArtifactsFolderPath, "howabout.app"), config.PackagePublishFolderPath);
 					break;
 
 				case PackageType.Dmg:
