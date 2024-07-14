@@ -64,10 +64,10 @@
     <!-- Workaround LlamaSharp issue #382. -->
 
     <ItemGroup>
-        <LlamaSharpBackendCpu Include="$(RestorePackagesPath)\llamasharp.backend.cpu\0.12.0\runtimes\**\*.*" />
-        <LlamaSharpBackendCuda11 Include="$(RestorePackagesPath)\llamasharp.backend.cuda11\0.12.0\runtimes\**\*.*" />
-        <LlamaSharpBackendCuda12 Include="$(RestorePackagesPath)\llamasharp.backend.cuda12\0.12.0\runtimes\**\*.*" />
-        <LlamaSharpBackendOpenCL Include="$(RestorePackagesPath)\llamasharp.backend.opencl\0.12.0\runtimes\**\*.*" />
+        <LlamaSharpBackendCpu Include="$(RestorePackagesPath)\llamasharp.backend.cpu\0.13.0\runtimes\**\*.*" />
+        <LlamaSharpBackendCuda11 Include="$(RestorePackagesPath)\llamasharp.backend.cuda11\0.13.0\runtimes\**\*.*" />
+        <LlamaSharpBackendCuda12 Include="$(RestorePackagesPath)\llamasharp.backend.cuda12\0.13.0\runtimes\**\*.*" />
+        <LlamaSharpBackendOpenCL Include="$(RestorePackagesPath)\llamasharp.backend.opencl\0.13.0\runtimes\**\*.*" />
     </ItemGroup>
 
     <Target Name="CopyRuntimesFolderOnBuild" AfterTargets="Build">
@@ -84,7 +84,7 @@
         <Copy SourceFiles="@(LlamaSharpBackendOpenCL)" DestinationFolder="$(OutputPath)\runtimes\%(RecursiveDir)" />
     </Target>
 
-    <Target Name="CopyRuntimesFolderOnPublish" AfterTargets="Publish">
+    <Target Name="CopyRuntimesFolderOnPublish" AfterTargets="Publish,CreateDeb,CreateRpm">
         <Delete Files="$(PublishDir)llama.dll" />
         <Delete Files="$(PublishDir)llava_shared.dll" />
         <Delete Files="$(PublishDir)libllama.so" />
