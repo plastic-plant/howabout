@@ -11,10 +11,10 @@ Works with Windows 11 and earlier versions. Download the .EXE installer and run 
 
 - Download [howabout-1.0.0.windows-x86.exe](https://github.com/plastic-plant/howabout/releases/download/v1.0.0/howabout-1.0.0.windows-x86.exe) as Setup package for Windows 32-bit.
 
-![Setup window showing option for install mode](..\images\03_install_on_windows_01.png)
-![Setup window showing option for destination location](..\images\03_install_on_windows_02.png)
-![Setup window showing option for desktop shortcut](..\images\03_install_on_windows_03.png)
-![Setup window showing confirmation](..\images\03_install_on_windows_04.png)
+![Setup window showing option for install mode](../images/03_install_on_windows_01.png)
+![Setup window showing option for destination location](../images/03_install_on_windows_02.png)
+![Setup window showing option for desktop shortcut](../images/03_install_on_windows_03.png)
+![Setup window showing confirmation](../images/03_install_on_windows_04.png)
 
 
 #### Install as ZIP package
