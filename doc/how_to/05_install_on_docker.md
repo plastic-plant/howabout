@@ -13,7 +13,7 @@ Keep in mind that you can run the default x86-amd image on all Docker setups, du
 You can import the image from releases folder, or build it from source. Then run as usual with Docker, Docker Compose or Kubernetes.
 
 ```bash
-wget (https://github.com/plastic-plant/howabout/releases/download/v1.5.0/howabout-1.5.0.docker.tar.gz
+wget https://github.com/plastic-plant/howabout/releases/download/v1.5.0/howabout-1.5.0.docker.tar.gz
 docker load --input howabout-1.5.0.docker.tar.gz
 ```
 

@@ -1,8 +1,8 @@
 # ###############################################################################
-#
-# helm install howabout ./howabout
-# helm del howabout
-#
-# helm package howabout
-#
+```
+helm install howabout ./howabout
+helm del howabout
+
+helm package howabout
+```
 # ###############################################################################
