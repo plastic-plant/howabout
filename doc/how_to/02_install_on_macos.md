@@ -2,8 +2,8 @@
 
 Howabout for Linux is published on the [releases page](https://github.com/plastic-plant/howabout/releases). Various packages are available for your distribution and hardware architecture, but building and running the app yourself should improve the deployment experience.
 
-- Release [howabout-1.0.0.macos-arm64.tar.gz](https://github.com/plastic-plant/howabout/releases/download/v1.0.0/howabout-1.0.0.macos-arm64.tar.gz) for macOS ARM64 on newer Apple Silicon based machines with an M1, M2, M3, etc. chip (macOS 11 Big Sur and later).
-- Release [howabout-1.0.0.macos-x64.tar.gz](https://github.com/plastic-plant/howabout/releases/download/v1.0.0/howabout-1.0.0.macos-x64.tar.gz) for macOS 64-bit on older Intel based machines (macOS 10.12 Sierra and later).
+- Release [howabout-1.5.0.macos-arm64.tar.gz](https://github.com/plastic-plant/howabout/releases/download/v1.5.0/howabout-1.5.0.macos-arm64.tar.gz) for macOS ARM64 on newer Apple Silicon based machines with an M1, M2, M3, etc. chip (macOS 11 Big Sur and later).
+- Release [howabout-1.5.0.macos-x64.tar.gz](https://github.com/plastic-plant/howabout/releases/download/v1.5.0/howabout-1.5.0.macos-x64.tar.gz) for macOS 64-bit on older Intel based machines (macOS 10.12 Sierra and later).
 
 - Make scripts `macos-arm64-app` and `macos-x64-app` for Applications folder.
 

@@ -2,9 +2,9 @@
 
 Howabout for Linux is published on the [releases page](https://github.com/plastic-plant/howabout/releases). Various packages are available for your distribution and hardware architecture.
 
-- Download [howabout-1.0.0.linux-x64.deb](https://github.com/plastic-plant/howabout/releases/download/v1.0.0/howabout-1.0.0.linux-x64.deb) as .DEB package.
-- Download [howabout-1.0.0.linux-x64.rpm](https://github.com/plastic-plant/howabout/releases/download/v1.0.0/howabout-1.0.0.linux-x64.rpm) as .RPM package.
-- Download [howabout-1.0.0.linux-x64.tar.gz](https://github.com/plastic-plant/howabout/releases/download/v1.0.0/howabout-1.0.0.linux-x64.tar.gz) as tarball.
+- Download [howabout-1.5.0.linux-x64.deb](https://github.com/plastic-plant/howabout/releases/download/v1.5.0/howabout-1.5.0.linux-x64.deb) as .DEB package.
+- Download [howabout-1.5.0.linux-x64.rpm](https://github.com/plastic-plant/howabout/releases/download/v1.5.0/howabout-1.5.0.linux-x64.rpm) as .RPM package.
+- Download [howabout-1.5.0.linux-x64.tar.gz](https://github.com/plastic-plant/howabout/releases/download/v1.5.0/howabout-1.5.0.linux-x64.tar.gz) as tarball.
 
 
 #### Install with Debian or APT package manager
@@ -12,8 +12,8 @@ Howabout for Linux is published on the [releases page](https://github.com/plasti
 On Debian, Ubuntu, Mint, Elementary, Kali, Pop!_OS and other Debian-based distributions, you can use the APT package tool to install Howabout. This typically extracts the the files in `/usr/share/howabout/` and creates a symbolic link `/usr/local/bin/howabout` to the executable. You can then run the executable from the command line.
 
 ```bash
-wget https://github.com/plastic-plant/howabout/releases/download/v1.0.0/howabout-1.0.0.linux-x64.deb
-sudo apt install ./howabout-1.0.0.linux-x64.deb
+wget https://github.com/plastic-plant/howabout/releases/download/v1.5.0/howabout-1.5.0.linux-x64.deb
+sudo apt install ./howabout-1.5.0.linux-x64.deb
 
 howabout help
 sudo apt remove howabout
@@ -22,8 +22,8 @@ sudo apt remove howabout
 Installing the same package with Debian package manager typically extracts the the files in `/usr/local/share/howabout/` and creates a symbolic link `/usr/local/bin/howabout`.
 
 ```bash
-wget https://github.com/plastic-plant/howabout/releases/download/v1.0.0/howabout-1.0.0.linux-x64.deb
-sudo dpkg --install howabout-1.0.0.linux-x64.deb
+wget https://github.com/plastic-plant/howabout/releases/download/v1.5.0/howabout-1.5.0.linux-x64.deb
+sudo dpkg --install howabout-1.5.0.linux-x64.deb
 
 howabout help
 sudo dpkg --remove howabout
@@ -36,12 +36,12 @@ On Fedora, CentOS, OracleLinux, SUSE and other RPM-based distributions, you can 
 
 
 ```bash
-wget https://github.com/plastic-plant/howabout/releases/download/v1.0.0/howabout-1.0.0.linux-x64.rpm
+wget https://github.com/plastic-plant/howabout/releases/download/v1.5.0/howabout-1.5.0.linux-x64.rpm
 
-sudo rpm --install howabout-1.0.0.linux-x64.rpm
-sudo dnf install howabout-1.0.0.linux-x64.rpm
-sudo yum install howabout-1.0.0.linux-x64.rpm
-sudo zypper install howabout-1.0.0.linux-x64.rpm
+sudo rpm --install howabout-1.5.0.linux-x64.rpm
+sudo dnf install howabout-1.5.0.linux-x64.rpm
+sudo yum install howabout-1.5.0.linux-x64.rpm
+sudo zypper install howabout-1.5.0.linux-x64.rpm
 
 howabout help
 
@@ -59,8 +59,8 @@ Downloading and extracting a tarball, allows us some more control over the insta
 ```bash
 cd ~
 
-wget https://github.com/plastic-plant/howabout/releases/download/v1.0.0/howabout-1.0.0.linux-x64.tar.gz
-sudo tar -xvf howabout-1.0.0.linux-arm.tar.gz -C /usr/local/howabout
+wget https://github.com/plastic-plant/howabout/releases/download/v1.5.0/howabout-1.5.0.linux-x64.tar.gz
+sudo tar -xvf howabout-1.5.0.linux-arm.tar.gz -C /usr/local/howabout
 sudo ln -s /usr/share/howabout/howabout /usr/local/bin/howabout
 
 cd /usr/local/howabout
@@ -69,7 +69,7 @@ howabout version
 
 sudo rm /usr/local/bin/howabout
 sudo rm -rf /usr/local/howabout
-rm ~/howabout-1.0.0.linux-x64.tar.gz
+rm ~/howabout-1.5.0.linux-x64.tar.gz
 ```
 
 
@@ -77,7 +77,7 @@ rm ~/howabout-1.0.0.linux-x64.tar.gz
 
 Some versions are available for lightweight Linux distributions. Please see the setup pages for [Install on Raspberry Pi](doc/how_to/04_install_on_raspberry.md)], [Install on Docker](doc/how_to/05_install_on_docker.md)] and [Install on Kubernetes](doc/how_to/06_install_on_kubernetes.md)] for details.
 
-- Download [howabout-1.0.0.linux-arm.tar.gz](https://github.com/plastic-plant/howabout/releases/download/v1.0.0/howabout-1.0.0.linux-arm.tar.gz) for Linux distributions on ARM like Raspbian on Raspberry Pi Model 2+.
-- Download [howabout-1.0.0.linux-arm64-musl.tar.gz](https://github.com/plastic-plant/howabout/releases/download/v1.0.0/howabout-1.0.0.linux-arm64-musl.tar.gz) as tarball for Linux distributions running on 64-bit ARM like Raspberry Pi OS and Ubuntu Server on Raspberry Pi Model 3+
-- Download [howabout-1.0.0.linux-arm64.tar.gz](https://github.com/plastic-plant/howabout/releases/download/v1.0.0/howabout-1.0.0.linux-arm64.tar.gz) as tarball for lightweight Linux 64-bit ARMv8 to build Docker images.
-- Download [howabout-1.0.0.linux-x64-musl.tar.gz](https://github.com/plastic-plant/howabout/releases/download/v1.0.0/howabout-1.0.0.linux-x64-musl.tar.gz) as tarball for lightweight Linux 64-bit distributions using musl like Alpine.
+- Download [howabout-1.5.0.linux-arm.tar.gz](https://github.com/plastic-plant/howabout/releases/download/v1.5.0/howabout-1.5.0.linux-arm.tar.gz) for Linux distributions on ARM like Raspbian on Raspberry Pi Model 2+.
+- Download [howabout-1.5.0.linux-arm64-musl.tar.gz](https://github.com/plastic-plant/howabout/releases/download/v1.5.0/howabout-1.5.0.linux-arm64-musl.tar.gz) as tarball for Linux distributions running on 64-bit ARM like Raspberry Pi OS and Ubuntu Server on Raspberry Pi Model 3+
+- Download [howabout-1.5.0.linux-arm64.tar.gz](https://github.com/plastic-plant/howabout/releases/download/v1.5.0/howabout-1.5.0.linux-arm64.tar.gz) as tarball for lightweight Linux 64-bit ARMv8 to build Docker images.
+- Download [howabout-1.5.0.linux-x64-musl.tar.gz](https://github.com/plastic-plant/howabout/releases/download/v1.5.0/howabout-1.5.0.linux-x64-musl.tar.gz) as tarball for lightweight Linux 64-bit distributions using musl like Alpine.
