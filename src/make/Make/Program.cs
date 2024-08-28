@@ -24,6 +24,7 @@ foreach (var config in configs)
 Target("build", () => RunAsync("dotnet", "build --configuration Release --nologo --verbosity quiet"));
 Target("test", DependsOn("build"), () => RunAsync("dotnet", "test --configuration Release --no-build --nologo --verbosity quiet"));
 Target("publish", DependsOn(configs.Select(config => $"publish-{config.PublishOptions.Name}").ToArray()));
+Target("scan", () => RunAsync("trivy", $"trivy fs --scanners vuln,secret,misconfig {publish}")); // https://github.com/aquasecurity/trivy
 Target("default", DependsOn("publish"));
 
 await RunTargetsAndExitAsync(args, ex => ex is SimpleExec.ExitCodeException);

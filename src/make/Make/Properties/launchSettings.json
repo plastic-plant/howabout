@@ -1,5 +1,9 @@
 {
   "profiles": {
+    "make scan": {
+      "commandName": "Project",
+      "commandLineArgs": "scan"
+    },
     "make -bc all": {
       "commandName": "Project",
       "commandLineArgs": "-bc all"
