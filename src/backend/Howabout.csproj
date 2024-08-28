@@ -31,17 +31,17 @@
         <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
             <Version>8.*-*</Version>
         </PackageReference>
-        <PackageReference Include="Microsoft.KernelMemory.AI.LlamaSharp" Version="0.67.240712.1" />
-        <PackageReference Include="Microsoft.KernelMemory.Core" Version="0.67.240712.1" />
-        <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
+        <PackageReference Include="Microsoft.KernelMemory.AI.LlamaSharp" Version="0.71.240820.1" />
+        <PackageReference Include="Microsoft.KernelMemory.Core" Version="0.71.240820.1" />
+        <PackageReference Include="Serilog.AspNetCore" Version="8.0.2" />
         <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
         <PackageReference Include="SharpCompress" Version="0.37.2" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.3" />
         <PackageReference Include="System.Management" Version="8.0.0" />
-        <PackageReference Include="LLamaSharp" Version="0.13.0" />
-        <PackageReference Include="LLamaSharp.Backend.Cpu" Version="0.13.0" />
-        <PackageReference Include="LLamaSharp.Backend.Cuda11" Version="0.13.0" />
-        <PackageReference Include="LLamaSharp.Backend.Cuda12" Version="0.13.0" />
+        <PackageReference Include="LLamaSharp" Version="0.15.0" />
+        <PackageReference Include="LLamaSharp.Backend.Cpu" Version="0.15.0" />
+        <PackageReference Include="LLamaSharp.Backend.Cuda11" Version="0.15.0" />
+        <PackageReference Include="LLamaSharp.Backend.Cuda12" Version="0.15.0" />
         <PackageReference Include="LLamaSharp.Backend.OpenCL" Version="0.13.0" />
         <!-- -->
     </ItemGroup>
@@ -64,10 +64,10 @@
     <!-- Workaround LlamaSharp issue #382. -->
 
     <ItemGroup>
-        <LlamaSharpBackendCpu Include="$(RestorePackagesPath)\llamasharp.backend.cpu\0.13.0\runtimes\**\*.*" />
-        <LlamaSharpBackendCuda11 Include="$(RestorePackagesPath)\llamasharp.backend.cuda11\0.13.0\runtimes\**\*.*" />
-        <LlamaSharpBackendCuda12 Include="$(RestorePackagesPath)\llamasharp.backend.cuda12\0.13.0\runtimes\**\*.*" />
-        <LlamaSharpBackendOpenCL Include="$(RestorePackagesPath)\llamasharp.backend.opencl\0.13.0\runtimes\**\*.*" />
+        <LlamaSharpBackendCpu Include="$(RestorePackagesPath)\llamasharp.backend.cpu\0.15.0\runtimes\**\*.*" />
+        <LlamaSharpBackendCuda11 Include="$(RestorePackagesPath)\llamasharp.backend.cuda11\0.15.0\runtimes\**\*.*" />
+        <LlamaSharpBackendCuda12 Include="$(RestorePackagesPath)\llamasharp.backend.cuda12\0.15.0\runtimes\**\*.*" />
+        <LlamaSharpBackendOpenCL Include="$(RestorePackagesPath)\llamasharp.backend.opencl\0.15.0\runtimes\**\*.*" />
     </ItemGroup>
 
     <Target Name="CopyRuntimesFolderOnBuild" AfterTargets="Build">
